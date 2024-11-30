@@ -59,7 +59,7 @@ class ProductStock extends Model
         return $this->product?->discount;
     }
 
-gi
+
 
 
 }
