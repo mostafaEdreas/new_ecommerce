@@ -18,8 +18,8 @@ class AttributeValueFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_ar' => $this->faker->unique()->word, // Unique Arabic name
-            'name_en' => $this->faker->unique()->word, // Unique English name
+            'value_ar' => $this->faker->unique()->word, // Unique Arabic name
+            'value_en' => $this->faker->unique()->word, // Unique English name
             'attribute_id' => Attribute::inRandomOrder()->first()->id, // Random existing attribute
             'status' => $this->faker->boolean, // Random true/false
         ];

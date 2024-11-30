@@ -58,18 +58,18 @@
 
                                 <div class="form-group col-md-12">
                                     <div class="row">
-                                        <div class="form-group col-md-4">
+                                        {{-- <div class="form-group col-md-4">
                                             <label for="menu">{{trans('home.menu')}}</label>
                                             <select class="form-control select2 menu" name="menu_id">
                                                 @foreach($menus as $menu)
                                                     <option value="{{$menu->id}}">{{(app()->getLocale() == 'en')?$menu->name_en:$menu->name_ar}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group col-md-4">
                                             <label for="menu_type">{{trans('home.menu_type')}}</label>
-                                            <select class="form-control select2 menu_type" name="menu_type" required>
+                                            <select class="form-control select2 menu_type" name="type" required>
                                                 <option></option>
                                                 <option value="main-item">{{trans('home.main-item')}}</option>
                                                 <option value="home">{{trans('home.home')}}</option>

@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Page extends Model
 {
     protected $table = 'pages';
-    private $lang = LaravelLocalization::getCurrentLocale();
-
+    private $lang ;
     protected $fillable = [
         'name_ar',
         'name_en',
@@ -18,7 +18,14 @@ class Page extends Model
         'status',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
 
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
     public function getNameAttribute(){
         return $this->{'name_'.$this->lang} ;
     }

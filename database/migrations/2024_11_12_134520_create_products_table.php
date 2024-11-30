@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name_en',255)->unique();
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('brand_id')->nullable()->constrained('brands');
-            $table->integer('order', 20);
+            $table->integer('order', );
             $table->longText('text_ar')->nullable();
             $table->longText('text_en')->nullable();
             $table->longText('short_text_ar')->nullable();

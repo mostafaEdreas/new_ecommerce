@@ -19,7 +19,7 @@ return new class extends Migration
             $table->longText('text_en')->nullable();
             $table->string('video_link')->nullable();
             $table->string('image',255)->nullable();
-            $table->string('icon',255)->nullable();
+            $table->string('banner',255)->nullable();
             $table->timestamps();
         });
     }

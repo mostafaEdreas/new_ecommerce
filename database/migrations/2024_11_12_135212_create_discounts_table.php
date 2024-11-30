@@ -17,7 +17,7 @@ return new class extends Migration
             $table->timestamp('end_date');
             $table->decimal('discount',10,2);
             $table->boolean('type')->default(0)->comment('0 = amount || 1 = percentage');
-            $table->foreignId('product_id')->constrained('products');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 return [
     'clear_filter'=>'Clear Filter',
     'back'=>'back',
+    'your_item_deleted_successfully' => 'your item has been deleted successfully',
     'power'=>'Power',
     'reciept_details'=>'Reciept Details',
     'not_exist'=>'Not exist',

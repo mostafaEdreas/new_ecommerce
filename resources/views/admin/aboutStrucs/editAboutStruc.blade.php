@@ -31,23 +31,25 @@
                         {!! Form::open(['method'=>'PATCH','url' => 'admin/aboutStrucs/'.$aboutStruc->id, 'data-toggle'=>'validator', 'files'=>'true']) !!}
                             <div class="row">
 
-                            <div class="form-group col-md-6">
-                                    <label class="">{{trans('home.title')}}</label>
-                                    <input class="form-control" name="title" type="text" placeholder="{{trans('home.title')}}" value="{{$aboutStruc->title}}">
+                                <div class="form-group col-md-6">
+                                    <label class="">{{trans('home.name_en')}}</label>
+                                    <input class="form-control" name="name_en" type="text" value="{{$aboutStruc->name_en}}" placeholder="{{trans('home.name_en')}}" required>
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="helperText">{{trans('home.lang')}}</label>
-                                    <select class="form-control select2" name="lang" required>
-                                        <option value="ar">{{trans('home.arabic')}}</option>
-                                        <option value="en">{{trans('home.english')}}</option>
-                                    </select>
+                                    <label class="">{{trans('home.name_ar')}}</label>
+                                    <input class="form-control" name="name_ar" type="text" value="{{$aboutStruc->name_ar}}" placeholder="{{trans('home.name_ar')}}" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="">{{trans('home.text_ar')}}</label>
+                                    <textarea class="form-control" name="text_ar"  placeholder="{{trans('home.text_en')}}">{!! $aboutStruc->text_en !!}</textarea>
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                    <label class="">{{trans('home.text')}}</label>
-                                    <textarea class="form-control" name="text"  placeholder="{{trans('home.text')}}">{!! $aboutStruc->text !!}</textarea>
+                                <div class="form-group col-md-6">
+                                    <label class="">{{trans('home.text_en')}}</label>
+                                    <textarea class="form-control" name="text_en"  placeholder="{{trans('home.text_ar')}}">{!! $aboutStruc->text_en !!}</textarea>
                                 </div>
+
 
                                 <div class="form-group  col-md-12">
                                     <label>{{trans('home.image')}}</label>
@@ -56,15 +58,15 @@
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image">
+                                            <input type="file" class="custom-file-input" name="segment">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>
                                 </div>
 
-                                @if($aboutStruc->image)
+                                @if($aboutStruc->segment)
                                     <div class="form-group  col-md-12">
-                                        <img src="{{url('\uploads\aboutStrucs\resize200')}}\{{$aboutStruc->image}}" width="200" height="150">                                    </div>
+                                        <img src="{{url('\uploads\aboutStrucs\resize200')}}\{{$aboutStruc->segment}}" width="200" height="150">                                    </div>
                                     </div>
                                 @endif
 

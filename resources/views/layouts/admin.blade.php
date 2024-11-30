@@ -118,9 +118,9 @@
                             <i class="fas fa-envelope-open-text"></i>
                             <span class="sidemenu-label">{{trans('home.contactUsMessages')}}</span>
 
-                            @if(\App\Models\ContactUs::messageCount() > 0)
+                            {{-- @if(\App\Models\ContactUs::messageCount() > 0)
                                 <span class="badge badge-secondary side-badge">{{\App\Models\ContactUs::messageCount()}}</span>
-                            @endif
+                            @endif --}}
                         </a>
                     </li>
 
@@ -154,11 +154,6 @@
                         <li class="nav-item @if(Request::segment(2) == 'intro-sliders' || Request::segment(2) == 'home-sliders'   || Request::segment(2) == 'offers-sliders') active show @endif">
                             <a class="nav-link with-sub" href=""><i class="fas fa-sliders-h"></i><span class="sidemenu-label">{{trans('home.sliders')}}</span><i class="angle fe fe-chevron-right"></i></a>
                             <ul class="nav-sub">
-                                @can('intro-sliders')
-                                    <li class="nav-sub-item @if(Request::segment(2) == 'intro-sliders') active @endif">
-                                        <a class="nav-sub-link" href="{{url('admin/intro-sliders')}}">{{trans('home.intro_sliders')}}</a>
-                                    </li>
-                                @endcan
 
                                 @can('home-sliders')
                                     <li class="nav-sub-item @if(Request::segment(2) == 'home-sliders') active @endif">
@@ -166,53 +161,12 @@
                                     </li>
                                 @endcan
 
-                              @can('offers-sliders')
-                                  <li class="nav-sub-item @if(Request::segment(2) == 'offers-sliders') active @endif">
-                                      <a class="nav-sub-link" href="{{url('admin/offers-sliders')}}">{{trans('home.offers_sliders')}}</a>
-                                  </li>
-                              @endcan
+                             
                             </ul>
                         </li>
                     @endcan
 
-                   @can('home-images')
-                       <li class="nav-item @if(Request::segment(2) == 'home-images') active show @endif">
-   						<a class="nav-link" href="{{url('admin/home-images')}}"><i class="fe fe-camera"></i><span class="sidemenu-label">{{trans('home.homeImages')}}</span></a>
-   					</li>
-					@endcan
 
-					@can('gallery-images')
-                       <li class="nav-item @if(Request::segment(2) == 'gallery-images') active show @endif">
-                           <a class="nav-link" href="{{url('admin/gallery-images')}}"><i class="fe fe-camera"></i><span class="sidemenu-label">{{trans('home.galleryImages')}}</span></a>
-                       </li>
-                   @endcan
-                   @can('teams')
-                   <li class="nav-item @if (Request::segment(3) == 'teams') active show @endif">
-                       <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('admin/teams') }}"><i
-                               class="fas fa-user-tie"></i><span
-                               class="sidemenu-label">{{ trans('home.teams') }}</span></a>
-                   </li>
-               @endcan
-               @can('counters')
-               <li class="nav-item @if (Request::segment(3) == 'counters') active show @endif">
-                   <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('admin/counters') }}"><i
-                           class="fas fa-user-tie"></i><span
-                           class="sidemenu-label">{{ trans('home.counters') }}</span></a>
-               </li>
-           @endcan
-           @can('testimonials')
-           <li class="nav-item @if (Request::segment(3) == 'testimonials') active show @endif">
-               <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('admin/testimonials') }}"><i
-                       class="fas fa-user-tie"></i><span
-                       class="sidemenu-label">{{ trans('home.testimonials') }}</span></a>
-           </li>
-       @endcan
-
-                   @can('gallery-videos')
-                       <li class="nav-item @if(Request::segment(2) == 'gallery-videos') active show @endif">
-                           <a class="nav-link" href="{{url('admin/gallery-videos')}}"><i class="fab fa-youtube"></i><span class="sidemenu-label">{{trans('home.galleryVideos')}}</span></a>
-                       </li>
-                   @endcan
 
                     @can('about')
                         <li class="nav-item @if(Request::segment(2) == 'editAbout' || Request::segment(2) == 'aboutStrucs') active show @endif">
@@ -251,11 +205,7 @@
                         </li>
                     @endcan
 
-                    @can('services')
-                        <li class="nav-item @if(Request::segment(2) == 'services') active show @endif">
-                            <a class="nav-link" href="{{url('admin/services')}}"><i class="fas fa-praying-hands"></i><span class="sidemenu-label">{{trans('home.services')}}</span></a>
-                        </li>
-                    @endcan
+
 
                     @can('pages')
                         <li class="nav-item @if(Request::segment(2) == 'pages') active show @endif">
@@ -269,17 +219,12 @@
                         </li>
                     @endcan
 
-                    @can('branches')
-                        <li class="nav-item @if(Request::segment(2) == 'branches') active show @endif">
-                            <a class="nav-link" href="{{url('admin/branches')}}"><i class="fas fa-map-pin"></i><span class="sidemenu-label">{{trans('home.branches')}}</span></a>
-                        </li>
-                    @endcan
 
                     @can('store_info')
                         <li class="nav-label">{{trans('home.store_info')}}</li>
                     @endcan
 
-                    @can('categories')
+                   
     					<li class="nav-item @if(Request::segment(2) == 'categories' || Request::segment(2) == 'attributes') active show @endif">
                             <a class="nav-link with-sub" href=""><i class="fas fa-th"></i><span class="sidemenu-label">{{trans('home.categories')}}</span><i class="angle fe fe-chevron-right"></i></a>
                             <ul class="nav-sub">
@@ -296,7 +241,7 @@
                                 @endcan
                             </ul>
                         </li>
-                    @endcan
+                  
 
                     @can('brands')
                         <li class="nav-item @if(Request::segment(2) == 'brands') active show @endif">
@@ -304,11 +249,7 @@
                         </li>
                     @endcan
 
-                    @can('colors')
-                        <li class="nav-item @if(Request::segment(2) == 'colors') active show @endif">
-                            <a class="nav-link" href="{{url('admin/colors')}}"><i class="fas fa-palette"></i><span class="sidemenu-label">{{trans('home.colors')}}</span></a>
-                        </li>
-                    @endcan
+    
 
                     @can('products')
     					<li class="nav-item @if(Request::segment(2) == 'products') active show @endif">
@@ -425,17 +366,17 @@
                             </li>
                         @endcan
 
-                        @can('installment_partners')
+                        {{-- @can('installment_partners')
                             <li class="nav-item @if(Request::segment(2) == 'installmentPartners') active show @endif">
                                 <a class="nav-link" href="{{url('admin/installmentPartners')}}"><i class="fa fa-credit-card"></i><span class="sidemenu-label">{{trans('home.installmentPartners')}}</span></a>
                             </li>
-                        @endcan
+                        @endcan --}}
 
-                        @can('winners')
+                        {{-- @can('winners')
                             <li class="nav-item @if(Request::segment(2) == 'winners') active show @endif">
                                 <a class="nav-link" href="{{url('admin/winners')}}"><i class="fas fa-trophy"></i><span class="sidemenu-label">{{trans('home.winners')}}</span></a>
                             </li>
-                        @endcan
+                        @endcan --}}
 
                         @can('users')
                             <li class="nav-item @if(Request::segment(2) == 'users' || Request::segment(2) == 'roles' || Request::segment(2) == 'permissions'|| Request::segment(2) == 'user-admins') active show @endif">
@@ -519,18 +460,18 @@
 
                       <div class="main-header-right">
 
-                            <!--<div class="arrow_box_right">-->
-                            <!--    @if(app()->getLocale() == 'en')-->
+                            <div class="arrow_box_right">
+                                @if(app()->getLocale() == 'en')
 
-                            <!--        <a href="{{ url('lang/ar') }}" class="dropdown-item py-1">-->
-                            <!--            <img src="{{ URL::to('resources/assets/back/img/flags/eg.png') }}" alt="Arabic Flag" class="langimg"/>-->
-                            <!--        </a>-->
-                            <!--    @else-->
-                            <!--        <a href="{{ url('lang/en') }}" class="dropdown-item py-1">-->
-                            <!--            <img src="{{ URL::to('resources/assets/back/img/flags/us.png') }}" alt="English Flag" class="langimg"/>-->
-                            <!--        </a>-->
-                            <!--    @endif-->
-                            <!--</div>-->
+                                   <a href="{{ url('lang/ar') }}" class="dropdown-item py-1">
+                                       <img src="{{ URL::to('resources/assets/back/img/flags/eg.png') }}" alt="Arabic Flag" class="langimg"/>
+                                   </a>
+                               @else
+                                   <a href="{{ url('lang/en') }}" class="dropdown-item py-1">
+                                       <img src="{{ URL::to('resources/assets/back/img/flags/us.png') }}" alt="English Flag" class="langimg"/>
+                                   </a>
+                               @endif
+                           </div>
 
                           <div class="dropdown d-md-flex">
                               <a class="nav-link icon full-screen-link">
@@ -548,7 +489,7 @@
                             </a>
                             <div class="dropdown-menu">
                                 <div class="header-navheading">
-                                    <h6 class="main-notification-title">{{Auth::user()->name()}}</h6>
+                                    <h6 class="main-notification-title">{{Auth::user()->name}}</h6>
                                 </div>
 
                                 <a class="dropdown-item border-top" href="{{url('user/account-settings')}}">
@@ -704,6 +645,19 @@
                 }
             });
         </script>
+            <script>
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        toastr.error('{{ $error }}');
+                    @endforeach
+                @endif
+        
+                @if (session()->has('success'))
+                  
+                        toastr.success('{{ session('success') }}');
+                  
+                @endif
+            </script>
       @yield('script')
         <script>
             $(document).ready(function() {

@@ -41,13 +41,14 @@
                         </div>
 
                         <div class="table-responsive">
+                          <form action="b{{ route('aboutStrucs.destroy', [1]) }}"></form>  
                         <table class="table" id="exportexample">
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" id="checkAll"/></th>
                                     <th>{{trans('home.id')}}</th>
                                     <th class="wd-20p">{{trans('home.title')}}</th>
-                                    <th class="wd-20p">{{trans('home.lang')}}</th>
+                    
                                     <th class="wd-20p">{{trans('home.image')}}</th>
                                     <th class="wd-15p">{{trans('home.status')}}</th>
                                 </tr>
@@ -57,12 +58,12 @@
                                     <tr id="{{$aboutStruc->id}}">
                                         <td> <input type="checkbox" name="checkbox"  class="tableChecked" value="{{$aboutStruc->id}}"/></td>
                                         <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">{{$aboutStruc->id}}</a></td>
-                                        <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">{{$aboutStruc->title}}</a></td>
-                                        <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">{{trans("home.$aboutStruc->lang")}}</a></td>
+                                        <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">{{$aboutStruc->name}}</a></td>
+                                        {{-- <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">{{trans("home.$aboutStruc->lang")}}</a></td> --}}
                                         <td>
                                             <a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">
                                                 @if($aboutStruc->image)
-                                                    <img src="{{url('/uploads/aboutStrucs/resize200')}}/{{$aboutStruc->image}}" width="70">
+                                                    <img src="{{url('/uploads/aboutStrucs/resize200')}}/{{$aboutStruc->segment}}" width="70">
                                                 @else
                                                     <img src="{{url('resources/assets/back/img/noimage.png')}}" width="70">
                                                 @endif

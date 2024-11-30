@@ -125,8 +125,8 @@ class LoginController extends Controller
         if(!session()->has('url.intended')){
             session(['url.intended' => url()->previous()]);
         }
-        $gallery_image = GalleryImage::first();
-        return view('auth.login',compact('gallery_image'));
+        // $gallery_image = GalleryImage::first();
+        return view('auth.login');
     }
 
     public function login(Request $request){

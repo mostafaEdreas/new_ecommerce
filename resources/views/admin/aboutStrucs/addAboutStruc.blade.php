@@ -31,21 +31,23 @@
                             <div class="row">
 
                                 <div class="form-group col-md-6">
-                                    <label class="">{{trans('home.title')}}</label>
-                                    <input class="form-control" name="title" type="text" placeholder="{{trans('home.title')}}" required>
+                                    <label class="">{{trans('home.name_en')}}</label>
+                                    <input class="form-control" name="name_en" type="text" placeholder="{{trans('home.name_en')}}" required>
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="helperText">{{trans('home.lang')}}</label>
-                                    <select class="form-control select2" name="lang" required>
-                                        <option value="ar">{{trans('home.arabic')}}</option>
-                                        <option value="en">{{trans('home.english')}}</option>
-                                    </select>
+                                    <label class="">{{trans('home.name_ar')}}</label>
+                                    <input class="form-control" name="name_ar" type="text" placeholder="{{trans('home.name_ar')}}" required>
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                    <label class="">{{trans('home.text')}}</label>
-                                    <textarea class="form-control" name="text"  placeholder="{{trans('home.text')}}"></textarea>
+                                <div class="form-group col-md-6">
+                                    <label class="">{{trans('home.text_en')}}</label>
+                                    <textarea class="form-control" name="text_en"  placeholder="{{trans('home.text_en')}}"></textarea>
+                                </div>
+                                
+                                <div class="form-group col-md-6">
+                                    <label class="">{{trans('home.text_ar')}}</label>
+                                    <textarea class="form-control" name="text_ar"  placeholder="{{trans('home.text_ar')}}"></textarea>
                                 </div>
 
                                 <div class="col-md-12">
@@ -55,7 +57,7 @@
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image">
+                                            <input type="file" class="custom-file-input" name="segment">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>

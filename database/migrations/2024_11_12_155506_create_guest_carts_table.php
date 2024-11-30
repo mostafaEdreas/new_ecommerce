@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('guest_carts', function (Blueprint $table) {
             $table->id();
-            $table->string('session');
-            $table->foreignId('coupon_id')->constrained('coupons');
-            $table->foreignId('product_stock_id')->constrained('product_stock');
-            $table->integer('quantity');
+            $table->string('session_id');
+            $table->foreignId('coupon_id')->nullable()->constrained('coupons');
             $table->timestamps();
         });
     }

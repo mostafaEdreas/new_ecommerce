@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
 use Carbon\Carbon ;
@@ -11,8 +12,7 @@ class Coupon extends Model
 {
     protected $table = 'coupons';
 
-    private $lang = LaravelLocalization::getCurrentLocale();
-
+    private $lang ;
     protected $fillable = [
         'name_ar',         // Arabic name of the discount
         'name_en',         // English name of the discount
@@ -25,6 +25,29 @@ class Coupon extends Model
         'discount_type',   // Type of discount (e.g., value or percentage)
         'type',            // Type of discount (e.g., general or specific)
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
+
+    public function delete()
+    {
+        $errors = [] ;
+        if ($this->users()->exists()) {
+            $errors[] = 'The used coupon cannot be deleted.';
+        }
+      
+        if(count( $errors)){
+            return $errors;
+           }
+           
+           return parent::delete();
+    }
 
     protected $casts = [
         'start_date' => 'date:Y-m-d',
@@ -54,34 +77,14 @@ class Coupon extends Model
         return $this->users->where('user_id',auth()->user()->id)->count() > 0 ;
     }
 
-    public function checkPrice ()
-    {
-        return  0 ; // handle after create product model
-    }
-
-
-    public function getAmountAttribute()
-    {
-        if(!$this->discount_type){
-            return $this->discount ;
-        }
-        return  0  ; // hhandle after create product model
-    }
-
-
-    public function getPercentaAttribute()
-    {
-        if(!$this->discount_type){
-            return 0 ; // handle after create product model
-        }
-        return  $this->discount  ;
-    }
-
 
     public function getTypeAttribute()
     {
         return $this->discount_type ?  __('home.percentage') :__('home.amount') ;
     }
+
+
+
 
 
 

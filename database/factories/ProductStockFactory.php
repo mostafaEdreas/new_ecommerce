@@ -18,7 +18,7 @@ class ProductStockFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => Product::factory(),  // This assumes you have a factory for Product
+            'product_id' => Product::inRandomOrder()->first()->id,  // This assumes you have a factory for Product
             'stock' => $this->faker->numberBetween(1, 100),  // Random stock quantity
             'price' => $this->faker->randomFloat(2, 10, 500),  // Random price between 10 and 500
         ];

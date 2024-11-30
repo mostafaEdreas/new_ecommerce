@@ -62,7 +62,7 @@
                                                     @endif
                                                 </a>
                                             </td>
-                                            <td><a href="{{ route('users.edit', $admin->id) }}">{{$admin->name()}}</a></td>
+                                            <td><a href="{{ route('users.edit', $admin->id) }}">{{$admin->name}}</a></td>
                                             <td><a href="{{ route('users.edit', $admin->id) }}">{{$admin->email}}</a></td>
                                             <td><a href="{{ route('users.edit', $admin->id) }}">{{$admin->phone}}</a></td>
                                             <td><a href="{{ route('users.edit', $admin->id) }}">{{trans("home.$admin->status")}}</a></td>

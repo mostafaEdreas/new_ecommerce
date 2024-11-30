@@ -6,12 +6,14 @@ use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Brand extends Model
 {
+    use HasFactory;
 	protected $table='brands';
 
-    private $lang = LaravelLocalization::getCurrentLocale();
+    private $lang ;
 
     protected $fillable = [
         'name_ar',
@@ -30,8 +32,31 @@ class Brand extends Model
         'mete_description_en',
         'index',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
+
+    public function delete()
+    {
+        $errors = [] ;
+        if ($this->products()->exists()) {
+            $errors[] = 'Cannot delete an value that has related products.';
+        }
+      
+        if(count( $errors)){
+            return $errors;
+           }
+           
+           return parent::delete();
+    }
 	public function products(){
-	    return $this->hasMany(Product::class);
+	    return $this->hasMany(Product::class)->inRandomOrder();
 	}
 
     public function activeProducts(){

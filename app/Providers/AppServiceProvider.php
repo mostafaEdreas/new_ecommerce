@@ -21,6 +21,7 @@ use App\Models\Product;
 use App\Models\CartProductOption;
 use App\Models\GuestCart;
 use App\Models\GuestCartProduct;
+use App\Models\Menu;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -53,24 +54,24 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('*', function($view){
             $wishCount = 0 ;
-            if(auth()->check()){
-                $cartsPub = CartProduct::where('user_id',auth()->user()->id)->with('group')->whereHas('group',function($q){
-                    $q->whereHas('product');
-                })->get();
-                $wishCount = Wishlist::where('user_id',auth()->user()->id)->whereHas('group',function($q){
-                    $q->whereHas('product');
-                })->count();
-            }else{
-                $cartsPub = GuestCartProduct::where('session_id',Session::get('session_id'))->whereHas('group',function($q){
-                    $q->whereHas('product');
-                })->with('group')->get();
-            }
+            // if(auth()->check()){
+            //     $cartsPub = CartProduct::where('user_id',auth()->user()->id)->with('group')->whereHas('group',function($q){
+            //         $q->whereHas('product');
+            //     })->get();
+            //     $wishCount = Wishlist::where('user_id',auth()->user()->id)->whereHas('group',function($q){
+            //         $q->whereHas('product');
+            //     })->count();
+            // }else{
+            //     $cartsPub = GuestCartProduct::where('session_id',Session::get('session_id'))->whereHas('group',function($q){
+            //         $q->whereHas('product');
+            //     })->with('group')->get();
+            // }
             $setting = Setting::first();
             $lang = LaravelLocalization::getCurrentLocale();
             App::setlocale($lang);
 
             $configration = Configration::where('lang',$lang)->first();
-            $menus = MenuItem::where('status',1)->where('parent_id',0)->orderBy('order','ASC')->get();
+            // $menus = Menu::where('status',1)->where('parent_id',0)->orderBy('order','ASC')->get();
             // $pages = Page::where('status',1)->get();
             // $menuMainCategories=Category::where('status',1)->where('menu',1)->where('parent_id',0)->orderBy('order','ASC')->get();
             // $menuBrands=Brand::where('status',1)->where('menu',1)->get();
@@ -92,7 +93,7 @@ class AppServiceProvider extends ServiceProvider
             // $totalPrice = 0;
             // $productPrices=[];
 
-            $addresses = Address::get();
+            // $addresses = Address::get();
 
 
 
@@ -101,62 +102,62 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-            if(!Auth::check()){
-                if(Session::has('session_id')){
-                    $guestWishlist = Session::get('wishlist');
-                    if($guestWishlist){
-                        $wishProds = Product::whereIn('id',$guestWishlist)->get();
-                    }else{
-                        $wishProds=[];
-                    }
-                    $guestCart=GuestCart::where('session_id',Session::get('session_id'))->first();
-                    // $cartProds=GuestCartProduct::where('guest_cart_id',$guestCart->id)->select(DB::raw('price * quantity as price'),'price as prod_price','id','quantity','product_id','guest_cart_id')->get();
-                    // $cartCount = $cartProds->count();
+            // if(!Auth::check()){
+            //     if(Session::has('session_id')){
+            //         $guestWishlist = Session::get('wishlist');
+            //         if($guestWishlist){
+            //             $wishProds = Product::whereIn('id',$guestWishlist)->get();
+            //         }else{
+            //             $wishProds=[];
+            //         }
+            //         $guestCart=GuestCart::where('session_id',Session::get('session_id'))->first();
+            //         // $cartProds=GuestCartProduct::where('guest_cart_id',$guestCart->id)->select(DB::raw('price * quantity as price'),'price as prod_price','id','quantity','product_id','guest_cart_id')->get();
+            //         // $cartCount = $cartProds->count();
 
-                    // foreach($cartProds as $cartProduct){
-                    //     $cartProductOptionsPrice= CartProductOption::where('cart_product_id',$cartProduct->id)->sum('price');
-                    //     array_push($productPrices,$cartProduct->price + ($cartProductOptionsPrice * $cartProduct->quantity));
-                    // }
-                    // $productsPrice=array_sum($productPrices);
+            //         // foreach($cartProds as $cartProduct){
+            //         //     $cartProductOptionsPrice= CartProductOption::where('cart_product_id',$cartProduct->id)->sum('price');
+            //         //     array_push($productPrices,$cartProduct->price + ($cartProductOptionsPrice * $cartProduct->quantity));
+            //         // }
+            //         // $productsPrice=array_sum($productPrices);
 
-                    // $totalPrice = $productsPrice;
-                }else{
-                    $wishProds = [];
-                }
+            //         // $totalPrice = $productsPrice;
+            //     }else{
+            //         $wishProds = [];
+            //     }
 
-            }
+            // }
 
-            if(Auth::check()){
-                $cart = Cart::where('user_id',Auth::user()->id)->first();
-                if(!$cart){
-                    /////create user cart///
-                    $cart= new Cart();
-                    $cart->user_id=Auth::user()->id;
-                    $cart->save();
-                }
-                // $cartCount=CartProduct::where('user_id',Auth::user()->id)->where('cart_id',$cart->id)->count();
-                // $wishCount= Wishlist::where('user_id',Auth::user()->id)->count();
+            // if(Auth::check()){
+            //     $cart = Cart::where('user_id',Auth::user()->id)->first();
+            //     if(!$cart){
+            //         /////create user cart///
+            //         $cart= new Cart();
+            //         $cart->user_id=Auth::user()->id;
+            //         $cart->save();
+            //     }
+            //     // $cartCount=CartProduct::where('user_id',Auth::user()->id)->where('cart_id',$cart->id)->count();
+            //     // $wishCount= Wishlist::where('user_id',Auth::user()->id)->count();
 
-                $wishListProducts_ids =Wishlist::where('user_id',Auth::user()->id)->pluck('product_id')->toArray();
-                $wishProds = Product::whereIn('id',$wishListProducts_ids)->get();
+            //     $wishListProducts_ids =Wishlist::where('user_id',Auth::user()->id)->pluck('product_id')->toArray();
+            //     $wishProds = Product::whereIn('id',$wishListProducts_ids)->get();
 
-                // $cartProds= CartProduct::where('cart_id',$cart->id)->select(DB::raw('price * quantity as price'),'price as prod_price','id','quantity','product_id','cart_id')->get();
-                // foreach($cartProds as $cartProduct){
-                //     $cartProductOptionsPrice= CartProductOption::where('cart_product_id',$cartProduct->id)->sum('price');
-                //     array_push($productPrices,$cartProduct->price + ($cartProductOptionsPrice * $cartProduct->quantity));
-                // }
-                // $productsPrice=array_sum($productPrices);
+            //     // $cartProds= CartProduct::where('cart_id',$cart->id)->select(DB::raw('price * quantity as price'),'price as prod_price','id','quantity','product_id','cart_id')->get();
+            //     // foreach($cartProds as $cartProduct){
+            //     //     $cartProductOptionsPrice= CartProductOption::where('cart_product_id',$cartProduct->id)->sum('price');
+            //     //     array_push($productPrices,$cartProduct->price + ($cartProductOptionsPrice * $cartProduct->quantity));
+            //     // }
+            //     // $productsPrice=array_sum($productPrices);
 
-                // $couponDiscount = $cart->coupon_discount;
-                // $totalPrice = $productsPrice - $couponDiscount;
-            }
+            //     // $couponDiscount = $cart->coupon_discount;
+            //     // $totalPrice = $productsPrice - $couponDiscount;
+            // }
 
 
 
             // View::share('language', $lang);
             View::share('setting', $setting);
             View::share('configration', $configration);
-            View::share('menus', $menus);
+            // View::share('menus', $menus);
             // View::share('pages', $pages);
             View::share('lang', $lang);
             // View::share('cartCount', $cartCount);
@@ -174,9 +175,9 @@ class AppServiceProvider extends ServiceProvider
             // View::share('search_categories', $search_categories);
             View::share('TopHeader', $TopHeader);
             // View::share('menu_products', $menu_products);
-            View::share('wishProds', $wishProds);
-            View::share('cartsPub', $cartsPub);
-            View::share('addresses', $addresses);
+            // View::share('wishProds', $wishProds);
+            // View::share('cartsPub', $cartsPub);
+            // View::share('addresses', $addresses);
 
         });
     }

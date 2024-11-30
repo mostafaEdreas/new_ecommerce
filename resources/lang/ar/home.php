@@ -4,6 +4,7 @@ return array(
     'compare_list' => 'ثائمة المقارنه',
     'order' => 'تم الحجز فى',
     'product_quality' => 'جودة الضمان',
+    'your_item_deleted_successfully' => 'تم حذف العنصر بنجاح',
     'speed_response' => 'سرعة الرد',
     'power_in_hourse' => 'قوة التكييف بالحصان',
     'about_product' => 'عن المنتج',

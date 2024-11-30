@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use stdClass;
 
 class ProductStock extends Model
 {
@@ -17,6 +15,22 @@ class ProductStock extends Model
         'price',
     ];
 
+    public function delete()
+    {
+        $errors = [] ;
+        // Check if the category has related products
+        if ($this->orders()->exists()) {
+            $errors[] =  'Cannot delete a stock that has related orders.';
+        }
+
+
+        if(count( $errors)){
+         return $errors;
+        }
+        
+        return parent::delete();
+    }
+
     public function product(){
         return $this->belongsTo(Product::class);
     }
@@ -24,4 +38,28 @@ class ProductStock extends Model
     public function values(){
         return $this->hasMany(ProductVariant::class);
     }
+
+
+    public function valueInSameProduct($value_id , int $product_id){
+        $stocks = Self::whereHas('values',function($q) use($value_id){
+            $this->where('product_attribute_value_id' , $value_id);
+        })->where('product_id' , $product_id)->get();
+    }
+
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
+
+    public function getProductNameAttribute(){
+        return $this->product?->name;
+    }
+
+    public function getProductDiscountAttribute(){
+        return $this->product?->discount;
+    }
+
+gi
+
+
 }

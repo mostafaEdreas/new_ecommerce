@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutStrucController;
 use App\Http\Controllers\WebsiteController;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Artisan;
@@ -238,6 +239,8 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         Route::resource('menu-items', 'MenuItemController');
         Route::post('menuTypeValue', 'MenuItemController@menuTypeValue')->name('menuTypeValue');
         Route::resource('aboutStrucs', 'AboutStrucController');
+        Route::delete('aboutStrucs/bulk-delete/del', [AboutStrucController::class, 'bulkDestroy'])->name('aboutStrucs.bulkDestroy');
+
         Route::resource('contact-us-messages', 'ContactusController');
         Route::resource('pages', 'PageController');
         Route::resource('blog-categories', 'BlogCategoryController');

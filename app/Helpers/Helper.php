@@ -2,10 +2,28 @@
 
 namespace App\Helpers;
 
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 class Helper
 {
 
-    public $noimage = 'uploads/noimage.png';
+    public static $noimage = 'uploads/noimage.png';
+    public static $lang;
+
+    // Static initializer
+    public static function init()
+    {
+        self::$lang = LaravelLocalization::getCurrentLocale();
+    }
+
+
+    public static function getLang(): string
+    {
+        if (self::$lang === null) {
+            self::$lang = LaravelLocalization::getCurrentLocale();
+        }
+        return self::$lang;
+    }
 
     public static function cssFilesPath(string $string){
         return url('resources/assets/front/css/'.$string);

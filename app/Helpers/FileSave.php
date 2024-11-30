@@ -32,15 +32,15 @@ class FileSave
     /**
      * Save the file to the specified folder
      */
-    public function save(string $subFolder = ''): string
+    public function save(): string
     {
-        $destination = $this->path . ($subFolder ? "/$subFolder" : '');
+        $destination = $this->path;
         $this->ensureDirectoryExists($destination);
 
         $filePath = "$destination/{$this->fileName}.{$this->getExtension()}";
         $this->file->move($destination, "{$this->fileName}.{$this->getExtension()}");
 
-        return $filePath;
+        return $this->fileName;
     }
 
     /**

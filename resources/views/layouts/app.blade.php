@@ -618,6 +618,12 @@
                 toastr.error('{{ $error }}');
             @endforeach
         @endif
+
+        @if (session()->has('success'))
+          
+                toastr.success('{{ session('success') }}');
+          
+        @endif
     </script>
 </body>
 

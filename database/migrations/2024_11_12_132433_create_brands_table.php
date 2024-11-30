@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_ar',255)->unique();
             $table->string('name_en',255)->unique();
-            $table->integer('order', 20);
+            $table->integer('order');
             $table->longText('text_ar')->nullable();
             $table->longText('text_en')->nullable();
             $table->string('image',255)->nullable();

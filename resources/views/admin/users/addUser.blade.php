@@ -30,22 +30,22 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="helperText">{{trans('home.f_name')}}</label>
-                                    <input type="text" class="form-control" placeholder="{{trans('home.f_name')}}"  name="f_name"  required>
+                                    <input type="text" class="form-control" value="{{old('f_name')}}" placeholder="{{trans('home.f_name')}}"  name="f_name"  required>
                                 </div>
                                 
                                 <div class="form-group col-md-3">
                                     <label for="helperText">{{trans('home.l_name')}}</label>
-                                    <input type="text" class="form-control" placeholder="{{trans('home.l_name')}}"  name="l_name"  required>
+                                    <input type="text" class="form-control" value="{{old('l_name')}}" placeholder="{{trans('home.l_name')}}"  name="l_name"  required>
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="helperText">{{trans('home.email')}}</label>
-                                    <input type="email" class="form-control email" placeholder="{{trans('home.email')}}"  name="email"  required>
+                                    <input type="email" class="form-control email" value="{{old('email')}}" placeholder="{{trans('home.email')}}"  name="email"  required>
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="helperText">{{trans('home.password')}}</label>
-                                    <input type="password" class="form-control" placeholder="{{trans('home.password')}}" name="password" data-minlength="8">
+                                    <input type="password" class="form-control" value="{{old('password')}}" placeholder="{{trans('home.password')}}" name="password" data-minlength="8">
                                     <p><code>{{trans('home.Your Password Must Be at Least 8 Characters')}}</code></p>
                                 </div>
 
@@ -71,7 +71,7 @@
                                                     <i class="fas fa-phone"></i>
                                                 </span>
                                             </div>
-                                            <input type="number" min="0" class="form-control" placeholder="Phone" name="phone" autocomplete="off" required="">
+                                            <input type="number" value="{{old('phone')}}"  min="0" class="form-control" placeholder="Phone" name="phone" autocomplete="off" required="">
                                         </div>
                                     </fieldset>
                                 </div>
@@ -80,16 +80,16 @@
                                     <label for="helperText">{{trans('home.roles')}}</label>
                                     <select class="form-control role select2" name="role[]" multiple>
                                         @foreach($roles as $role)
-                                            <option value="{{$role->name}}" >{{ $role->name }}</option>
+                                            <option @selected(old('role')?in_array($role,old('role',[])):false) value="{{$role->name}}" >{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-6">            
                                     <label for="helperText">{{trans('home.admin')}}</label>
-                                    <select class="form-control admin select2" name="admin">
-                                        <option value="1">{{trans('home.yes')}}</option>
-                                        <option value="0">{{trans('home.no')}}</option>
+                                    <select class="form-control admin select2" name="is_admin">
+                                        <option @selected('1' == old('admin')) value="1">{{trans('home.yes')}}</option>
+                                        <option  @selected('0' == old('admin')) value="0">{{trans('home.no')}}</option>
                                     </select>
                                 </div>
 

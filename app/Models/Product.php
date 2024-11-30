@@ -16,13 +16,16 @@ use App\Models\Color;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Product extends Model
 {
-   protected $table = 'products' ;
-   private $lang = LaravelLocalization::getCurrentLocale();
+    use HasFactory;
+    protected $table = 'products' ;
+    private $lang ;
 
-   protected $fillable = [
+    protected $fillable = [
         'name_ar',
         'name_en',
         'category_id',
@@ -45,6 +48,31 @@ class Product extends Model
         'index',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
+
+    public function delete()
+    {
+        $errors = [] ;
+        if ($this->stocks()->exists()) {
+          foreach ($this->stocks as  $stock) {
+            if ($stock->orders()->exists()) {
+                $errors[] = 'Cannot delete an product that has related orders.';
+            }
+          }
+        }
+      
+        if(count( $errors)){
+            return $errors;
+           } 
+        return parent::delete();
+    }
 
     public function getNameAttribute(){
         return $this->{'name_'.$this->lang} ;
@@ -59,7 +87,7 @@ class Product extends Model
     }
 
     public function getShortTextAttribute(){
-        return $this->{'text_text_'.$this->lang} ;
+        return $this->{'short_text_'.$this->lang} ;
     }
 
     public function brand(){
@@ -103,7 +131,7 @@ class Product extends Model
 
     }
 
-    public function getIconAttribute(){
+    public function getSecondImageAttribute(){
 
         return Helper::imageIsExists($this->second_image ,'products') ? $this->second_image : Helper::$noimage ;
     }
@@ -117,13 +145,20 @@ class Product extends Model
         $this->status ? __('home.yes') : __( 'home.no') ;
      }
 
-     public function scopeActive($query){
-         $query->whereStatus(1);
-      }
+    public function scopeActive($query){
+        $query->whereStatus(1);
+    }
 
-      public function scopeUnactive($query){
-         $query->whereStatus(0);
-      }
+    public function scopeUnactive($query){
+        $query->whereStatus(0);
+    }
+
+    public function attributes(){
+        return $this->hasMany(ProductAttribute::class);
+    }
+    public function stocks(){
+        return $this->hasMany(ProductStock::class);
+    }
 
 
 

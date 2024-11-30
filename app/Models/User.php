@@ -29,6 +29,9 @@ class User extends Authenticatable implements JWTSubject
         'them',
         'email_verified_at',
         'password',
+        'is_admin',
+        'admin_seen',
+
     ];
 
     /**
@@ -63,7 +66,26 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
+    public function address(){
+        return $this->hasMany(Address::class) ;
+    }
 
+    public function getPrimaryAddressAttribute(){
+        return $this->addresses()->where('is_primary', 1)->first();
+    }
+
+
+    public function isAdmin(){
+        return $this->is_admin;
+    }
+
+    public function GetnameAttribute(){
+        return $this->f_name.' '.$this->l_name;
+    }
+
+    public function name(){
+        return $this->f_name.' '.$this->l_name;
+    }
 
 
 

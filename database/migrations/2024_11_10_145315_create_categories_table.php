@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name_ar',255)->unique();
             $table->string('name_en',255)->unique();
             $table->integer('order')->default(1);
-            $table->foreignId('parent_id')->constrained('categories');
+            $table->foreignId('parent_id')->nullable()->constrained('categories');
             $table->longText('text_ar')->nullable();
             $table->longText('text_en')->nullable();
             $table->string('image',255);

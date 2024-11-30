@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('them')->default('default');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->default(Hash::make(date('YmdHi')));
+            $table->boolean('is_admin')->default(0);
+            $table->boolean('admin_seen')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

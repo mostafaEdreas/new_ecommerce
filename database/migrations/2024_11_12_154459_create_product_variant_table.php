@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_stock_id')->constrained('product_stock')->index();;
-            $table->foreignId('product_attribute_value_id')->constrained('product_attribute_values')->index();;
-            $table->unique(['product_stock_id', 'product_attribute_value_id']);
+            $table->foreignId('product_stock_id')->constrained('product_stock')->onDelete('cascade');
+            $table->foreignId('product_attribute_value_id')->constrained('product_attribute_values')->onDelete('cascade');
             $table->timestamps();
         });
     }

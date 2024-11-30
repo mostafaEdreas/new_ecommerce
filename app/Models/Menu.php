@@ -10,8 +10,8 @@ class Menu extends Model
 {
     //
     protected $table = 'menus';
-
-    private $lang = LaravelLocalization::getCurrentLocale();
+    protected $types = ['main', 'other', 'special']; // Example types array
+    private $lang ;
 
     public $timestamps = false;
 
@@ -26,6 +26,16 @@ class Menu extends Model
         'order',
     ];
 
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
+
     public function children(){
         return $this->hasMany(self::class,'parent_id','id');
     }
@@ -39,19 +49,19 @@ class Menu extends Model
         return  $this->parent?->name ;
     }
     public function getNameAttribute(){
-        $this->{'name_'.$this->lang} ;
+        return $this->{'name_'.$this->lang} ;
     }
 
     public function getActiveAttribute(){
-        $this->status ? __('home.yes') : __( 'home.no') ;
+        return   $this->status ? __('home.yes') : __( 'home.no') ;
      }
 
      public function scopeActive($query){
-         $query->whereStatus(1);
+        return  $query->whereStatus(1);
       }
 
       public function scopeUnactive($query){
-         $query->whereStatus(0);
+        return   $query->whereStatus(0);
       }
 
 

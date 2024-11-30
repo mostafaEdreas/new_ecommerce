@@ -148,7 +148,7 @@ class AdminController extends Controller
             }
 
             if($name == 'aboutStrucs'){
-                $update = AboutStruc::findOrFail($x);
+                $update = Menu::findOrFail($x);
             }
 
             if($name == 'blog-categories'){

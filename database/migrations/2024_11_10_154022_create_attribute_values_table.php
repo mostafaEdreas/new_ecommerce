@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ar',255)->unique();
-            $table->string('name_en',255)->unique();
-            $table->foreignId('attribute_id')->constrained('attributes');
+            $table->string('value_ar',255)->unique();
+            $table->string('value_en',255)->unique();
+            $table->foreignId('attribute_id')->constrained('attributes')->onDelete('cascade');
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

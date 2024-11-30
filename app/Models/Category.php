@@ -6,11 +6,34 @@ use App\Helpers\Helper;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Category extends Model
 {
+    use HasFactory;
     protected $table = 'categories';
-    private $lang = LaravelLocalization::getCurrentLocale();
+    private $lang ;
+
+    public function delete()
+    {
+        $errors = [] ;
+        // Check if the category has related products
+        if ($this->products()->exists()) {
+            $errors[] =  'Cannot delete a category that has related products.';
+        }
+
+        // Check if the category has children, and if any child has related products
+        if ($this->children()->exists() ) {
+             $errors[] = 'Cannot delete a category that has related child products.';
+           
+        }
+        if(count( $errors)){
+         return $errors;
+        }
+        
+        return parent::delete();
+    }
     protected $fillable = [
         'name_ar',
         'name_en',
@@ -30,6 +53,15 @@ class Category extends Model
         'index',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
+
     public function children(){
         return $this->hasMany(self::class,'parent_id','id');
     }
@@ -41,8 +73,12 @@ class Category extends Model
     }
 
      public function products(){
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)->inRandomOrder();
      }
+
+     public function activeProducts(){
+	    return $this->hasMany(Product::class)->whereStatus(1)->inRandomOrder();
+	}
 
      public function getNameAttribute(){
         return $this->{'name_'.$this->lang} ;

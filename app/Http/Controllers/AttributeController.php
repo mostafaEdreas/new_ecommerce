@@ -6,6 +6,7 @@ use App\Helpers\SaveImageTo3Path;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\AttributeRequest;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Models\Category;
@@ -21,11 +22,8 @@ class AttributeController extends Controller
     public function __construct(){
         $this->middleware(['permission:attributes']);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
+
     public function index()
     {
         //
@@ -33,11 +31,7 @@ class AttributeController extends Controller
         return view('admin.attributes.attributes',compact('attributes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
@@ -45,13 +39,8 @@ class AttributeController extends Controller
         return view('admin.attributes.addAttribute',compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(AttributeRequest $request)
     {
         $add=new Attribute();
         $add->name_en=$request->name_en;
@@ -63,47 +52,6 @@ class AttributeController extends Controller
         }
 
         if ($request->hasFile("icon")) {
-
-            // $file = $request->file("icon");
-            // $mime = File::mimeType($file);
-            // $mimearr = explode('/', $mime);
-
-            // // $destinationPath = base_path() . '/uploads/'; // upload path
-            // $extension = $mimearr[1]; // getting file extension
-            // $fileName = rand(11111, 99999) . '.' . $extension; // renameing image
-            // $path = base_path('uploads/attributes/source/' . $fileName);
-            // $resize200 = base_path('uploads/attributes/resize200/' . $fileName);
-            // $resize800 = base_path('uploads/attributes/resize800/' . $fileName);
-            // //  $file->move($destinationPath, $fileName);
-
-            // Image::make($file->getRealPath())->save($path);
-
-            // $arrayimage = list($width, $height) = getimagesize($file->getRealPath());
-            // $widthreal = $arrayimage['0'];
-            // $heightreal = $arrayimage['1'];
-
-            // $width200 = ($widthreal / $heightreal) * 150;
-            // $height200 = $width200 / ($widthreal / $heightreal);
-
-            // $img200 = Image::canvas($width200, $height200);
-            // $image200 = Image::make($file->getRealPath())->resize($width200, $height200, function ($c) {
-            //     $c->aspectRatio();
-            //     $c->upsize();
-            // });
-            // $img200->insert($image200, 'center');
-            // $img200->save($resize200);
-
-            // $width800 = ($widthreal / $heightreal) * 800;
-            // $height800 = $width800 / ($widthreal / $heightreal);
-
-            // $img800 = Image::canvas($width800, $height800);
-            // $image800 = Image::make($file->getRealPath())->resize($width800, $height800, function ($c) {
-            //     $c->aspectRatio();
-            //     $c->upsize();
-            // });
-            // $img800->insert($image800, 'center');
-            // $img800->save($resize800);
-
             $saveImage = new SaveImageTo3Path(request()->file('icon'),true);
             $fileName = $saveImage->saveImages('attributes');
 
@@ -111,18 +59,6 @@ class AttributeController extends Controller
         }
         $add->save();
 
-        ////////// add attribute categories////////////
-        if($request->category_id){
-            $categoryIds=$request->category_id;
-            foreach ($categoryIds as $categoryId){
-                $attCategory=new CategoryAttribute();
-                $attCategory->category_id=$categoryId;
-                $attCategory->attribute_id=$add->id;
-                $attCategory->save();
-            }
-        }
-
-        //////////// add attribute values/////////////
         if($request->value_en  && $request->value_ar){
             $valuesInEnglish=$request->value_en;
             $valuesInArabic =$request->value_ar; 
@@ -140,40 +76,20 @@ class AttributeController extends Controller
         return redirect()->route('attributes.index')->with('success',trans('home.your_item_added_successfully'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function edit($id)
     {
-        $categories=Category::where('status',1)->get();
+        // $categories=Category::where('status',1)->get();
         $attribute=Attribute::find($id);
         $values=AttributeValue::where('attribute_id',$id)->get();
-        $categories_ids = CategoryAttribute::where('attribute_id', $attribute->id)->pluck('category_id');
-        return view('admin.attributes.editAttribute',compact('categories','attribute','values','categories_ids'));
+        // $categories_ids = CategoryAttribute::where('attribute_id', $attribute->id)->pluck('category_id');
+        return view('admin.attributes.editAttribute',compact('attribute','values'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(AttributeRequest $request, $id)
     {
         $add=Attribute::find($id);
         $add->name_en=$request->name_en;
@@ -186,54 +102,6 @@ class AttributeController extends Controller
 
         if ($request->hasFile("icon")) {
 
-            // $file = $request->file("icon");
-            // $mime = File::mimeType($file);
-            // $mimearr = explode('/', $mime);
-
-            // $img_path = base_path() . '/uploads/attributes/source/';
-            // $img_path200 = base_path() . '/uploads/attributes/resize200/';
-            // $img_path800 = base_path() . '/uploads/attributes/resize800/';
-            // if ($add->icon != null) {
-            //     unlink(sprintf($img_path . '%s', $add->icon));
-            //     unlink(sprintf($img_path200 . '%s', $add->icon));
-            //     unlink(sprintf($img_path800 . '%s', $add->icon));
-            // }
-
-            // // $destinationPath = base_path() . '/uploads/'; // upload path
-            // $extension = $mimearr[1]; // getting file extension
-            // $fileName = rand(11111, 99999) . '.' . $extension; // renameing image
-            // $path = base_path('uploads/attribute/source/' . $fileName);
-            // $resize200 = base_path('uploads/attribute/resize200/' . $fileName);
-            // $resize800 = base_path('uploads/attribute/resize800/' . $fileName);
-            // //  $file->move($destinationPath, $fileName);
-
-            // Image::make($file->getRealPath())->save($path);
-
-            // $arrayimage = list($width, $height) = getimagesize($file->getRealPath());
-            // $widthreal = $arrayimage['0'];
-            // $heightreal = $arrayimage['1'];
-
-            // $width200 = ($widthreal / $heightreal) * 150;
-            // $height200 = $width200 / ($widthreal / $heightreal);
-
-            // $img200 = Image::canvas($width200, $height200);
-            // $image200 = Image::make($file->getRealPath())->resize($width200, $height200, function ($c) {
-            //     $c->aspectRatio();
-            //     $c->upsize();
-            // });
-            // $img200->insert($image200, 'center');
-            // $img200->save($resize200);
-
-            // $width800 = ($widthreal / $heightreal) * 800;
-            // $height800 = $width800 / ($widthreal / $heightreal);
-
-            // $img800 = Image::canvas($width800, $height800);
-            // $image800 = Image::make($file->getRealPath())->resize($width800, $height800, function ($c) {
-            //     $c->aspectRatio();
-            //     $c->upsize();
-            // });
-            // $img800->insert($image800, 'center');
-            // $img800->save($resize800);
             $saveImage = new SaveImageTo3Path(request()->file('icon'),true);
             $fileName = $saveImage->saveImages('attributes');
             SaveImageTo3Path::deleteImage($add->icon,'attributes');
@@ -241,30 +109,6 @@ class AttributeController extends Controller
         }
         $add->save();
 
-        ////////// add attribute categories////////////
-        if($request->category_id){
-            CategoryAttribute::where('attribute_id',$add->id)->delete();
-            $categoryIds=$request->category_id;
-            foreach ($categoryIds as $categoryId){
-                $check = CategoryAttribute::where('category_id',$categoryId)->where('attribute_id',$add->id)->first();
-                if(!$check){
-                    $attCategory=new CategoryAttribute();
-                    $attCategory->category_id=$categoryId;
-                    $attCategory->attribute_id=$add->id;
-                    $attCategory->save();
-                }
-            }
-        }
-        // if($request->value_ar){
-        //     $valuesInArabic =$request->value_ar; 
-        //     foreach($valuesInArabic as $key=>$value){
-        //             $attVal=new AttributeValue();
-        //             $attVal->attribute_id=$add->id;
-        //             $attVal->value_en=$value;
-        //             $attVal->value_ar=$value;
-        //             $attVal->save();
-        //     }
-        // }
          if($request->value_en  && $request->value_ar){
             $valuesInEnglish=$request->value_en;
             $valuesInArabic =$request->value_ar; 
@@ -283,33 +127,18 @@ class AttributeController extends Controller
     }
 
 
-    public function destroy($ids)
+    public function destroy($id)
     {
-        $ids = explode(',', $ids);
-        if ($ids[0] == 'on') {
-            unset($ids[0]);
+        if( request('ids')){
+            $ids =  request('ids') ;
+            $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
+            Attribute::whereIn('id',$ids)->delete();
+            return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
+        }elseif($address = Attribute::find(1)){
+            $address->delete();
+            return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }
 
-        $attributes = Attribute::whereIn('id',$ids)->whereHas('values')->whereHas('productAttribute')->get();
-        if(count($attributes) > 0){
-            if (request()->ajax()) {
-                response()->json(['message'=>__('home.the item cannot be deleted. There is data related to it')],402);
-            }
-            return redirect()->back()->withErrors(__('home.the item cannot be deleted. There is data related to it'));
-        }
-        
-        $img_path = base_path() . '/uploads/attributes/source/';
-        $img_path200 = base_path() . '/uploads/attributes/resize200/';
-        $img_path800 = base_path() . '/uploads/attributes/resize800/';
-        foreach ($ids as $id) {
-            $attribute = Attribute::findOrFail($id);
-            if ($attribute->icon != null) {
-                unlink(sprintf($img_path . '%s', $attribute->icon));
-                unlink(sprintf($img_path200 . '%s', $attribute->icon));
-                unlink(sprintf($img_path800 . '%s', $attribute->icon));
-            }
-            $attribute->delete();
-        }
     }
 
     

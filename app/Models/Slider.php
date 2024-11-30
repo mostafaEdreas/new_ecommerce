@@ -23,18 +23,27 @@ class Slider extends Model
     ];
 
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
     public function getTilteAttribute(){
         $this->{'title_'.$this->lang} ;
     }
 
     public function getTexteAttribute(){
-        $this->{'title_'.$this->lang} ;
+        $this->{'text_'.$this->lang} ;
     }
 
     public function getImageAttribute(){
         Helper::imageIsExists($this->image ,'sliders') ? $this->image : Helper::$noimage ;
     }
 
+    
 
 
 
