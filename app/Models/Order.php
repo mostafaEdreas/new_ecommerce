@@ -11,6 +11,26 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = ['status','address_id','user_id','payment_id','shipping_id','products_price','coupon_id','payment_status','note','admin_seen','delivery_date'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            $order->order_number = self::generateOrderNumber();
+        });
+    }
+
+    public static function generateOrderNumber()
+    {
+        $latestOrder = self::orderBy('created_at', 'desc')->first();
+        if ($latestOrder) {
+            $lastOrderNumber = (int) substr($latestOrder->order_number, -6);
+        } else {
+            $lastOrderNumber = 0;
+        }
+        $newOrderNumber = str_pad($lastOrderNumber + 1, 6, '0', STR_PAD_LEFT);
+        return config('site_prefix') . date('Ymd') . '-' . $newOrderNumber;
+    }
 
     public function user(){
         return $this->belongsTo('App\Models\User','user_id');

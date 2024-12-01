@@ -27,7 +27,7 @@ class ProductStock extends Model
         if(count( $errors)){
          return $errors;
         }
-        
+
         return parent::delete();
     }
 
@@ -55,11 +55,22 @@ class ProductStock extends Model
         return $this->product?->name;
     }
 
-    public function getProductDiscountAttribute(){
-        return $this->product?->discount;
+    public function getProductDiscountAmountAttribute(){
+        if(!$this->product?->discount_type){
+            return $this->product?->discount_value;
+        }
+        return $this->product?->discount_value * $this->price / 100;
+    }
+
+    public function getProductDiscountPercentageAttribute(){
+        if($this->product?->discount_type){
+            return $this->product?->discount_value;
+        }
+        return $this->product?->discount_value / $this->price * 100;
     }
 
 
-
-
+    public function getNetPriceAttribute(){
+        return $this->price - $this->product_discount_amount ;
+    }
 }

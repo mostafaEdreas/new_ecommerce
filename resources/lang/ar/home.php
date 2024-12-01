@@ -2,6 +2,10 @@
 
 return array(
     'compare_list' => 'ثائمة المقارنه',
+    'home.remove checked values' => 'حذف القيم المختارة' ,
+    'yes, delete it' => 'نعم, احذفه' ,
+    'yes, change it' => 'نعم, حدثه' ,
+    'change status checked values' => 'تحديث حاله القيم المختارة' ,
     'order' => 'تم الحجز فى',
     'product_quality' => 'جودة الضمان',
     'your_item_deleted_successfully' => 'تم حذف العنصر بنجاح',

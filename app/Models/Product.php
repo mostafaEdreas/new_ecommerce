@@ -3,19 +3,8 @@
 namespace App\Models;
 
 use App\Helpers\Helper;
-use App\Models\ProductDiscount;
-use App\Models\ProductImage;
-use App\Models\CartProduct;
-use App\Models\ProductReview;
-use App\Models\Wishlist;
-use Carbon\Carbon;
 use App\Models\ProductAttribute;
-use App\Models\Attribute;
-use App\Models\ProductColor;
-use App\Models\Color;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
@@ -67,10 +56,10 @@ class Product extends Model
             }
           }
         }
-      
+
         if(count( $errors)){
             return $errors;
-           } 
+           }
         return parent::delete();
     }
 
@@ -158,6 +147,21 @@ class Product extends Model
     }
     public function stocks(){
         return $this->hasMany(ProductStock::class);
+    }
+
+    public function discount(){
+        return $this->hasOne(Discount::class)
+        ->where('start_date', '<=', now())
+        ->where('end_date', '>=', now())
+        ->latestOfMany('created_at'); // Get the latest active discount
+    }
+
+    public function getDiscountTypeAttribute(){
+        $this->discount?->type ;
+    }
+
+    public function getDiscountValueAttribute(){
+        $this->discount?->discount ;
     }
 
 

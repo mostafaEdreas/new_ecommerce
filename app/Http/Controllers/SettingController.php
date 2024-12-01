@@ -11,16 +11,11 @@ class SettingController extends Controller
     public function __construct(){
         $this->middleware(['permission:settings']);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
-        $settings =Setting::first();
-        return view('admin.settings.setting',compact('settings'));
+
+        return view('admin.settings.setting');
     }
 
     public function update(Request $request, $id)

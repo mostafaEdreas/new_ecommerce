@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Discount extends Model
 {
-    
+
     use HasFactory;
     protected $table = 'discounts';
 
@@ -32,4 +32,5 @@ class Discount extends Model
     public function getDiscountTypeAttribute(){
         return $this->type? 'Percentage'  : 'Amount';
     }
+
 }

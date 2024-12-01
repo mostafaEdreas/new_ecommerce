@@ -13,70 +13,70 @@
         <link rel="icon" href="{{url('uploads/settings/source/'.$configration->about_image)}}" type="image/x-icon"/>
 
         <!---Fontawesome css-->
-        <link href="{{URL::To('resources/assets/back/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
 
         <!---Ionicons css-->
-        <link href="{{URL::To('resources/assets/back/plugins/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/ionicons/css/ionicons.min.css')}}" rel="stylesheet">
 
         <!---Typicons css-->
-        <link href="{{URL::To('resources/assets/back/plugins/typicons.font/typicons.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/typicons.font/typicons.css')}}" rel="stylesheet">
 
         <!---Feather css-->
-        <link href="{{URL::To('resources/assets/back/plugins/feather/feather.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/feather/feather.css')}}" rel="stylesheet">
 
         <!---Falg-icons css-->
-        <link href="{{URL::To('resources/assets/back/plugins/flag-icon-css/css/flag-icon.min.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/flag-icon-css/css/flag-icon.min.css')}}" rel="stylesheet">
 
         <!---Style css-->
         @if(app()->getlocale() == 'en')
-            <link href="{{URL::To('resources/assets/back/css/style.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css/custom-style.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css/skins.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css/dark-style.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css/custom-dark-style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css/style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css/custom-style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css/skins.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css/dark-style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css/custom-dark-style.css')}}" rel="stylesheet">
         @else
-            <link href="{{URL::To('resources/assets/back/css-rtl/style.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css-rtl/custom-style.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css-rtl/skins.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css-rtl/dark-style.css')}}" rel="stylesheet">
-            <link href="{{URL::To('resources/assets/back/css-rtl/custom-dark-style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css-rtl/style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css-rtl/custom-style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css-rtl/skins.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css-rtl/dark-style.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/css-rtl/custom-dark-style.css')}}" rel="stylesheet">
         @endif
 
         <!---Select2 css-->
-        <link href="{{URL::To('resources/assets/back/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 
         <!---DataTables css-->
-        <link href="{{URL::To('resources/assets/back/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
-        <link href="{{URL::To('resources/assets/back/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
-        <link href="{{URL::To('resources/assets/back/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
+        <link href="{{URL::To('public/assets/back/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
+        <link href="{{URL::To('public/assets/back/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet" />
+        <link href="{{URL::To('public/assets/back/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
 
         <!---Fileupload css-->
-        <link href="{{ URL::To('resources/assets/back/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="{{ URL::To('public/assets/back/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 
         <!---Fancy uploader css-->
-        <link href="{{URL::To('resources/assets/back/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
+        <link href="{{URL::To('public/assets/back/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
 
         <!--Mutipleselect css-->
         @if(app()->getlocale() == 'en')
-            <link rel="stylesheet" href="{{URL::To('resources/assets/back/plugins/multipleselect/multiple-select.css')}}">
+            <link rel="stylesheet" href="{{URL::To('public/assets/back/plugins/multipleselect/multiple-select.css')}}">
         @else
-            <link rel="stylesheet" href="{{URL::To('resources/assets/back/plugins/multipleselect/multiple-select-rtl.css')}}">
+            <link rel="stylesheet" href="{{URL::To('public/assets/back/plugins/multipleselect/multiple-select-rtl.css')}}">
         @endif
         <!---Sidebar css-->
-        <link href="{{URL::To('resources/assets/back/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 
         <!---Jquery.mCustomScrollbar css-->
-        <link href="{{URL::To('resources/assets/back/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet">
+        <link href="{{URL::To('public/assets/back/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet">
 
         <!---Sidemenu css-->
         @if(app()->getlocale() == 'en')
-            <link href="{{URL::To('resources/assets/back/plugins/sidemenu/sidemenu.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/plugins/sidemenu/sidemenu.css')}}" rel="stylesheet">
         @else
-            <link href="{{URL::To('resources/assets/back/plugins/sidemenu/sidemenu-rtl.css')}}" rel="stylesheet">
+            <link href="{{URL::To('public/assets/back/plugins/sidemenu/sidemenu-rtl.css')}}" rel="stylesheet">
         @endif
 
         <!---Gallery css-->
-		<link href="{{URL::To('resources/assets/back/plugins/gallery/gallery.css')}}" rel="stylesheet">
+		<link href="{{URL::To('public/assets/back/plugins/gallery/gallery.css')}}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
         @yield('style')
     </head>
@@ -85,7 +85,7 @@
 
       <!-- Loader -->
       <div id="global-loader">
-        <img src="{{URL::To('resources/assets/back/img/loader.gif')}}" class="loader-img" alt="Loader">
+        <img src="{{URL::To('public/assets/back/img/loader.gif')}}" class="loader-img" alt="Loader">
       </div>
       <!-- End Loader -->
 
@@ -161,7 +161,7 @@
                                     </li>
                                 @endcan
 
-                             
+
                             </ul>
                         </li>
                     @endcan
@@ -224,7 +224,7 @@
                         <li class="nav-label">{{trans('home.store_info')}}</li>
                     @endcan
 
-                   
+
     					<li class="nav-item @if(Request::segment(2) == 'categories' || Request::segment(2) == 'attributes') active show @endif">
                             <a class="nav-link with-sub" href=""><i class="fas fa-th"></i><span class="sidemenu-label">{{trans('home.categories')}}</span><i class="angle fe fe-chevron-right"></i></a>
                             <ul class="nav-sub">
@@ -241,7 +241,7 @@
                                 @endcan
                             </ul>
                         </li>
-                  
+
 
                     @can('brands')
                         <li class="nav-item @if(Request::segment(2) == 'brands') active show @endif">
@@ -249,7 +249,7 @@
                         </li>
                     @endcan
 
-    
+
 
                     @can('products')
     					<li class="nav-item @if(Request::segment(2) == 'products') active show @endif">
@@ -464,11 +464,11 @@
                                 @if(app()->getLocale() == 'en')
 
                                    <a href="{{ url('lang/ar') }}" class="dropdown-item py-1">
-                                       <img src="{{ URL::to('resources/assets/back/img/flags/eg.png') }}" alt="Arabic Flag" class="langimg"/>
+                                       <img src="{{ URL::to('public/assets/back/img/flags/eg.png') }}" alt="Arabic Flag" class="langimg"/>
                                    </a>
                                @else
                                    <a href="{{ url('lang/en') }}" class="dropdown-item py-1">
-                                       <img src="{{ URL::to('resources/assets/back/img/flags/us.png') }}" alt="English Flag" class="langimg"/>
+                                       <img src="{{ URL::to('public/assets/back/img/flags/us.png') }}" alt="English Flag" class="langimg"/>
                                    </a>
                                @endif
                            </div>
@@ -484,7 +484,7 @@
                                 @if(auth()->user()->image)
                                     <img alt="avatar" src="{{ URL::to('uploads/users/source') }}/{{ Auth::user()->image }}">
                                 @else
-                                    <img alt="avatar" src="{{ URL::To('resources/assets/back/img/users/1.jpg')}}">
+                                    <img alt="avatar" src="{{ URL::To('public/assets/back/img/users/1.jpg')}}">
                                 @endif
                             </a>
                             <div class="dropdown-menu">
@@ -542,106 +542,108 @@
       <a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
 
       <!-- Jquery js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/jquery/jquery.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/jquery/jquery.min.js')}}"></script>
 
       <!-- Bootstrap js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
       <!-- Ionicons js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/ionicons/ionicons.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/ionicons/ionicons.js')}}"></script>
 
       <!-- Rating js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/rating/jquery.rating-stars.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/rating/jquery.rating-stars.js')}}"></script>
 
       <!-- Flot js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/jquery.flot/jquery.flot.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/jquery.flot/jquery.flot.resize.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/js/chart.flot.sampledata.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/jquery.flot/jquery.flot.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/jquery.flot/jquery.flot.resize.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/js/chart.flot.sampledata.js')}}"></script>
 
       <!-- Chart.Bundle js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/chart.js/Chart.bundle.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/chart.js/Chart.bundle.min.js')}}"></script>
 
       <!-- Peity js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/peity/jquery.peity.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/peity/jquery.peity.min.js')}}"></script>
 
       <!-- Jquery-Ui js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 
       <!-- Select2 js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/select2/js/select2.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/select2/js/select2.min.js')}}"></script>
 
       <!-- Data Table js -->
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/jquery.dataTables.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/js/table-data.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/dataTables.responsive.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/dataTables.buttons.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/buttons.bootstrap4.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/jszip.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/pdfmake.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/vfs_fonts.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-      <script src="{{ URL::to('resources/assets/back/js/new-tinymce/tinymce.min.js') }}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/js/table-data.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/dataTables.responsive.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/dataTables.buttons.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/buttons.bootstrap4.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/jszip.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/pdfmake.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/vfs_fonts.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
+      <script src="{{ URL::to('public/assets/back/js/new-tinymce/tinymce.min.js') }}"></script>
 
       <!---Fileupload css-->
-      <script src="{{ URL::To('resources/assets/back/plugins/fileuploads/js/fileupload.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/fileuploads/js/file-upload.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/fileuploads/js/fileupload.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/fileuploads/js/file-upload.js')}}"></script>
 
       <!--Fancy uploader js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
-      <script src="{{ URL::To('resources/assets/back/plugins/fancyuploder/fancy-uploader.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/fancyuploder/fancy-uploader.js')}}"></script>
 
       <!---Select2 js-->
-		<script src="{{ URL::To('resources/assets/back/plugins/select2/js/select2.min.js')}}"></script>
-        <script src="{{ URL::To('resources/assets/back/js/select2.js')}}"></script>
+		<script src="{{ URL::To('public/assets/back/plugins/select2/js/select2.min.js')}}"></script>
+        <script src="{{ URL::To('public/assets/back/js/select2.js')}}"></script>
 
       <!-- Jquery.mCustomScrollbar js-->
-      <script src="{{ URL::To('resources/assets/back/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+      <script src="{{ URL::To('public/assets/back/plugins/jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
 
       <!-- Perfect-scrollbar js-->
-      <script src="{{URL::To('resources/assets/back/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+      <script src="{{URL::To('public/assets/back/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
 
       <!-- Sidemenu js-->
-      <script src="{{URL::To('resources/assets/back/plugins/sidemenu/sidemenu.js')}}"></script>
+      <script src="{{URL::To('public/assets/back/plugins/sidemenu/sidemenu.js')}}"></script>
 
       <!-- Sidebar js-->
       @if(app()->getLocale() == 'en')
-          <script src="{{URL::To('resources/assets/back/plugins/sidebar/sidebar.js')}}"></script>
+          <script src="{{URL::To('public/assets/back/plugins/sidebar/sidebar.js')}}"></script>
       @else
-          <script src="{{URL::To('resources/assets/back/plugins/sidebar/sidebar-rtl.js')}}"></script>
+          <script src="{{URL::To('public/assets/back/plugins/sidebar/sidebar-rtl.js')}}"></script>
       @endif
 
       <!-- Sticky js-->
-      <script src="{{URL::To('resources/assets/back/js/sticky.js')}}"></script>
+      <script src="{{URL::To('public/assets/back/js/sticky.js')}}"></script>
 
       <!-- Dashboard js-->
-      <script src="{{URL::To('resources/assets/back/js/index.js')}}"></script>
+      <script src="{{URL::To('public/assets/back/js/index.js')}}"></script>
 
       <!-- Custom js-->
-      <script src="{{URL::To('resources/assets/back/js/custom.js')}}"></script>
+      <script src="{{URL::To('public/assets/back/js/custom.js')}}"></script>
 
         <!-- Gallery js-->
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/picturefill.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lightgallery.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lightgallery-1.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lg-pager.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lg-autoplay.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lg-fullscreen.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lg-zoom.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lg-hash.js')}}"></script>
-        <script src="{{URL::To('resources/assets/back/plugins/gallery/lg-share.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/picturefill.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lightgallery.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lightgallery-1.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lg-pager.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lg-autoplay.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lg-fullscreen.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lg-zoom.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lg-hash.js')}}"></script>
+        <script src="{{URL::To('public/assets/back/plugins/gallery/lg-share.js')}}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
+             var lang = "{{app()->getLocale()}}";
             $.ajaxSetup({
                 headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    'lang' : lang,
                 }
             });
         </script>
@@ -651,11 +653,15 @@
                         toastr.error('{{ $error }}');
                     @endforeach
                 @endif
-        
+
                 @if (session()->has('success'))
-                  
-                        toastr.success('{{ session('success') }}');
-                  
+                        @if (is_array(session('success')))
+                            @foreach (session('success') as $message)
+                                toastr.success('{{ $message }}');
+                            @endforeach
+                        @else
+                            toastr.success('{{ session('success') }}');
+                        @endif
                 @endif
             </script>
       @yield('script')
@@ -752,8 +758,8 @@
 
         if(lat != ''){
             function initMap2() {
-                var uluru = {lat: Number(lat), lng: Number(long)};
-                var myOptions = {
+                    var uluru = {lat: Number(lat), lng: Number(long)};
+                    var myOptions = {
                         zoom: 15,
                         center: new google.maps.LatLng(lat, long)
                     },
@@ -763,7 +769,7 @@
                         map: map,
                     }),
                     infowindow = new google.maps.InfoWindow;
-                map.addListener('click', function(e) {
+                    map.addListener('click', function(e) {
                     map.setCenter(e.latLng);
                     marker.setPosition(e.latLng);
                     infowindow.setContent("Latitude: " + e.latLng.lat() +
@@ -806,7 +812,7 @@
 
 
         ///////check All adata table//////
-        var lang = "{{app()->getLocale()}}";
+
         if(lang == "ar"){
             var table = $('#exportexample').DataTable( {
         		lengthChange: false,
@@ -838,111 +844,126 @@
             $(".cart").prop('checked', $(this).prop("checked"));
         });
 
-
-                //// btn_delete ////
+        @php
+            $segment = Request::segment(3) ;
+        @endphp
+        var url = @json(url("admin/$segment"))
+        //// btn_delete ////
         $(document).ready(function(){
+            // delete pulk of itmes
             $('#btn_delete').click(function(){
-
-
                 var id = [];
-                <?php
-                $last_word = Request::segment(3);
-                Session::put('route', $last_word);
-                ?>
                 $('.tableChecked:checked').each(function(i){
                     id[i] = $(this).val();
                 });
+                if ( id.length > 0 && id[0] == 'a11') {
+                    id.shift()
+                }
                 if(id.length === 0) //tell you if the array is empty
                 {
-                    alert("@lang('home.please select at least one')");
-                }
-                else
-                {
-                    console.log("<?php echo Session::get('route')?>/");
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    Swal.fire({
+                        title: "@lang('home.select')?",
+                        text: "@lang('home.please select at least one')",
+                        icon: "question"
+                    });
+                }else{
+
+                    Swal.fire({
+                        title: "@lang('home.are you sure?')",
+                        text: "@lang('home.remove checked values')",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "@lang('home.yes, delete it')!"
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url:url+'/'.id[0],
+                                type:'DELETE',
+                                data:{id:id},
+                                success:function(res)
+                                {
+                                    for(var i=0; i<id.length; i++)
+                                    {
+                                        $('tr#'+id[i]+'').css('background-color', '#ccc');
+                                        $('tr#'+id[i]+'').fadeOut('slow');
+                                        $('input[type="checkbox"]').prop('checked', false);
+                                        Swal.fire({
+                                            title: "Deleted!",
+                                            text: res.message,
+                                            icon: "success"
+                                        });
+                                    }
+                                },
+                                error:function (error) {
+                                    console.log(error);
+                                    toastr.error(error.responseJSON.message)
+                                    Swal.fire({
+                                        title: "Error!",
+                                        text: error.responseJSON.message,
+                                        icon: "error"
+                                    });
+                                }
+                            });
                         }
                     });
-                    $.ajax({
-                        url:"<?php echo Session::get('route')?>/"+ id,
-                        type:'DELETE',
-                        data:{id:id},
-                        success:function()
-                        {
-                            for(var i=0; i<id.length; i++)
-                            {
-                                $('tr#'+id[i]+'').css('background-color', '#ccc');
-                                $('tr#'+id[i]+'').fadeOut('slow');
-                                $('input[type="checkbox"]').prop('checked', false);
-
-                            }
-                        },
-                        error:function (error) {
-                            console.log(error);
-
-                            toastr.error(error.responseJSON.message)
-                        }
-                    });
                 }
-
-
             });
-        });
 
-        //// btn_active ////
-        $(document).ready(function(){
+            // change status pulk of items
+
             $('#btn_active').click(function(){
-                var id = [];
-                <?php
-                $last_word = Request::segment(3);
-                Session::put('route', $last_word);
-                ?>
+                let id = [];
                 $('.tableChecked:checked').each(function(i){
                     id[i] = $(this).val();
                 });
-                if(id.length === 0) //tell you if the array is empty
-                {
-                    alert("Please Select atleast one checkbox");
+
+                if ( id.length > 0 && id[0] == 'a11') {
+                    id.shift()
                 }
-                else
-                {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
+
+                if(id.length === 0) {
+                    Swal.fire({
+                        title: "@lang('home.select')?",
+                        text: "@lang('home.please select at least one')",
+                        icon: "question"
                     });
-                    $.ajax({
-                        url:"<?php echo Session::get('route')?>/up/"+ id,
-                        method:'POST',
-                        data:{id:id},
-                        success:function()
-                        {
-                            $('input:checkbox').removeAttr('checked');
-                            location.reload();
+                }else{
+                    Swal.fire({
+                        title: "@lang('home.are you sure?')",
+                        text: "@lang('home.change status checked values')!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "@lang('home.yes, change it')!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                             $.ajax({
+                                url: url + "/up/" + id,
+                                method:'POST',
+                                data:{id:id},
+                                success:function(res)
+                                {
+                                    for (let i = 0; i < id.length; i++) {
+                                        $('tr#' + id[i]).find('.status').prop('checked', function(_, currentState) {
+                                            return !currentState; // Toggle the current checked state
+                                        });
+                                    }
+                                    Swal.fire({
+                                        title: "@lang('home.chenged')!",
+                                        text: res.message,
+                                        icon: "success"
+                                    });
+                                    $('input:checkbox').removeAttr('checked');
+                                    // location.reload();
+                                }
+                            });
                         }
                     });
                 }
             });
-
-            $('#btn_back').click(function(){
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url:"backup",
-                    method:'GET',
-                    success:function()
-                    {
-
-                    }
-                });
-
-            });
-
         });
     </script>
 

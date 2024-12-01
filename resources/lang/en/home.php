@@ -2,6 +2,10 @@
 
 return [
     'clear_filter'=>'Clear Filter',
+    'home.remove checked values' => 'Remove checked values' ,
+    'yes, delete it' => 'Yes, Delete it' ,
+    'yes, change it' => 'Yes, Change it' ,
+    'change status checked values' => 'Change status checked values' ,
     'back'=>'back',
     'your_item_deleted_successfully' => 'your item has been deleted successfully',
     'power'=>'Power',

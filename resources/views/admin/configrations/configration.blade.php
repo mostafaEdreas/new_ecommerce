@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('meta')
-    <title>{{trans('home.edit_configration')}} {{trans("home.$configrations->lang")}}</title>
+    <title>{{trans('home.edit_configration')}} {{trans("home.$edit_lang")}}</title>
 @endsection
 @section('content')
 
@@ -9,10 +9,10 @@
         <!-- Page Header -->
         <div class="page-header">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-5">{{trans('home.edit_configration')}} {{trans("home.$configrations->lang")}}</h2>
+                <h2 class="main-content-title tx-24 mg-b-5">{{trans('home.edit_configration')}} {{trans("home.config('')")}}</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('/admin')}}">{{trans('home.admin')}}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{trans('home.edit_configration')}} {{trans("home.$configrations->lang")}}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{trans('home.edit_configration')}} {{trans("home.$edit_lang")}}</li>
                 </ol>
             </div>
         </div>
@@ -34,24 +34,24 @@
 
                     <div class="card-body">
                         <div>
-                            <h6 class="card-title mb-1">{{trans('home.edit_configration')}} {{trans("home.$configrations->lang")}}</h6>
+                            <h6 class="card-title mb-1">{{trans('home.edit_configration')}} {{trans("home.$edit_lang")}}</h6>
                         </div>
-                        {!! Form::open(['method'=>'PATCH','url' => 'admin/configrations/'.$configrations->lang, 'data-toggle'=>'validator', 'files'=>'true']) !!}
+                        {!! Form::open(['method'=>'PATCH','url' => 'admin/configrations/'.$edit_lang, 'data-toggle'=>'validator', 'files'=>'true']) !!}
                             <div class="row">
 
                                 <div class="form-group col-md-12">
                                     <label for="app_name">{{trans('home.app_name')}}</label>
-                                    <input type="text"  class="form-control" placeholder="{{trans('home.app_name')}}" name="app_name" value="{{ $configrations->app_name }}">
+                                    <input type="text"  class="form-control" placeholder="{{trans('home.app_name')}}" name="app_name" value="{{ config('site_app_name') }}">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="app_name">{{trans('home.top text')}}</label>
-                                    <input type="text"  class="form-control" placeholder="{{trans('home.top text')}}" name="top_text" value="{{ $configrations->top_text }}">
+                                    <input type="text"  class="form-control" placeholder="{{trans('home.top text')}}" name="top_text" value="{{ config('site_top_text') }}">
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <fieldset class="form-group">
                                         <label for="about_app">{{trans('home.about_app')}}</label>
-                                        <textarea class="form-control area1" placeholder="{{trans('home.about_app')}}" name="about_app"> {!! $configrations->about_app !!}</textarea>
+                                        <textarea class="form-control area1" placeholder="{{trans('home.about_app')}}" name="about_app"> {!! config('site_about_app') !!}</textarea>
                                     </fieldset>
                                 </div>
 
@@ -110,24 +110,32 @@
                                 <div class="form-group col-md-3">
                                     @if($configrations->app_logo)
                                         <img src="{{url('\uploads\settings\source')}}\{{$configration->app_logo}}" width="150">
+                                    @else
+                                    <img src="{{Helper::$noimage}}" width="150">
                                     @endif
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     @if($configrations->app_footer_logo)
                                         <img src="{{url('\uploads\settings\source')}}\{{$configration->app_footer_logo}}" width="150">
+                                    @else
+                                        <img src="{{Helper::$noimage}}" width="150">
                                     @endif
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     @if($configrations->about_image)
                                         <img src="{{url('\uploads\settings\source')}}\{{$configration->about_image}}" width="150">
+                                    @else
+                                        <img src="{{Helper::$noimage}}" width="150">
                                     @endif
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     @if($configrations->inspection_request_image)
                                         <img src="{{url('uploads/settings/source/'.$configration->inspection_request_image)}}" width="150">
+                                    @else
+                                        <img src="{{Helper::$noimage}}" width="150">
                                     @endif
                                 </div>
 

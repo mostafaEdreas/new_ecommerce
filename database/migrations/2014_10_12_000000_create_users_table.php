@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Hash;
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        User::create(['f_name'=> 'Super','l_name'=> 'Admin','phone'=> 01126713126,'email' =>'admin@gohina.com', 'password' => Hash::make(123456),'is_admin' => 1 , 'admin_seen' => 1 ]);
     }
 
     /**

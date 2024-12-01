@@ -51,10 +51,10 @@ class About extends Model
 
     public function getImageAttribute($value)
     {
-        return Helper::imageIsExists($value, 'about-us') ? $value : Helper::$noimage;
+        return Helper::imageIsExists($value, 'about-us') ? url("\uploads\aboutStrucs\source\\$value") : url(Helper::$noimage) ;
     }
 
-    public function getIconAttribute($value){
-        return Helper::imageIsExists($value ,'about-us') ? $value : Helper::$noimage ;
+    public function getBannerAttribute($value){
+        return Helper::imageIsExists($value, 'about-us') ? url("\uploads\aboutStrucs\source\\$value") : url(Helper::$noimage) ;
     }
 }
