@@ -63,15 +63,20 @@ class AddressController extends Controller
 
     public function destroy($id)
     {
-        if( request('ids')){
-            $ids =  request('ids') ;
+        if( request('id')){
+            $ids =  request('id') ;
             $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
             Address::whereIn('id',$ids)->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_items_deleted_successfully')]);
+            }
             return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
         }elseif($address = Address::find($id)){
             $address->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_item_deleted_successfully')]);
+            }
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }
-
     }
 }

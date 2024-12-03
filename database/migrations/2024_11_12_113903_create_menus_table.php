@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name_ar',255)->unique();
             $table->string('name_en',255)->unique();
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->nullable()->default(0);
             $table->foreignId('parent_id')->nullable()->constrained('menus');
             $table->string('segment')->nullable();
-            $table->string('type',255)->default('main');
-            $table->integer('order')->default(1);
+            $table->string('type',255)->nullable()->default('main');
+            $table->integer('order')->nullable()->default(1);
             $table->timestamps();
         });
     }

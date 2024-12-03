@@ -75,12 +75,18 @@ class AboutStruc extends Model
         return  $query->whereStatus(1);
       }
 
-      public function scopeUnactive($query){
+    public function scopeUnactive($query){
         return   $query->whereStatus(0);
       }
 
-      public function getImageAttribute(){
-        Helper::imageIsExists($this->image ,'aboutStrucs') ? $this->image : Helper::$noimage ;
+    public function getImageSourceAttribute($image){
+        return Helper::imageIsExists($this->image ,'aboutStrucs') ?  Helper::uploadedImagesPath('aboutStrucs',$this->image) : Helper::noImage() ;
     }
+
+    public function getImage200Attribute(){
+        return Helper::imageIsExists($this->image ,'aboutStrucs') ?  Helper::uploadedImages200Path('aboutStrucs',$this->image) : Helper::noImage() ;
+    }
+
+    
 
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_ar',255)->unique();
             $table->string('name_en',255)->unique();
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->nullable()->default(0);
             $table->timestamps();
         });
     }

@@ -14,12 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EditSlugInUrl
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+
+    public function handle(Request $request, Closure $next)
     {
         $slugLang = $request->segment(1);
         App::setLocale($slugLang);

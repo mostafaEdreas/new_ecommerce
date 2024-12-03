@@ -62,14 +62,10 @@
                                         {{-- <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">{{trans("home.$aboutStruc->lang")}}</a></td> --}}
                                         <td>
                                             <a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">
-                                                @if($aboutStruc->image)
-                                                    <img src="{{url('/uploads/aboutStrucs/resize200')}}/{{$aboutStruc->segment}}" width="70">
-                                                @else
-                                                    <img src="{{url('resources/assets/back/img/noimage.png')}}" width="70">
-                                                @endif
+                                                <img src="{{$aboutStruc->image_200}}" width="70">
                                             </a>
                                         </td>
-                                        <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}">@if($aboutStruc->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
+                                        <td><a href="{{ route('aboutStrucs.edit', $aboutStruc->id) }}" class="status" >@if($aboutStruc->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

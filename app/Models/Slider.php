@@ -10,6 +10,7 @@ use DB;
 class Slider extends Model
 {
 	protected $table='sliders';
+    private $lang ;
 
     protected $fillable = [
         'title_ar',
@@ -22,25 +23,34 @@ class Slider extends Model
         'type',
     ];
 
+public const TYPES = ['home'];
+ 
+public function __construct(array $attributes = [])
+{
+    parent::__construct($attributes);
 
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
+    // Set the current locale dynamically
+    $this->lang = Helper::getLang();
 
-        // Set the current locale dynamically
-        $this->lang = Helper::getLang();
-
-    }
-    public function getTilteAttribute(){
-        $this->{'title_'.$this->lang} ;
+}
+    public function getTitleAttribute(){
+        return $this->{'title_'.$this->lang} ;
     }
 
     public function getTexteAttribute(){
-        $this->{'text_'.$this->lang} ;
+        return $this->{'text_'.$this->lang} ;
     }
 
-    public function getImageAttribute(){
-        Helper::imageIsExists($this->image ,'sliders') ? $this->image : Helper::$noimage ;
+    public function getImageSourceAttribute(){
+        return  Helper::imageIsExists($this->image ,'sliders') ? Helper::uploadedImagesPath('sliders',$this->image) : Helper::noImage() ;
+    }
+
+    public function getImage200Attribute(){
+        return Helper::imageIsExists($this->image ,'sliders') ? Helper::uploadedImages200Path('sliders',$this->image) : Helper::noImage() ;
+    }
+
+    public function getViewAttribute(){
+       return $this->video_link ?  Helper::videoImage() :  $this->image_200 ;
     }
 
     

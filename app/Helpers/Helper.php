@@ -7,7 +7,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class Helper
 {
 
-    public static $noimage = 'uploads/noimage.png';
+    
     public static $lang;
 
     // Static initializer
@@ -17,6 +17,15 @@ class Helper
     }
 
 
+    public static function noImage()
+    {
+        return url('uploads/noimage.png');
+    }
+
+    public static function videoImage()
+    {
+        return url('uploads/videoimage.png');
+    }
     public static function getLang(): string
     {
         if (self::$lang === null) {
@@ -48,6 +57,10 @@ class Helper
         return url('uploads/'.$model.'/source/'.$image);
     }
 
+    public static function uploadedImages200Path($model,$image){
+        return url('uploads/'.$model.'/resize200/'.$image);
+    }
+
 
     public static function uploadedSliderImagesPath($model,$image){
         return url('uploads/sliders/'.$model.'/source/'.$image);
@@ -65,11 +78,9 @@ class Helper
 
     }
 
-    public static function imageIsExists(string $image , string $folder ):bool{
-       if( $image && file_exists( "uploads/$folder/$image")){
-        return true;
-       }
-       return false;
+    public static function imageIsExists(string|null $image , string $folder ):bool{
+        $path = base_path("uploads/$folder/source/$image");
+        return $image && file_exists( $path );
     }
 
 

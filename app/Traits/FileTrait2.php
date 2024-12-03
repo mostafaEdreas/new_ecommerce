@@ -5,7 +5,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 
 
-trait FileTrait {
+trait FileTrait2 {
     private UploadedFile  $file;
 
     private  function createFileName()

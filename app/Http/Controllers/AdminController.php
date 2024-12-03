@@ -17,7 +17,6 @@ use App\Models\Order;
 use Carbon\Carbon;
 use App\Models\OrderProduct;
 use App\Models\User;
-use Auth;
 use App\Models\Winner;
 use App\Models\Area;
 use App\Models\GalleryImage;
@@ -34,45 +33,61 @@ use App\Models\Coupon;
 use App\Models\Branche;
 use App\Models\Service;
 use App\Models\InstallmentPartner;
+use App\Models\ProductStock;
+use App\Models\Slider;
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    ///// function return admin index view///////
+    /////////// function return admin index view //////////
+
+      
    public function admin(){
-        $totalOrders = Order::count();
-        $currentMonthOrders = Order::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->count();
-        $pendingOrders = Order::where('status','pending')->count();
-        $pendingOrdersCost = Order::where('status','pending')->sum('total_price');
+        //------------------------------
+        /////     Orders Report     /////
+
+        $data['reports']['totalOrders'] = Order::count();
+        $data['reports']['currentMonthOrders'] = Order::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->count();
+        $data['reports']['pendingOrders'] = Order::whereHas('status',function($q){
+            $q->whereStatus('pending');
+        })->count();
+        $data['reports']['pendingOrdersCost'] = Order::whereHas('status',function($q){
+            $q->whereStatus('pending');
+        })->sum('total_price');
+        $data['reports']['totalOrdersCost'] = Order::sum('total_price');
+        $data['reports']['ordersQuantity'] = OrderProduct::sum('quantity');
+        $data['reports']['currentMonthOrdersCost'] = Order::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->sum('total_price');
+        $data['reports']['lastMonthOrdersCost'] = Order::whereYear('created_at', Carbon::now()->year)->where('created_at', '>=', Carbon::now()->subMonth()->month)->sum('total_price');
+        $data['orders'] = Order::orderBy('id','DESC')->take(10)->get();
 
 
-        $products = Product::all();
-        $productsPrice =[];
-        foreach($products as $product){
-            if($product->offer_price !='' && $product->offer_price != NULL){
-                array_push($productsPrice,$product->offer_price);
-            }else{
-                array_push($productsPrice,$product->price);
-            }
-        }
-        $productsPrice = Stock::whereHas('product')->sum('price')??array_sum($productsPrice);
-        $orderedProductsCost = OrderProduct::sum('price');
+        //--------------------------------//
+        /////     Products Report     /////
+       
+        $products = Product::query();
+        $data['reports']['productCount'] = $products->count() ;
+        $data['reports']['availableProductNumber'] = $products->active()->count();
+        $data['reports']['productHasStock'] = $products->hasStock()->count();
+        $data['reports']['productsPrice'] = ProductStock::sum('price');
 
-        $productsCount=Product::count();
-        $orderdProductCount = OrderProduct::sum('quantity');
-        $orders = Order::orderBy('id','DESC')->take(10)->get();
+        //--------------------------------//
+        /////     uesrs Report     /////
+      
+        $data['reports']['usersCount'] = User::count();
+        // $currentMonthUsers = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->count();
 
-        $totalUsers = User::count();
-        $currentMonthUsers = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->count();
+        //--------------------------------//
+        /////     categories Report     /////
 
-        $totalOrdersCost = Order::sum('total_price');
-        $currentMonthOrdersCost = Order::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->sum('total_price');
-        $lastMonthOrdersCost = Order::whereYear('created_at', Carbon::now()->year)->where('created_at', '>=', Carbon::now()->subMonth()->month)->sum('total_price');
+        $data['reports']['categoriesNumber'] = Category::count();
 
-        return view('admin.index',compact('totalOrders','currentMonthOrders','pendingOrders',
-        'pendingOrdersCost','productsPrice','orderedProductsCost','productsCount','orderdProductCount',
-        'orders','totalUsers','currentMonthUsers','currentMonthOrdersCost','lastMonthOrdersCost','totalOrdersCost'));
+        /////     brands Report     /////
+        
+        $data['reports']['brandsNumber'] = Brand::count();
+
+        return view('admin.index',$data);
     }
 
     ///// function set session lang of the app////
@@ -90,7 +105,6 @@ class AdminController extends Controller
     {
         $ids = explode(',', $ids);
         foreach ($ids as $x) {
-
             if($name == 'categories'){
                 $update = Category::findOrFail($x);
             }
@@ -148,7 +162,7 @@ class AdminController extends Controller
             }
 
             if($name == 'aboutStrucs'){
-                $update = Menu::findOrFail($x);
+                $update = AboutStruc::findOrFail($x);
             }
 
             if($name == 'blog-categories'){
@@ -161,6 +175,10 @@ class AdminController extends Controller
 
             if($name == 'home-sliders'){
                 $update = HomeSlider::findOrFail($x);
+            }
+
+            if($name == 'sliders'){
+                $update = Slider::findOrFail($x);
             }
 
             if($name == 'intro-sliders'){
@@ -212,7 +230,7 @@ class AdminController extends Controller
 
     public function switchTheme(){
 
-        $user =Auth::user();
+        $user =User::find(Auth::user()->id);
         if ($user ->theme == 'default') {
             $user ->theme = 'dark';
             $user ->save();

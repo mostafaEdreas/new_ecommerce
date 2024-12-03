@@ -106,15 +106,26 @@ class Category extends Model
         return  $this->parent?->link  ;
     }
 
-    public function getImageAttribute($value){
+    public function getImageSourceAttribute($value){
 
-        return Helper::imageIsExists($this->image ,'categories') ? $this->image : Helper::$noimage ;
+        return Helper::imageIsExists($this->image ,'categories') ? $this->image : Helper::noImage() ;
 
     }
 
-    public function getIconAttribute(){
+    public function getImage200Attribute($value){
 
-        return Helper::imageIsExists($this->icon ,'categories') ? $this->icon : Helper::$noimage ;
+        return Helper::imageIsExists($this->image ,'categories') ? $this->image : Helper::noImage();
+
+    }
+
+    public function getIconSourceAttribute(){
+
+        return Helper::imageIsExists($this->icon ,'categories') ? $this->icon : Helper::noImage();
+    }
+
+    public function getIcon200Attribute(){
+
+        return Helper::imageIsExists($this->icon ,'categories') ? $this->icon : Helper::noImage();
     }
 
     public function getActiveAttribute(){

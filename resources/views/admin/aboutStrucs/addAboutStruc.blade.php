@@ -57,7 +57,7 @@
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="segment">
+                                            <input type="file" class="custom-file-input" name="image">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>

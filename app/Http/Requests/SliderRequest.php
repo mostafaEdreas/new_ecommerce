@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Slider;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SliderRequest extends FormRequest
@@ -24,13 +25,13 @@ class SliderRequest extends FormRequest
         return [
             'title_ar' => 'nullable|string|max:255',
             'title_en' => 'nullable|string|max:255',
-            'text_ar' => 'nullable|string|max:4294967295',
-            'text_en' => 'nullable|string|max:4294967295',
+            'text_ar' => 'nullable|string|max:500',
+            'text_en' => 'nullable|string|max:500',
             'video_link' => 'nullable|url|required_without:image',
-            'image' => 'nullable|image|max:255|required_without:video_link',
-            'order' => 'nullable|integer|default:1',
-            'type' => 'nullable|string|max:50',
-            'status' => 'nullable|boolean|default:0',
+            'image' => 'nullable|image|max:1024|required_without:video_link',
+            'order' => 'nullable|integer',
+            'type' => 'nullable|string|max:50|in:' . implode(',', Slider::TYPES),
+            'status' => 'nullable|boolean', 
         ];
     }
 }

@@ -15,20 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string('name_ar',255)->unique();
             $table->string('name_en',255)->unique();
-            $table->integer('order')->default(1);
+            $table->integer('order')->nullable()->default(1);
             $table->foreignId('parent_id')->nullable()->constrained('categories');
             $table->longText('text_ar')->nullable();
             $table->longText('text_en')->nullable();
             $table->string('image',255);
             $table->string('icon',255)->nullable();
-            $table->string('status',255)->default(0);
+            $table->string('status',255)->nullable()->default(0);
             $table->string('link_ar',255)->unique();
             $table->string('link_en',255)->unique();
             $table->string('mete_title_ar',255)->nullable();
             $table->string('mete_title_en',255)->nullable();
             $table->longText('mete_description_ar')->nullable();
             $table->longText('mete_description_en')->nullable();
-            $table->boolean('index')->default(0)->nullable();
+            $table->boolean('index')->nullable()->default(0)->nullable();
             $table->timestamps();
         });
     }

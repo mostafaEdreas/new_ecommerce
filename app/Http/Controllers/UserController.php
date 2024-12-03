@@ -74,35 +74,42 @@ class UserController extends Controller
     }
 
 
-    public function update(UserRequest $request,User $update)
+    public function update(UserRequest $request, $id)
     {
-        $data = $request->validated();
-        if ($request->password) {
-            $data['password'] = bcrypt($request->password);
-        }
-        
-        if ($request->hasFile("image")) {
+        $update = User::find($id);
+       
+        if($update){
+            $data = $request->validated();
 
-            $file = $request->file("image");
-            $saveImage = new SaveImageTo3Path($file,true);
-            $fileName = $saveImage->saveImages('users');
-            SaveImageTo3Path::deleteImage( $update->image, 'users');
-            $data['image'] = $fileName;
-        }
-
-        $update->update($data);
-        if(request('checkout')){
-           return redirect()->back()->withInput();
-        }
-       DB::table('model_has_roles')->where('model_id',$id)->delete();
-        
-        if ($request->role){
-            $roles=$request->role;
-            foreach ($roles as $role) {
-                $update->assignRole($role);
+            if ($data['password']) {
+                $data['password'] = bcrypt($data['password']);
+            }else{
+                unset($data['password']);
             }
+            if ($request->hasFile("image")) {
+                $file = $request->file("image");
+                $saveImage = new SaveImageTo3Path($file,true);
+                $fileName = $saveImage->saveImages('users');
+                SaveImageTo3Path::deleteImage( $update->image, 'users');
+                $data['image'] = $fileName;
+            }
+    
+            $update->update($data);
+            if(request('checkout')){
+               return redirect()->back()->withInput();
+            }
+           DB::table('model_has_roles')->where('model_id',$update->id)->delete();
+            
+            if ($request->role){
+                $roles=$request->role;
+                foreach ($roles as $role) {
+                    $update->assignRole($role);
+                }
+            }
+            return redirect()->back()->with('success',trans('home.your_item_updated_successfully'));
+    
         }
-        return redirect()->back()->with('success',trans('home.your_item_updated_successfully'));
+        return abort(404);
     }
 
 

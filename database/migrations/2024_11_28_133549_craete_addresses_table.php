@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('addresses', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('address');
             $table->string('land_mark');
@@ -19,9 +19,9 @@ return new class extends Migration
             $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
             $table->foreignId('area_id')->constrained('areas')->onDelete('cascade');
             $table->string('phone');
-            $table->boolean('is_primary')->default(0);
+            $table->boolean('is_primary')->nullable()->default(0);
             $table->foreignId('user_id');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->nullable()->default(1);
 
             $table->timestamps();
         });

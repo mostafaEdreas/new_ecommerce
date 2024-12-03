@@ -9,9 +9,9 @@
     <meta name="keywords" content="Grocery, Store, stores">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title> {{ $configration->app_name }} @lang('home.login') </title>
+    <title> {{ config('site_app_name') }} @lang('home.login') </title>
     <link rel="shortcut icon" type="image/x-icon"
-        href="{{ url('uploads/settings/source/' . $configration->about_image) }}">
+        href="{{ url('uploads/settings/source/' . config('site_logo')) }}">
     <!-- plugins css -->
     <link rel="stylesheet preload" href="{{ Helper::cssFilesPath('plugins.css') }}" as="style">
     <link rel="stylesheet preload" href="{{ Helper::cssFilesPath('style.css') }}" as="style">
@@ -28,7 +28,7 @@
                     <div class="registration-wrapper-1">
                         <a href="{{ LaravelLocalization::localizeUrl('/') }}">
                             <div class="logo-area mb--0">
-                                <img class="mb--10" src="{{ url('uploads/settings/source/' . $configration->about_image) }}" alt="logo">
+                                <img class="mb--10" src="{{ url('uploads/settings/source/' . config('site_logo')) }}" alt="logo">
                             </div>
                         </a>
                         <h3 class="title">{{ trans('home.register') }}</h3>

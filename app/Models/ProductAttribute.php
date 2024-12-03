@@ -20,6 +20,7 @@ class ProductAttribute extends Model
     public function delete()
     {
         $errors = [] ;
+        $this->load('values.orders');
         if ($this->values()->exists()) {
             foreach ($this->values as $value) {
                 if($value->variants()->exists()){

@@ -1,8 +1,32 @@
 <?php
 
 return [
+    'totalOrders' => 'Total Orders',
+    'currentMonthOrders' => 'Total orders for the current month',
+    'pendingOrders' => 'Pending orders',
+    'pendingOrdersCost' => 'Pending orders cost' ,
+    'totalOrdersCost' => 'Total orders cost' ,
+    'currentMonthOrdersCost' => 'The cost of current month\'s orders' ,
+    'lastMonthOrdersCost' => 'Cost of last month\'s orders' ,
+    'productCount' => 'Number of products' ,
+    'availableProductNumber' => 'Number of products available' ,
+    'productHasStock' => 'Products have stock' ,
+    'productsPrice' => 'Product prices' ,
+    'usersCount' => 'Number of users',
+    'categoriesNumber' => 'Number of categories',
+    'brandsNumber' => 'Number of brands',
+
+
+
+
+
+
     'clear_filter'=>'Clear Filter',
-    'home.remove checked values' => 'Remove checked values' ,
+    'You need to assign a delivery person before the order can be shipped' => 'You need to assign a delivery person before the order can be shipped.',
+    'changing the status of a delivered order is not allowed' => 'Changing the status of a delivered order is not allowed',
+    'you should write the reason for cancellation' => 'You should write the reason for cancellation' ,
+    'you should write the reason for acceptance if the order is canceled later' => 'You should write the reason for acceptance if the order is canceled later' ,
+    'remove checked values' => 'Remove checked values' ,
     'yes, delete it' => 'Yes, Delete it' ,
     'yes, change it' => 'Yes, Change it' ,
     'change status checked values' => 'Change status checked values' ,

@@ -49,12 +49,22 @@ class About extends Model
         return  $this->{'title_'.$this->lang} ;
     }
 
-    public function getImageAttribute($value)
+    public function getImageSourceAttribute($image)
     {
-        return Helper::imageIsExists($value, 'about-us') ? url("\uploads\aboutStrucs\source\\$value") : url(Helper::$noimage) ;
+        return Helper::imageIsExists($this->image, 'aboutStrucs') ? Helper::uploadedImagesPath('aboutStrucs',$this->image) : url(Helper::noImage()) ;
     }
 
-    public function getBannerAttribute($value){
-        return Helper::imageIsExists($value, 'about-us') ? url("\uploads\aboutStrucs\source\\$value") : url(Helper::$noimage) ;
+    public function getBannerSourceAttribute($banner){
+        return Helper::imageIsExists($this->banner, 'aboutStrucs') ? Helper::uploadedImagesPath('aboutStrucs',$this->banner) : url(Helper::noImage()) ;
+    }
+
+
+    public function getImage200Attribute($image)
+    {
+        return Helper::imageIsExists($this->image, 'aboutStrucs') ? Helper::uploadedImages200Path('aboutStrucs',$this->image) : url(Helper::noImage()) ;
+    }
+
+    public function getBanner200Attribute($banner){
+        return Helper::imageIsExists($this->banner, 'aboutStrucs') ? Helper::uploadedImages200Path('aboutStrucs',$this->banner) : url(Helper::noImage()) ;
     }
 }

@@ -14,7 +14,7 @@
             </div>
             
             <div class="btn btn-list">
-                <a href="{{url('admin/home-sliders/create')}}"><button class="btn ripple btn-primary">{{trans('home.add')}}</button></a>
+                <a href="{{url('admin/sliders/create')}}"><button class="btn ripple btn-primary">{{trans('home.add')}}</button></a>
                 <a id="btn_active"><button class="btn ripple btn-dark">{{trans('home.publish/unpublish')}}</button></a>
                 <a id="btn_delete" ><button class="btn ripple btn-danger">{{trans('home.delete')}}</button></a>
             </div>
@@ -48,10 +48,9 @@
                                 <tr>
                                     <th><input type="checkbox" id="checkAll"/></th>
                                     <th>{{trans('home.id')}}</th>
-                                    <th class="wd-20p">{{trans('home.title')}}</th>
-                                    <th class="wd-20p">{{trans('home.link')}}</th>
-                                    <th class="wd-20p">{{trans('home.lang')}}</th>
-                                    <th class="wd-20p">{{trans('home.image')}}</th>
+                                    <th class="wd-20p">{{trans('home.title_en')}}</th>
+                                    <th class="wd-20p">{{trans('home.title_ar')}}</th>
+                                    <th class="wd-20p">{{trans('home.view')}}</th>
                                     <th class="wd-15p">{{trans('home.status')}}</th>
                                 </tr>
                             </thead>
@@ -59,20 +58,11 @@
                                 @foreach($sliders as $slider)
                                     <tr id="{{$slider->id}}">
                                         <td> <input type="checkbox" name="checkbox"  class="tableChecked" value="{{$slider->id}}"/></td>
-                                        <td><a href="{{ route('home-sliders.edit', $slider->id) }}">{{$slider->id}}</a></td>
-                                        <td><a href="{{ route('home-sliders.edit', $slider->id) }}">{{$slider->title}}</a></td>
-                                        <td><a href="{{ route('home-sliders.edit', $slider->id) }}">{{$slider->link}}</a></td>
-                                        <td><a href="{{ route('home-sliders.edit', $slider->id) }}">{{trans("home.$slider->lang")}}</a></td>
-                                        <td>
-                                            <a href="{{ route('home-sliders.edit', $slider->id) }}">
-                                                @if($slider->image)
-                                                    <img src="{{url('/uploads/sliders/home-sliders/resize200')}}/{{$slider->image}}" width="70">
-                                                @else
-                                                    <img src="{{url('resources/assets/back/img/noimage.png')}}" width="70">
-                                                @endif
-                                            </a>
-                                        </td>
-                                        <td><a href="{{ route('home-sliders.edit', $slider->id) }}">@if($slider->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
+                                        <td><a href="{{ route('sliders.edit', $slider->id) }}">{{$slider->id}}</a></td>
+                                        <td><a href="{{ route('sliders.edit', $slider->id) }}">{{$slider->title_en}}</a></td>
+                                        <td><a href="{{ route('sliders.edit', $slider->id) }}">{{$slider->title_ar}}</a></td>
+                                        <td><a href="{{ route('sliders.edit', $slider->id) }}"><img src="{{$slider->view}}" width="70"></a></td>
+                                        <td><a class="status" href="{{ route('sliders.edit', $slider->id) }}">@if($slider->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

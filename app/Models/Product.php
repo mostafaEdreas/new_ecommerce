@@ -116,13 +116,13 @@ class Product extends Model
 
     public function getImageAttribute($value){
 
-        return Helper::imageIsExists($this->main_image ,'products') ? $this->main_image : Helper::$noimage ;
+        return Helper::imageIsExists($this->main_image ,'products') ? $this->main_image : Helper::noImage() ;
 
     }
 
     public function getSecondImageAttribute(){
 
-        return Helper::imageIsExists($this->second_image ,'products') ? $this->second_image : Helper::$noimage ;
+        return Helper::imageIsExists($this->second_image ,'products') ? $this->second_image : Helper::noImage() ;
     }
 
     public function images(){
@@ -162,6 +162,12 @@ class Product extends Model
 
     public function getDiscountValueAttribute(){
         $this->discount?->discount ;
+    }
+
+    public function scopeHasStock($query){
+        return $query->whereHas('stocks',function($q){
+            $q->where('stock', '>' , 0) ;
+        });
     }
 
 

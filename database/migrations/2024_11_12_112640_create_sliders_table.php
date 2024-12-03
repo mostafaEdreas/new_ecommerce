@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('title_ar',255)->nullable();
             $table->string('title_en',255)->nullable();
-            $table->longText('text_ar')->nullable();
-            $table->longText('text_en')->nullable();
+            $table->text('text_ar')->nullable();
+            $table->text('text_en')->nullable();
             $table->string('video_link')->nullable();
-            $table->string('image',255)->nullable();
-            $table->integer('order')->default(1);
-            $table->string('type',50)->nullable();
-            $table->boolean('status')->default(0);
+            $table->string('image',25)->nullable();
+            $table->integer('order')->nullable()->nullable()->default(1);
+            $table->string('type',50)->nullable()->default('home');
+            $table->boolean('status')->nullable()->default(0);
             $table->timestamps();
         });
     }

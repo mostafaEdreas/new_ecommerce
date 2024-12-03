@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <img src="{{ $about->banner }}"width="150">
+                                <img src="{{ $about->banner_200 }}"width="150">
                             </div>
 
 
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <img src="{{ $about->image }}"  width="150">
+                                <img src="{{ $about->image_200 }}"  width="150">
                             </div>
 
 

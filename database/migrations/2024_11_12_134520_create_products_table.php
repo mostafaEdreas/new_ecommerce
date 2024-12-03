@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('main_image',20);
             $table->string('second_image',20)->nullable();
             $table->string('icon',255)->nullable();
-            $table->string('status',255)->default(0);
+            $table->string('status',255)->nullable()->default(0);
             $table->string('link_ar',255)->unique();
             $table->string('link_en',255)->unique();
             $table->string('mete_title_ar',255)->nullable();

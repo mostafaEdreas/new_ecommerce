@@ -77,11 +77,20 @@ class Brand extends Model
     }
 
     public function getImageAttribute(){
-        Helper::imageIsExists($this->image ,'brands') ? $this->image : Helper::$noimage ;
+        Helper::imageIsExists($this->image ,'brands') ? $this->image : Helper::noImage() ;
     }
 
     public function getIconAttribute(){
-        Helper::imageIsExists($this->icon ,'brands') ? $this->icon : Helper::$noimage ;
+        Helper::imageIsExists($this->icon ,'brands') ? $this->icon : Helper::noImage() ;
+    }
+
+
+    public function getImageSourceAttribute(){
+        Helper::imageIsExists($this->image ,'brands') ? $this->image : Helper::noImage() ;
+    }
+
+    public function getIcon200Attribute(){
+        Helper::imageIsExists($this->icon ,'brands') ? $this->icon : Helper::noImage() ;
     }
 
     public function getActiveAttribute(){

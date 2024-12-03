@@ -12,20 +12,19 @@ class SliderController extends Controller
 
 
     public function __construct(){
-        $this->middleware(['permission:home-sliders']);
+        $this->middleware(['permission:sliders']);
     }
 
     public function index()
     {
         //
-        $data['sliders'] = Slider::orderBy('id','DESC')->get();
+        $data['sliders'] = Slider::orderBy('order')->whereType('home')->get();
         return view('admin.sliders.home-sliders.sliders', $data);
     }
 
 
     public function create()
     {
-        //
         return view('admin.sliders.home-sliders.addSlider');
     }
 
@@ -33,14 +32,13 @@ class SliderController extends Controller
     public function store(SliderRequest $request)
     {
         $data = $request->validated();
-      
-
         if ($request->hasFile("image")) {
             $file = $request->file("image");
             $saveImage = new SaveImageTo3Path($file,true);
-            $fileName = $saveImage->saveImages('aboutStrucs');
+            $fileName = $saveImage->saveImages('sliders');
             $data['image'] = $fileName;
         }
+
         Slider::create($data);
         return redirect()->back()->with('success',trans('home.your_item_added_successfully'));
     }
@@ -66,8 +64,8 @@ class SliderController extends Controller
         if ($request->hasFile("image")) {
             $file = $request->file("image");
             $saveImage = new SaveImageTo3Path($file,true);
-            $fileName = $saveImage->saveImages('aboutStrucs');
-            SaveImageTo3Path::deleteImage(  $slider->image, 'aboutStrucs');
+            $fileName = $saveImage->saveImages('sliders');
+            SaveImageTo3Path::deleteImage(  $slider->image, 'sliders');
             $data['image'] = $fileName;
         }
         $slider->update($data);
@@ -77,16 +75,21 @@ class SliderController extends Controller
 
     public function destroy($id)
     {
-        if( request('ids')){
-            $ids =  request('ids') ;
+        if( request('id')){
+            $ids =  request('id') ;
             $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
             Slider::whereIn('id',$ids)->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_items_deleted_successfully')]);
+            }
             return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
-        }elseif($address = Slider::find($id)){
-            $address->delete();
+        }elseif($slider = Slider::find($id)){
+            $slider->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_item_deleted_successfully')]);
+            }
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }
-
     }
     
 }

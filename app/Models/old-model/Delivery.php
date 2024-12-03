@@ -12,7 +12,4 @@ class Delivery extends Model
         return $this->hasMany('App\Models\Order');
     }
 
-    function scopeCheckBeforDelete($query) {
-        return $query->whereHas('orders') ;
-    }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone',20);
             $table->string('email',100);
             $table->longText('message');
-            $table->boolean('seen')->default('0');
+            $table->boolean('seen')->nullable()->default('0');
             $table->timestamps();
         });
     }

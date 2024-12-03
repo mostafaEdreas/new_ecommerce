@@ -10,7 +10,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
         <!-- Favicon -->
-        <link rel="icon" href="{{url('uploads/settings/source/'.$configration->about_image)}}" type="image/x-icon"/>
+        <link rel="icon" href="{{url('uploads/settings/source/'.config('site_fevicon'))}}" type="image/x-icon"/>
 
         <!---Fontawesome css-->
         <link href="{{URL::To('public/assets/back/plugins/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
@@ -96,7 +96,7 @@
           <div class="main-sidebar main-sidebar-sticky side-menu">
               <div class="sidemenu-logo">
                 <a class="main-logo" href="{{url('admin')}}">
-                    <img src="{{url('uploads/settings/source/'.$configration->app_logo)}}" alt="logo">
+                    <img src="{{url('uploads/settings/source/'.config('site_logo'))}}" alt="logo">
                 </a>
               </div>
 
@@ -155,9 +155,9 @@
                             <a class="nav-link with-sub" href=""><i class="fas fa-sliders-h"></i><span class="sidemenu-label">{{trans('home.sliders')}}</span><i class="angle fe fe-chevron-right"></i></a>
                             <ul class="nav-sub">
 
-                                @can('home-sliders')
-                                    <li class="nav-sub-item @if(Request::segment(2) == 'home-sliders') active @endif">
-                                        <a class="nav-sub-link" href="{{url('admin/home-sliders')}}">{{trans('home.home_sliders')}}</a>
+                                @can('sliders')
+                                    <li class="nav-sub-item @if(Request::segment(2) == 'sliders') active @endif">
+                                        <a class="nav-sub-link" href="{{url('admin/sliders')}}">{{trans('home.sliders')}}</a>
                                     </li>
                                 @endcan
 
@@ -449,10 +449,10 @@
                   <div class="container-fluid">
                         <div class="main-header-left">
                             <a class="main-logo d-lg-none" href="index.html">
-                                @if($configration->app_logo)
-                                    <img src="{{url('uploads/settings/source/'.$configration->app_logo)}}" alt="logo" width="70px" height="70px">
+                                @if(config('site_logo'))
+                                    <img src="{{url('uploads/settings/source/'.config('site_logo'))}}" alt="logo" width="70px" height="70px">
                                 @else
-                                    <img src="{{url('uploads/settings/source/'.$configration->app_logo)}}" alt="logo" width="70px" height="70px">
+                                    <img src="{{url('uploads/settings/source/'.config('site_logo'))}}" alt="logo" width="70px" height="70px">
                                 @endif
                             </a>
                             <a class="main-header-menu-icon" href="" id="mainSidebarToggle"><span></span></a>
@@ -666,24 +666,7 @@
             </script>
       @yield('script')
         <script>
-            $(document).ready(function() {
-                toastr.options = {
-                    'closeButton': true,
-                    'debug': false,
-                    'newestOnTop': false,
-                    'progressBar': false,
-                    'positionClass': 'toast-top-right',
-                    'preventDuplicates': false,
-                    'showDuration': '1000',
-                    'hideDuration': '1000',
-                    'timeOut': '5000',
-                    'extendedTimeOut': '1000',
-                    'showEasing': 'swing',
-                    'hideEasing': 'linear',
-                    'showMethod': 'fadeIn',
-                    'hideMethod': 'fadeOut',
-                }
-            });
+            
         </script>
 
 
@@ -879,7 +862,7 @@
                         }).then((result) => {
                         if (result.isConfirmed) {
                             $.ajax({
-                                url:url+'/'.id[0],
+                                url:url+'/'+id[0],
                                 type:'DELETE',
                                 data:{id:id},
                                 success:function(res)
@@ -897,8 +880,6 @@
                                     }
                                 },
                                 error:function (error) {
-                                    console.log(error);
-                                    toastr.error(error.responseJSON.message)
                                     Swal.fire({
                                         title: "Error!",
                                         text: error.responseJSON.message,
@@ -947,8 +928,13 @@
                                 success:function(res)
                                 {
                                     for (let i = 0; i < id.length; i++) {
-                                        $('tr#' + id[i]).find('.status').prop('checked', function(_, currentState) {
-                                            return !currentState; // Toggle the current checked state
+                                        $('tr#' + id[i]).find('.status').each(function(_, element) {
+                                            
+                                            
+                                            var currentValue = $(element).text().trim();
+                                            var newValue = currentValue === "{{__('home.yes')}}" ? "{{__('home.no')}}" : "{{__('home.yes')}}";
+                                            console.log(element,currentValue,newValue);
+                                            $(element).text(newValue); // Update the element with the new value
                                         });
                                     }
                                     Swal.fire({

@@ -9,13 +9,14 @@ class Order extends Model
 {
     //
     protected $table = 'orders';
-    protected $fillable = ['status','address_id','user_id','payment_id','shipping_id','products_price','coupon_id','payment_status','note','admin_seen','delivery_date'];
+    protected $fillable = ['status','address_id','user_id','payment_id','shipping_id','products_price','coupon_id','payment_status','note','admin_seen','delivery_date','payment_fees','shipping_fees','coupon_discount','net',];
 
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($order) {
+    
             $order->order_number = self::generateOrderNumber();
         });
     }
@@ -57,9 +58,11 @@ class Order extends Model
 	    return Order::where('admin_seen',0)->count();
 	}
     public function orderStatus(){
-        $status =OrderStatus::where('order_id',$this->id)->pluck('status')->toArray();
-        $orderStatus = OrderStatus::where('order_id',$this->id)->get();
-        return [$status,$orderStatus];
+       return $this->hasMany(OrderStatus::class);
+    }
+
+    public function status(){
+        return $this->hasOne(OrderStatus::class)->latestOfMany();
     }
     public function delivery(){
         return $this->belongsTo(Delivery::class);

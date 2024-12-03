@@ -152,6 +152,10 @@ Route::group(['middleware'=>['web','auth','localeSessionRedirect', 'localization
 
 Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],'prefix' => LaravelLocalization::setLocale() ],function(){
     Route::group(['middleware'=>['admin','web'],'prefix'=>'admin'],function(){
+        require base_path('routes/admin/about.php');
+        require base_path('routes/admin/aboutStrucs.php');
+        require base_path('routes/admin/sliders.php');
+
         Route::get('', 'AdminController@admin');
         Route::get('/switch-theme', 'AdminController@switchTheme');
         Route::get('translations', 'AdminController@translations');
@@ -233,13 +237,10 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         Route::post('orders/filter', 'OrderController@orderFilter');
         Route::post('order/delivery/{id}', 'OrderController@OrderDelivey');
 
-        Route::get('editAbout','AboutController@editAbout')->name('admin.editAbout');
-        Route::PATCH('about/update','AboutController@update')->name('admin.about.update');
+      
         Route::resource('menus', 'MenuController');
         Route::resource('menu-items', 'MenuItemController');
         Route::post('menuTypeValue', 'MenuItemController@menuTypeValue')->name('menuTypeValue');
-        Route::resource('aboutStrucs', 'AboutStrucController');
-        Route::delete('aboutStrucs/bulk-delete/del', [AboutStrucController::class, 'bulkDestroy'])->name('aboutStrucs.bulkDestroy');
 
         Route::resource('contact-us-messages', 'ContactusController');
         Route::resource('pages', 'PageController');

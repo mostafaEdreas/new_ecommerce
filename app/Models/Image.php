@@ -31,9 +31,15 @@ class Image extends Model
         return $this->morphTo();
     }
 
-    public function image(){
+    public function getImageSourceAttribute(){
 
-        return Helper::imageIsExists($this->image ,'images') ? $this->image : Helper::$noimage ;
+        return Helper::imageIsExists($this->image ,'images') ? $this->image : Helper::noImage() ;
+
+    }
+
+    public function getImage200eAttribute(){
+
+        return Helper::imageIsExists($this->image ,'images') ? $this->image : Helper::noImage() ;
 
     }
 }

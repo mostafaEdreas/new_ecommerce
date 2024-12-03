@@ -38,7 +38,8 @@ class AppServiceProvider extends ServiceProvider
         config()->set($configurations->toArray());
         Schema::defaultStringLength(191);
         view()->composer('*', function($view){
-            // View::share('language', $lang);
+            $lang = LaravelLocalization::getCurrentLocale();
+            View::share('lang', $lang);
         });
     }
 }

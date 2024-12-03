@@ -20,6 +20,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\CheckLang::class,
+        \App\Http\Middleware\ConvertYoutubeLinkToEmbed::class,
+        \App\Http\Middleware\ApiLocalization::class,
         // \App\Http\Middleware\VerifyCsrfToken::class,
     ];
 
@@ -70,7 +72,7 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
-        'ApiLocalization' => \App\Http\Middleware\ApiLocalization::class,
+     
         
         
         'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

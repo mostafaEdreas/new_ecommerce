@@ -46,8 +46,9 @@ class AboutStrucController extends Controller
     }
 
 
-    public function edit(AboutStruc $aboutStruc)
+    public function edit( $id)
     {
+        $aboutStruc = AboutStruc::find($id);
         if($data['aboutStruc'] = $aboutStruc){
             return view('admin.aboutStrucs.editAboutStruc',$data);        
         }
@@ -55,9 +56,11 @@ class AboutStrucController extends Controller
     }
 
 
-    public function update(AboutStrucRequest $request,AboutStruc $aboutStruc)
+    public function update(AboutStrucRequest $request, $id)
     {
-       
+       $aboutStruc = AboutStruc::find($id);
+
+     
         if( $aboutStruc){
             $data  = $request->validated() ;
             if ($request->hasFile("image")) {
@@ -78,10 +81,22 @@ class AboutStrucController extends Controller
     public function destroy($id)
     {
 
-        $ids =  request('ids') ;
-        $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
-        AboutStruc::whereIn('id',$ids)->delete();
-        return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
+        if( request('id')){
+            $ids =  request('id') ;
+            $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
+            AboutStruc::whereIn('id',$ids)->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_items_deleted_successfully')]);
+            }
+            return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
+        }elseif($aboutStruc = AboutStruc::find($id)){
+            $aboutStruc->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_item_deleted_successfully')]);
+            }
+            return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
+        }
+        
 
     }
 }

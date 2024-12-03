@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App;
-use Session;
+
 use App\Models\Setting;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class CheckLang
 {
@@ -22,8 +23,8 @@ class CheckLang
             App::setlocale($lang);
         }
         else {
-            $setting = Setting::first();
-            $lang = $setting->default_lang;
+            
+            $lang = config('site_lang');
             App::setlocale($lang);
         }
         return $next($request);

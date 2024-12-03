@@ -1,8 +1,34 @@
 <?php
 
 return array(
-    'compare_list' => 'ثائمة المقارنه',
-    'home.remove checked values' => 'حذف القيم المختارة' ,
+    'compare_list' => 'قائمة المقارنه',
+    'totalOrders' => 'الطلبات',
+    'currentMonthOrders' => 'الطلبات للشهر الحالي',
+    'pendingOrders' => 'الطلبات المعلقه',
+    'pendingOrdersCost' => 'مبيعات الطلبات المعلقة' ,
+    'totalOrdersCost' => 'مبيعات الطلبات' ,
+    'currentMonthOrdersCost' => 'مبيعات الطلبات للشهر الحالي' ,
+    'lastMonthOrdersCost' => 'مبيعات الطلبات للشهر الماضي' ,
+    'productCount' => 'المنتجات' ,
+    'availableProductNumber' => 'المنتجات المتوفرة' ,
+    'productHasStock' => 'منتجات لديها مخزون' ,
+    'productsPrice' => 'أسعار المنتجات' ,
+    'usersCount' => 'المستخدمين',
+    'categoriesNumber' => 'الفئات',
+    'brandsNumber' => 'الماركات',
+
+
+
+
+
+
+
+    'You need to assign a delivery person before the order can be shipped' => 'تحتاج إلى تعيين شخص توصيل قبل أن يتم شحن الطلب.',
+    'changing the status of a delivered order is not allowed' => 'لا يُسمح بتغيير حالة الطلب الذي تم تسليمه',
+    'you should write the reason for cancellation' => 'يجب كتابة سبب الإلغاء' ,
+    'you should write the reason for acceptance if the order is canceled later' => 'يجب عليك كتابة سبب القبول إذا تم إلغاء الطلب لاحقًا' ,
+
+    'remove checked values' => 'حذف القيم المختارة' ,
     'yes, delete it' => 'نعم, احذفه' ,
     'yes, change it' => 'نعم, حدثه' ,
     'change status checked values' => 'تحديث حاله القيم المختارة' ,

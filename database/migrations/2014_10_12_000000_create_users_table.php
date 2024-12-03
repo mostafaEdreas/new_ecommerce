@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email')->nullable();
             $table->string('image')->nullable();
-            $table->string('them')->default('default');
+            $table->string('them')->nullable()->default('default');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->default(Hash::make(date('YmdHi')));
-            $table->boolean('is_admin')->default(0);
-            $table->boolean('admin_seen')->default(0);
+            $table->string('password')->nullable()->default(Hash::make(date('YmdHi')));
+            $table->boolean('is_admin')->nullable()->default(0);
+            $table->boolean('admin_seen')->nullable()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -51,27 +51,22 @@
                                 </div>
 
 
-                                <div class="form-group  col-md-12">
+                                <div class="form-group  col-md-10">
                                     <label>{{trans('home.image')}}</label>
                                     <div class="input-group mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="segment">
+                                            <input type="file" class="custom-file-input" name="image">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>
                                 </div>
-
-                                @if($aboutStruc->segment)
-                                    <div class="form-group  col-md-12">
-                                        <img src="{{url('\uploads\aboutStrucs\resize200')}}\{{$aboutStruc->segment}}" width="200" height="150">                                    </div>
-                                    </div>
-                                @endif
-
+                                <div class="form-group  col-md-2">
+                                    <img src="{{$aboutStruc->image_200}}" width="200" height="150">
+                                </div>
                                 <br>
-
                                 <div class="form-group col-md-4">
                                     <label class="ckbox">
                                         <input name="status" value="1" {{($aboutStruc->status == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.publish')}}</span>

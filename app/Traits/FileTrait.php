@@ -2,6 +2,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 trait FileTrait {
@@ -14,9 +15,9 @@ trait FileTrait {
 
     protected function ensureDirectoryExists($path)
     {
-        $directory = dirname($path); // Get the directory path from the full file path
-        if (!Storage::exists($directory)) {
-            Storage::makeDirectory($directory);
+        $path = base_path($path);
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0755, true);
         }
     }
 

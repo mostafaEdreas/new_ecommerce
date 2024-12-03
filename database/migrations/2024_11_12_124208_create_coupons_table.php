@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('min_price')->unsigned()->comment('Minimum invoice total can be used');
             $table->decimal('discount',10,2);
             $table->boolean('discount_type')->default('0')->comment('0 = amount || 1 = percentage');
-            $table->string('type')->default('general');
+            $table->string('type')->nullable()->default('general');
             $table->timestamps();
         });
     }

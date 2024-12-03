@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('name_ar');
-            $table->string('fees');
+            $table->decimal('fees',10,2)->nullable()->default(0.00);
             $table->timestamps();
         });
     }

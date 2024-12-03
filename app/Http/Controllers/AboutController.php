@@ -23,6 +23,9 @@ class AboutController extends Controller
     public function editAbout()
     {
         $about = About::first();
+        if(!$about){
+            About::create(['title_ar'=> 'no data' ,'title_en'=> 'no data']);
+        }
         return view('admin.about.editAbout',compact('about'));
     }
     public function update(AboutRequest $request)
@@ -30,7 +33,7 @@ class AboutController extends Controller
         $about = About::first();
         $data = $request->validated();
         foreach ($request->file() as $key =>$file ) {
-            if (in_array($key,['image','icon'])) {
+            if (in_array($key,['image','banner'])) {
  
                 $saveImage = new SaveImageTo3Path($file,true);
                 $fileName = $saveImage->saveImages('aboutStrucs');

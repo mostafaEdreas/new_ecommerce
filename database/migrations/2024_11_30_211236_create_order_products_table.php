@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('order_products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_stock_id')->constrained('product_stocks');
+            $table->foreignId('product_stock_id')->constrained('product_stock');
             $table->decimal('price', 10, 2)->default(0.00);
             $table->foreignId('discount_id')->nullable()->constrained('discounts');
+            $table->decimal('product_discount', 10, 2)->default(0.00);
             $table->integer('quantity')->default(1);
-            $table->decimal('total', 10, 2)->default(0.00);
+            $table->decimal('total', 10, 2)->nullable()->default(0.00);
+            $table->string('status')->default('pennding');
             $table->timestamps();
         });
     }

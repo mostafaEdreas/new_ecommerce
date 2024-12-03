@@ -16,30 +16,48 @@
 
 	<!-- Row -->
 	<div class="row row-sm">
+		@foreach ($reports as $key => $value )
 		<div class="col-sm-6 col-xl-2 col-lg-6">
 			<div class="card custom-card">
 				<div class="card-body dash1">
 					<div class="d-flex">
-						<p class="mb-1 tx-inverse">{{trans('home.total_orders')}}</p>
-						<div class="ml-auto">
+						<p class="mb-1 tx-inverse">{{trans("home.$key")}}</p>
+						{{-- <div class="ml-auto">
 							<i class="fas fa-chart-line fs-20 text-primary"></i>
-						</div>
+						</div> --}}
 					</div>
 					<div>
-						<h3 class="dash-25">{{$totalOrders}}</h3>
+						<h3 class="dash-25">{{$value}}</h3>
 					</div>
 					<div class="progress mb-1">
-						<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar progress-bar-xs wd-70p" role="progressbar"></div>
+						@php
+							$bg = [
+									'bg-primary',
+									'bg-secondary',
+									'bg-success',
+									'bg-danger',
+									'bg-warning',
+									'bg-info',
+									
+									'bg-dark',
+								
+									
+								];
+
+						@endphp
+						<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" class="progress-bar {{$bg[array_rand($bg)]}} progress-bar-xs wd-70p" role="progressbar"></div>
 					</div>
 					<div class="expansion-label d-flex">
-						<span class="text-muted">{{trans('home.current_month_orders')}}</span>
-						<span class="ml-auto">{{$currentMonthOrders}}</span>
+						<span class="text-muted">{{trans("home.$key")}}</span>
+						<span class="ml-auto">{{$value}}</span>
 					</div>
 				</div>
 			</div>
 		</div>
+		@endforeach
+		
 
-		<div class="col-sm-6 col-xl-2 col-lg-6">
+		{{-- <div class="col-sm-6 col-xl-2 col-lg-6">
 			<div class="card custom-card">
 				<div class="card-body dash1">
 					<div class="d-flex">
@@ -161,7 +179,7 @@
 					--}}
 				</div>
 			</div>
-		</div>
+		</div> --}}
 	</div>
 	<!--End  Row -->
 

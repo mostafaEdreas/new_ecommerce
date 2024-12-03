@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('about_strucs', function (Blueprint $table) {
+        Schema::create('about_strucs', function (Blueprint $table) {
             $table->id(); // Adds an auto-incrementing ID
             $table->string('name_ar'); // Arabic name
             $table->string('name_en'); // English name
@@ -19,8 +19,8 @@ return new class extends Migration
             $table->longText('text_en')->nullable(); // English text, nullable
             $table->foreignId('parent_id')->nullable()->constrained('about_strucs'); // Parent ID, nullable for hierarchical data
             $table->string('image')->nullable(); // Image path, nullable
-            $table->integer('order')->default(0); // Order field, default 0
-            $table->boolean('status')->default(1); // Status (e.g., active/inactive)
+            $table->integer('order')->nullable()->default(1); // Order field, default 0
+            $table->boolean('status')->nullable()->default(1); // Status (e.g., active/inactive)
             $table->timestamps(); // Adds created_at and updated_at
         });
     }
@@ -30,8 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('about_strucs', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('about_strucs');
     }
 };

@@ -26,9 +26,9 @@ class AboutRequest extends FormRequest
             'text_en' => 'nullable|string|max:4294967295',
             'title_ar' => 'required|string|max:255',
             'text_ar' => 'nullable|string|max:4294967295',
-            'image' => 'nullable|image|max:3072', // Optional image validation
+            'image' => 'nullable|image|max:1024', // Optional image validation
             'video_link' => 'nullable|string|max:255',
-            'icon' => 'nullable|image|max:3072', // Optional image validation
+            'banner' => 'nullable|image|max:3072', // Optional image validation
 
         ];
     }

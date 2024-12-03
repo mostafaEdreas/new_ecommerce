@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('value_ar',255)->unique();
             $table->string('value_en',255)->unique();
             $table->foreignId('attribute_id')->constrained('attributes')->onDelete('cascade');
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->nullable()->default(0);
             $table->timestamps();
         });
     }
