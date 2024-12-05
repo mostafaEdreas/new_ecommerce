@@ -50,7 +50,7 @@ class AboutStrucController extends Controller
     {
         $aboutStruc = AboutStruc::find($id);
         if($data['aboutStruc'] = $aboutStruc){
-            return view('admin.aboutStrucs.editAboutStruc',$data);        
+            return view('admin.aboutStrucs.editAboutStruc',$data);
         }
         return abort(404);
     }
@@ -60,7 +60,7 @@ class AboutStrucController extends Controller
     {
        $aboutStruc = AboutStruc::find($id);
 
-     
+
         if( $aboutStruc){
             $data  = $request->validated() ;
             if ($request->hasFile("image")) {
@@ -74,7 +74,7 @@ class AboutStrucController extends Controller
             return redirect()->back()->with('success',trans('home.your_item_updated_successfully'));
         }
 
-        return abort(404);    
+        return abort(404);
     }
 
 
@@ -96,7 +96,5 @@ class AboutStrucController extends Controller
             }
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }
-        
-
     }
 }

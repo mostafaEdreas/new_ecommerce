@@ -19,8 +19,8 @@ class ProductAttributeFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => Product::factory(),       // Create a related product
-            'attribute_id' => Attribute::factory(),   // Create a related attribute
+            'product_id' => Product::inRandomOrder()->first()->id,       // Create a related product
+            'attribute_id' => Attribute::inRandomOrder()->first()->id,   // Create a related attribute
         ];
     }
 }

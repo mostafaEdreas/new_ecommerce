@@ -21,7 +21,6 @@ class Attribute extends Model
     protected $fillable = [
         'name_ar',
         'name_en',
-        'icon' ,
         'status',
     ];
 
@@ -38,13 +37,12 @@ class Attribute extends Model
     {
         $errors = [] ;
         if ($this->products()->exists()) {
-            $errors[] = 'Cannot delete an attribute that has related products.';
+            $errors[] = __('home.cannot delete an attribute that has related products');
         }
-      
+
         if(count( $errors)){
-            return $errors;
+                return $errors;
            }
-           SaveImageTo3Path::deleteImage($this->icon, 'attribute');
            return parent::delete();
     }
 

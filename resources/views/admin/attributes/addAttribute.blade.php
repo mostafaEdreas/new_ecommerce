@@ -20,13 +20,13 @@
         <div class="row">
             <div class="col-sm-12 col-xl-12 col-lg-12">
                 <div class="card custom-card overflow-hidden">
-                    
+
                     <div class="card-body">
                         <div>
                             <h6 class="card-title mb-1">{{trans('home.add_attribute')}}</h6>
                         </div>
                         {!! Form::open(['route' => 'attributes.store', 'data-toggle'=>'validator', 'files'=>'true']) !!}
-                           
+
                         <div class="border">
                             <div class="bg-light">
                                 <nav class="nav nav-tabs">
@@ -34,69 +34,47 @@
                                     <a class="nav-link" data-toggle="tab" href="#tab2">{{trans('home.values')}}</a>
                                 </nav>
                             </div>
-                            
+
                             <div class="card-body tab-content">
                                 <div class="tab-pane active show" id="tab1">
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label class="">{{trans('home.name_en')}}</label>
-                                            <input class="form-control" name="name_en" type="text" placeholder="{{trans('home.name_en')}}" required>
+                                            <input class="form-control" name="name_en" type="text"  value="{{ old('name_en') }}" placeholder="{{trans('home.name_en')}}" required>
                                         </div>
 
                                         <div class="form-group col-md-6">
                                             <label class="">{{trans('home.name_ar')}}</label>
-                                            <input class="form-control" name="name_ar" type="text" placeholder="{{trans('home.name_ar')}}">
-                                        </div>                                        
-
-                                        <div class="col-md-12">
-                                            <label>{{trans('home.icon')}}</label>
-                                            <div class="input-group mb-1">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"> {{trans('home.upload')}}</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="icon">
-                                                    <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_icon')}}</label>
-                                                </div>
-                                            </div>
+                                            <input class="form-control" name="name_ar" type="text"  value="{{ old('name_ar') }}" placeholder="{{trans('home.name_ar')}}">
                                         </div>
-                                        {{-- <div class="form-group col-md-12">
-                                            <label for="category">{{trans('home.categories')}}</label>
-                                            <select class="form-control select2" name="category_id[]" multiple>
-                                                @foreach($categories as $categ)
-                                                    <option value="{{$categ->id}}">{{(app()->getLocale()=='en')? $categ->name_en:$categ->name_ar}}</option>
-                                                @endforeach    
-                                            </select>
-                                            <br>
-                                            <input type="checkbox" id="checkbox">  {{trans('home.selectall')}}
-                                        </div> --}}
+
                                         <div class="form-group col-md-12">
                                             <label class="ckbox">
                                                 <input name="status" value="1" type="checkbox"><span class="tx-13">{{trans('home.publish')}}</span>
                                             </label>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
 
                                 <div class="tab-pane" id="tab2">
                                     <div class="field_wrapper">
                                         <div class="row">
-                                            <div class="form-group col-md-6"> 
+                                            <div class="form-group col-md-6">
                                                 <label for="value_en">{{trans('home.value_en')}}</label>
-                                                <input type="text"  class="form-control" placeholder="{{trans('home.value_en')}}" name="value_en[]">
+                                                <input type="text"  class="form-control"  value="{{ old('value_en.0') }}" placeholder="{{trans('home.value_en')}}" name="value_en[]">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="value_ar">{{trans('home.value_ar')}}</label>
-                                                <input type="text"  class="form-control" placeholder="{{trans('home.value_ar')}}" name="value_ar[]">
-                                            </div> 
-                                        </div>  
-                                    </div>       
-                                    <a href="javascript:void(0);" class="add_button btn" title="Add field"><i class="fas fa-plus-square"></i></a>								
+                                                <input type="text"  class="form-control"  value="{{ old('value_ar.0') }}"  placeholder="{{trans('home.value_ar')}}" name="value_ar[]">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);" class="add_button btn" title="Add field"><i class="fas fa-plus-square"></i></a>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group col-md-12" style="margin-top: 10px;">
                                 <button type="submit" class="btn btn-success">{{trans('home.save')}} </button>
                                 <a href="{{url('/admin/attributes')}}"><button type="button" class="btn btn-danger mr-1"> {{trans('home.cancel')}}</button></a>
@@ -155,7 +133,7 @@
                 x--; //Decrement field counter
             });
         });
-  
+
     </script>
 @endsection
 

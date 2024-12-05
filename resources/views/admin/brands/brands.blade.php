@@ -61,11 +61,7 @@
                                         <td><a href="{{ route('brands.edit', $brand->id) }}">{{$brand->name_ar}}</a></td>
                                         <td>
                                             <a href="{{ route('brands.edit', $brand->id) }}">
-                                                @if($brand->logo)
-                                                    <img src="{{url('/uploads/brands/resize200')}}/{{$brand->logo}}" width="70">
-                                                @else
-                                                    <img src="{{url('resources/assets/back/img/noimage.png')}}" width="70">
-                                                @endif
+                                                <img src="{{ $brand->image_200 }}" width="70">
                                             </a>
                                         </td>
                                         <td><a href="{{ route('brands.edit', $brand->id) }}">@if($brand->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>

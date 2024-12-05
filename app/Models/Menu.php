@@ -10,7 +10,9 @@ class Menu extends Model
 {
     //
     protected $table = 'menus';
-    protected $types = ['main', 'other', 'special']; // Example types array
+    public const TYPES = ['main']; // Example types array
+
+    public const SEGMEnt = ['main']; // Example types array
     private $lang ;
 
     public $timestamps = false;
@@ -46,7 +48,7 @@ class Menu extends Model
 
 
     public function getParentNameAttribute(){
-        return  $this->parent?->name ;
+        return  $this->parent?->name ?? __('home.no_parent');
     }
     public function getNameAttribute(){
         return $this->{'name_'.$this->lang} ;

@@ -24,8 +24,8 @@ class AboutStrucRequest extends FormRequest
     {
 
         return [
-            'name_ar' => 'required|string|max:255|unique:menus,name_ar,'.$this->route('aboutStruc'),
-            'name_en' => 'required|string|max:255|unique:menus,name_en,'.$this->route('aboutStruc'),
+            'name_ar' => 'required|string|max:255|unique:about_strucs,name_ar,'.$this->route('aboutStruc'),
+            'name_en' => 'required|string|max:255|unique:about_strucs,name_en,'.$this->route('aboutStruc'),
             'text_ar' => 'nullable|string|max:4294967295',
             'text_en' => 'nullable|string|max:4294967295',
             'status' => 'nullable|boolean',

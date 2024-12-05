@@ -155,7 +155,9 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         require base_path('routes/admin/about.php');
         require base_path('routes/admin/aboutStrucs.php');
         require base_path('routes/admin/sliders.php');
-
+        require base_path('routes/admin/brands.php');
+        require base_path('routes/admin/categories.php');
+        require base_path('routes/admin/discounts.php');
         Route::get('', 'AdminController@admin');
         Route::get('/switch-theme', 'AdminController@switchTheme');
         Route::get('translations', 'AdminController@translations');
@@ -178,9 +180,7 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         Route::resource('/countries', 'CountryController');
         Route::resource('/regions', 'RegionController');
         Route::resource('/areas', 'AreaController');
-        Route::resource('/categories', 'CategoryController');
         Route::resource('/colors', 'ColorController');
-        Route::resource('/brands', 'BrandController');
         Route::resource('/attributes', 'AttributeController');
         Route::post('removeAttributeValue', 'AttributeController@removeAttributeValue')->name('removeAttributeValue');
         Route::post('updateAttributeValue', 'AttributeController@updateAttributeValue')->name('updateAttributeValue');
@@ -237,7 +237,7 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         Route::post('orders/filter', 'OrderController@orderFilter');
         Route::post('order/delivery/{id}', 'OrderController@OrderDelivey');
 
-      
+
         Route::resource('menus', 'MenuController');
         Route::resource('menu-items', 'MenuItemController');
         Route::post('menuTypeValue', 'MenuItemController@menuTypeValue')->name('menuTypeValue');

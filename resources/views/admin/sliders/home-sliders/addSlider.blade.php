@@ -30,25 +30,25 @@
                                 <input type="hidden" name="type" value="home">
                                 <div class="form-group col-md-4">
                                     <label class="">{{trans('home.title_en')}}</label>
-                                    <input class="form-control" name="title_en" type="text" placeholder="{{trans('home.title_en')}}" >
+                                    <input class="form-control" name="title_en" type="text" placeholder="{{trans('home.title_en')}}" value="{{old('title_en')}}" >
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label class="">{{trans('home.title_ar')}}</label>
-                                    <input class="form-control" name="title_ar" type="text" placeholder="{{trans('home.title_ar')}}" >
+                                    <input class="form-control" name="title_ar" type="text" placeholder="{{trans('home.title_ar')}}" value="{{old('title_ar')}}" >
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label class="">{{trans('home.order')}}</label>
-                                    <input class="form-control" name="order" type="number" min="0" autocomplete="off" placeholder="{{trans('home.order')}}" >
+                                    <input class="form-control" name="order" type="number" min="0" autocomplete="off" placeholder="{{trans('home.order')}}" value="{{old('order')}}" >
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label class="">{{trans('home.text_en')}}</label>
-                                    <input class="form-control" name="text_en" type="text" placeholder="{{trans('home.text_en')}}">
+                                    <input class="form-control" name="text_en" type="text" placeholder="{{trans('home.text_en')}}" value="{{old('text_en')}}">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label class="">{{trans('home.text_ar')}}</label>
-                                    <input class="form-control" name="text_ar" type="text" placeholder="{{trans('home.text_ar')}}" >
+                                    <input class="form-control" name="text_ar" type="text" placeholder="{{trans('home.text_ar')}}"  value="{{old('text_ar')}}">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="">{{trans('home.video_link')}}</label>
@@ -56,7 +56,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">{{trans('home.video_link')}}</span>
                                         </div>
-                                        <input type="text" class="form-control" name="video_link" placeholder="{{trans('home.video_link')}}"  >
+                                        <input type="text" class="form-control" name="video_link" placeholder="{{trans('home.video_link')}}" value="{{old('video_link')}}" >
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
 
                                 <div class="form-group col-md-12">
                                     <label class="ckbox">
-                                        <input name="status" value="1" type="checkbox"><span class="tx-13">{{trans('home.publish')}}</span>
+                                        <input name="status" value="1" type="checkbox" value="{!! old('status')?? 1 !!}"><span class="tx-13">{{trans('home.publish')}}</span>
                                     </label>
                                 </div>
 

@@ -19,6 +19,7 @@ class ProductFactory extends Factory
         return [
             'name_ar' => $this->faker->unique()->word ,
             'name_en' => $this->faker->unique()->word,
+            'code' => $this->faker->unique()->word,
             'category_id' => \App\Models\Category::inRandomOrder()->first()->id,
             'brand_id' => \App\Models\Brand::inRandomOrder()->first()->id,
             'order' => $this->faker->numberBetween(1, 100),

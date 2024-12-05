@@ -26,14 +26,15 @@ class MenuController extends Controller
 
     public function create()
     {
-     
-        return view('admin.menus.addMenu');
+
+        $data['menus'] = Menu::where('type','main')->get();
+        return view('admin.menus.addMenu',$data);
     }
 
 
     public function store(MenuRequest $request)
     {
-       
+
         Menu::create($request->validated());
         return redirect()->back()->with('success',trans('home.your_item_added_successfully'));
     }
@@ -42,8 +43,9 @@ class MenuController extends Controller
     public function edit($id)
     {
 
-        if( $menu = Menu::find($id)){
-            return view('admin.menus.editMenu',compact('menu'));        
+        if( $data['menu']= Menu::find($id)){
+            $data['menus'] = Menu::where('type','main')->get();
+            return view('admin.menus.editMenu',$data);
         }
         return abort(404);
     }
@@ -51,21 +53,32 @@ class MenuController extends Controller
 
     public function update(MenuRequest $request,$id)
     {
-       
+
         if( $menu = Menu::find($id)){
             $menu->update($request->validated());
             return redirect()->back()->with('success',trans('home.your_item_updated_successfully'));
         }
 
-        return abort(404);    
+        return abort(404);
     }
 
 
-    public function destroy()
+    public function destroy($id)
     {
-        $ids =  request('ids') ;
-        $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
-        Menu::whereIn('id',$ids)->delete();
-       
+        if( request('id')){
+            $ids =  request('id') ;
+            $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
+            Menu::whereIn('id',$ids)->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_items_deleted_successfully')]);
+            }
+            return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
+        }elseif($aboutStruc = Menu::find($id)){
+            $aboutStruc->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_item_deleted_successfully')]);
+            }
+            return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
+        }
     }
 }

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\SaveImageTo3Path;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
 use App\Http\Requests\AttributeRequest;
+use App\Http\Requests\AttributeValueRequest;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
-use App\Models\Category;
-use App\Models\CategoryAttribute;
-use DB;
-use File;
-use Image;
+
+use Exception;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 class AttributeController extends Controller
@@ -22,11 +21,10 @@ class AttributeController extends Controller
     public function __construct(){
         $this->middleware(['permission:attributes']);
     }
- 
+
 
     public function index()
     {
-        //
         $attributes = Attribute::get();
         return view('admin.attributes.attributes',compact('attributes'));
     }
@@ -34,46 +32,30 @@ class AttributeController extends Controller
 
     public function create()
     {
-        //
-        $categories = Category::where('status',1)->get();
-        return view('admin.attributes.addAttribute',compact('categories'));
+
+
+        return view('admin.attributes.addAttribute');
     }
 
 
     public function store(AttributeRequest $request)
     {
-        $add=new Attribute();
-        $add->name_en=$request->name_en;
-        $add->name_ar=$request->name_ar;
-        if($request->status){
-            $add->status=1;
-        }else{
-            $add->status=0;
-        }
-
-        if ($request->hasFile("icon")) {
-            $saveImage = new SaveImageTo3Path(request()->file('icon'),true);
-            $fileName = $saveImage->saveImages('attributes');
-
-            $add->icon = $fileName;
-        }
-        $add->save();
-
-        if($request->value_en  && $request->value_ar){
-            $valuesInEnglish=$request->value_en;
-            $valuesInArabic =$request->value_ar; 
-            foreach($valuesInEnglish as $key=>$value){
-                if($value && $valuesInArabic[$key]){
-                    $attVal=new AttributeValue();
-                    $attVal->attribute_id=$add->id;
-                    $attVal->value_en=$value;
-                    $attVal->value_ar=$valuesInArabic[$key];
-                    $attVal->save();
-                }
+        try {
+            DB::beginTransaction();
+            $data = $request->validated();
+            $attribute = Attribute::create($data) ;
+            foreach ($data['value_ar'] as $key => $value) {
+               $attribute->values()->create(['value_ar'=> $value , 'value_en' => $data['value_en'][$key]]) ;
             }
+            DB::commit();
+            return redirect()->back()->with('success',trans('home.your_item_added_successfully'));
+
+        } catch (Exception $ex) {
+            DB::rollBack();
+            Log::error('Transaction failed', ['exception' => $ex]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
-        
-        return redirect()->route('attributes.index')->with('success',trans('home.your_item_added_successfully'));
+
     }
 
 
@@ -81,78 +63,82 @@ class AttributeController extends Controller
 
     public function edit($id)
     {
-        // $categories=Category::where('status',1)->get();
-        $attribute=Attribute::find($id);
-        $values=AttributeValue::where('attribute_id',$id)->get();
-        // $categories_ids = CategoryAttribute::where('attribute_id', $attribute->id)->pluck('category_id');
-        return view('admin.attributes.editAttribute',compact('attribute','values'));
+        $attribute=Attribute::with('values')->find($id);
+
+        return view('admin.attributes.editAttribute',compact('attribute'));
     }
 
 
     public function update(AttributeRequest $request, $id)
     {
-        $add=Attribute::find($id);
-        $add->name_en=$request->name_en;
-        $add->name_ar=$request->name_ar;
-        if($request->status){
-            $add->status=1;
-        }else{
-            $add->status=0;
-        }
 
-        if ($request->hasFile("icon")) {
+        $attribute = Attribute::findOrFail($id);
+        try {
 
-            $saveImage = new SaveImageTo3Path(request()->file('icon'),true);
-            $fileName = $saveImage->saveImages('attributes');
-            SaveImageTo3Path::deleteImage($add->icon,'attributes');
-            $add->icon = $fileName;
-        }
-        $add->save();
-
-         if($request->value_en  && $request->value_ar){
-            $valuesInEnglish=$request->value_en;
-            $valuesInArabic =$request->value_ar; 
-            foreach($valuesInEnglish as $key=>$value){
-                if($value && $valuesInArabic[$key]){
-                    $attVal=new AttributeValue();
-                    $attVal->attribute_id=$add->id;
-                    $attVal->value_en=$value;
-                    $attVal->value_ar=$valuesInArabic[$key];
-                    $attVal->save();
-                }
+            DB::beginTransaction();
+            $data = $request->validated();
+            $attribute ->update($data) ;
+            foreach (in_array('value_ar' ,$data) ? $data['value_ar'] : [] as $key => $value) {
+               $attribute->values()->create(['value_ar'=> $value , 'value_en' => $data['value_en'][$key]]) ;
             }
+            DB::commit();
+            return redirect()->back()->with('success',trans('home.your_item_updated_successfully'));
+
+        } catch (Exception $ex) {
+            DB::rollBack();
+            Log::error('Transaction failed', ['exception' => $ex]);
+            return redirect()->back()->withErrors($ex->getMessage());
         }
-        
-        return redirect()->route('attributes.index')->with('success',trans('home.your_item_updated_successfully'));
+
     }
 
 
     public function destroy($id)
     {
-        if( request('ids')){
-            $ids =  request('ids') ;
-            $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
-            Attribute::whereIn('id',$ids)->delete();
+
+        if( request('id')){
+            request()->validate([
+                'id' => 'array|min:1|',
+                'id.*' => 'exists:attributes,id'
+            ]);
+            $ids =  request('id') ;
+
+            $delete = Attribute::whereIn('id',$ids)->delete();
+
+            // check if comming from ajax
+            if(request()->ajax()){
+                // check is is deleted or has any exception
+                if( !$delete ){
+                    return response()->json(['message'=> $delete??__('home.an messages.error entering data')],422);
+                }
+                return response()->json(['message'=>trans('home.your_items_deleted_successfully')]);
+            }
+            if( !$delete ){
+                return redirect()->back()->withErrors( $delete??__('home.an messages.error entering data'));
+            }
             return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
-        }elseif($address = Attribute::find(1)){
-            $address->delete();
+        }elseif($aboutStruc = Attribute::find($id)){
+               // check is is deleted or has any exception
+            $aboutStruc->delete();
+            if(request()->ajax()){
+                return response()->json(['message'=>trans('home.your_item_deleted_successfully')]);
+            }
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }
-
     }
 
-    
-    public function updateAttributeValue(Request $request){
-        $attributeValue=AttributeValue::find($request->value_id);
+
+    public function updateAttributeValue(AttributeValueRequest $request){
+        $attributeValue = AttributeValue::find($request->value_id);
         $attributeValue->value_en = $request->value_en;
         $attributeValue->value_ar = $request->value_ar;
         $attributeValue->save();
         return back()->with('success',trans('home.your_attribute_value_updated_successfully'));
 
     }
-    
+
     public function removeAttributeValue(){
-        $valId = $_POST['value_id'];
-        AttributeValue::find($valId)->delete();
+        $valId = request()->validate(['value_id' => 'required|in:attibute_values']);
+        AttributeValue::find($valId['value_id'])->delete();
     }
 }

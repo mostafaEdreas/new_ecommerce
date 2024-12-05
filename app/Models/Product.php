@@ -46,6 +46,17 @@ class Product extends Model
 
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($product) {
+            if (empty($product->code)) {
+                $product->code = self::generateProductCode();
+            }
+        });
+    }
+
     public function delete()
     {
         $errors = [] ;
@@ -63,6 +74,12 @@ class Product extends Model
         return parent::delete();
     }
 
+    public static function generateProductCode()
+    {
+        $latestProduct = self::orderBy('id', 'desc')->first();
+        $latestId = $latestProduct ? $latestProduct->id : 0;
+        return 'PROD-' . str_pad($latestId + 1, 4, '0', STR_PAD_LEFT);
+    }
     public function getNameAttribute(){
         return $this->{'name_'.$this->lang} ;
     }

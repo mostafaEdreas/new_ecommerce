@@ -12,15 +12,6 @@
                     <li class="breadcrumb-item active" aria-current="page">{{trans('home.products')}}</li>
                 </ol>
             </div>
-            
-            <!--<form action="{{url('admin/product/updatePriceList')}}" method="post" enctype="multipart/form-data">-->
-            <!--    @csrf-->
-            <!--    <div class="custom-file">-->
-            <!--        <input type="file" class="custom-file-input" name="excel"  onchange="form.submit()">-->
-            <!--        <label class="custom-file-label" for="inputGroupFile01">{{trans('home.update_price_list')}}</label>-->
-            <!--    </div>-->
-            <!-- </form>-->
-             
 
             <div class="btn btn-list">
                 <a href="{{url('admin/products/create')}}"><button class="btn ripple btn-primary"><i class="fas fa-plus-circle"></i> {{trans('home.add')}}</button></a>
@@ -29,36 +20,6 @@
             </div>
         </div>
         <!-- End Page Header -->
-
-        @if(session()->has('success'))
-            <div class="alert alert-success">
-                {{ session()->pull('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-        
-        
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                        <strong>{{ $error }}</strong>
-                @endforeach
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-        
-        @if(session()->has('error'))
-            <div class="alert alert-danger">
-                {{ session()->pull('error') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
 
         <!-- Row-->
         <div class="row">
@@ -75,16 +36,13 @@
                             <thead>
                                 <tr>
                                     <th><input type="checkbox" id="checkAll"/></th>
-                                    <!--<th>{{trans('home.id')}}</th>-->
                                     <th>#</th>
-                                    <th>ID</th>
+                                    <th>{{trans('home.id')}}</th>
                                     <th class="wd-20p">{{trans('home.name_en')}}</th>
                                     <th class="wd-25p">{{trans('home.name_ar')}}</th>
-                                    <th class="wd-25p">{{trans('home.price')}}</th>
                                     <th class="wd-20p">{{trans('home.image')}}</th>
                                     <th class="wd-20p">{{trans('home.category')}}</th>
                                     <th class="wd-20p">{{trans('home.brand')}}</th>
-                                    <th class="wd-20p">{{trans('home.stock')}}</th>
                                     <th class="wd-20p">{{trans('home.hot_offers')}}</th>
                                     <th class="wd-15p">{{trans('home.status')}}</th>
                                 </tr>
@@ -93,40 +51,33 @@
                                 @foreach($products as $key=>$product)
                                     <tr id="{{$product->id}}">
                                         <td> <input type="checkbox" name="checkbox"  class="tableChecked" value="{{$product->id}}" /> </td>
-                                        <!--<td><a href="{{ route('products.edit', $product->id) }}">{{$product->id}}</a></td>-->
                                         <td><a href="{{ route('products.edit', $product->id) }}">{{$key+1}}</a></td>
                                         <td><a href="{{ route('products.edit', $product->id) }}">{{$product->id}}</a></td>
                                         <td><a href="{{ route('products.edit', $product->id) }}">{{$product->name_en}}</a></td>
                                         <td><a href="{{ route('products.edit', $product->id) }}">{{$product->name_ar}}</a></td>
-                                        <td><a href="{{ route('products.edit', $product->id) }}">{{$product->price}} {{trans('home.EGP')}}</a></td>
                                         <td>
                                             <a href="{{ route('products.edit', $product->id) }}">
-                                                @if($product->firstImage())
-                                                    <img style="border-radius:50%" src="{{url('uploads/products/source/'.$product->firstImage()->image)}}"  alt="product-image" title="{{$product->name_en}}" width="50" height="50">
+                                                <img style="border-radius:50%" src="{{$product->image_200}}"  alt="product-image" title="{{$product->name}}" width="50" height="50">
+                                            </a>
+                                        </td>
+                                        <td><a href="{{ route('products.edit', $product->id) }}"> {{ $product->category_name ?? __('home.no category') }} </a></td>
+                                        <td><a href="{{ route('products.edit', $product->id) }}"> {{ $product->brand_name ?? __('home.no brand') }} </a></td>
+                                        <td>
+                                            <a href="{{ route('discounts.index') }}">
+                                                @if($product->discount)
+                                                    <span class="btn badge-success" style="min-width: 100%">{{trans('home.yes')}}</span>
                                                 @else
-                                                    <img style="border-radious:50%" src="{{url('resources/assets/front/images/noimage.png')}}" alt="product-image" title="{{$product->name_en}}" width="50" height="50">
+                                                    <span class="btn badge-light" style="min-width: 100%">{{trans('home.no')}}</span>
                                                 @endif
                                             </a>
                                         </td>
-                                        <td><a href="{{ route('products.edit', $product->id) }}">@if($product->category){{(app()->getLocale() == 'en')?$product->category->name_en:$product->category->name_ar}}@endif</a></td>
-                                        <td><a href="{{ route('products.edit', $product->id) }}">@if($product->brand){{(app()->getLocale() == 'en')?$product->brand->name_en:$product->brand->name_ar}}@endif</a></td>
-                                        <td><a href="{{ route('products.edit', $product->id) }}">{{$product->stock}}</a></td>
+
                                         <td>
-                                            <a href="{{ route('products.edit', $product->id) }}">
-                                                @if($product->hot_offer())
-                                                    <span class="badge badge-success">{{trans('home.yes')}}</span>
-                                                @else
-                                                    <span class="badge badge-danger">{{trans('home.no')}}</span>
-                                                @endif
-                                            </a>
-                                        </td>
-                                        
-                                        <td>
-                                            <a href="{{ route('products.edit', $product->id) }}">
+                                            <a href="{{ route('products.edit', $product->id) }}" class="status">
                                                 @if($product->status == 1)
-                                                    <span class="badge badge-success">{{trans('home.yes')}}</span>
+                                                    <span class="btn badge-success" style="min-width: 100%">{{trans('home.yes')}}</span>
                                                 @else
-                                                    <span class="badge badge-danger">{{trans('home.no')}}</span>
+                                                    <span class="btn badge-danger" style="min-width: 100%">{{trans('home.no')}}</span>
                                                 @endif
                                             </a>
                                         </td>

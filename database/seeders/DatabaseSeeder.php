@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
             DiscountSeeder::class,
             ProductAttributeSeeder::class,
             ProductAttributeValueSeeder::class,
-            ProductStockSeeder::class,  
+            ProductStockSeeder::class,
+            PermissionsSeeder::class,
 
         ]);
 

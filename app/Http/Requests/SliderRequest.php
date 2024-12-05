@@ -27,11 +27,11 @@ class SliderRequest extends FormRequest
             'title_en' => 'nullable|string|max:255',
             'text_ar' => 'nullable|string|max:500',
             'text_en' => 'nullable|string|max:500',
-            'video_link' => 'nullable|url|required_without:image',
-            'image' => 'nullable|image|max:1024|required_without:video_link',
+            'video_link' => $this->isMethod('post') ? 'nullable|url|required_without:image' : 'nullable|url' ,
+            'image' => $this->isMethod('post') ?'nullable|image|max:1024|required_without:video_link': 'nullable|image|max:1024' ,
             'order' => 'nullable|integer',
             'type' => 'nullable|string|max:50|in:' . implode(',', Slider::TYPES),
-            'status' => 'nullable|boolean', 
+            'status' => 'nullable|boolean',
         ];
     }
 }

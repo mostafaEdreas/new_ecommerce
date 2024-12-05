@@ -1,7 +1,11 @@
 $(function() {
 	'use strict'
-	
-	//Data table example
+
+    var table2 = $('#example-input')
+    console.log(table2);
+
+    if(table2.length){
+        //Data table example
 // 	var table = $('#exportexample').DataTable( {
 // 		lengthChange: false,
 // 		pageLength: 50,
@@ -18,8 +22,8 @@ $(function() {
 	} );
 	table.buttons().container().next()
 	.appendTo( '.exportexample_wrapper .col-md-6:eq(0)' );
-	
-	
+
+
 	$('#example1').DataTable({
 		language: {
 			searchPlaceholder: 'Search...',
@@ -50,7 +54,7 @@ $(function() {
             }
         }
     } );
-	
+
 	/*Input Datatable*/
 	 var table = $('#example-input').DataTable({
       'columnDefs': [
@@ -100,5 +104,7 @@ $(function() {
           $('input', cell).removeProp('checked');
        }
    });
-	
-});;;
+    }
+
+
+});

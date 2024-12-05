@@ -1,8 +1,9 @@
 @extends('layouts.admin')
-<title>{{trans('home.categories')}}</title>
+@section('meta')
+    <title>{{trans('home.categories')}}</title>
+@endsection
 @section('content')
     <div class="container-fluid">
-
         <!-- Page Header -->
         <div class="page-header">
             <div>
@@ -42,57 +43,45 @@
                         </div>
 
                         <div class="table-responsive">
-                        <table class="table" id="exportexample">
-                            <thead>
-                                <tr>
-                                    <th><input type="checkbox" id="checkAll"/></th>
-                                    <th>{{trans('home.id')}}</th>
-                                    <th>{{trans('home.name_en')}}</th>
-                                    <th>{{trans('home.name_ar')}}</th>
-                                    <th>{{trans('home.image')}}</th>
-                                    <th>{{trans('home.parnet_category')}}</th>
-                                    <th>{{trans('home.status')}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($categories as $category)
-                                    <tr id="{{$category->id}}">
-                                        <td> <input type="checkbox" name="checkbox"  class="tableChecked" value="{{$category->id}}" /> </td>
-                                        <td><a href="{{ route('categories.edit', $category->id) }}">{{$category->id}}</a></td>
-                                        <td><a href="{{ route('categories.edit', $category->id) }}">{{$category->name_en}}</a></td>
-                                        <td><a href="{{ route('categories.edit', $category->id) }}">{{$category->name_ar}}</a></td>
-                                        <td>
-                                            <a href="{{ route('categories.edit', $category->id) }}">
-                                                @if($category->image)
-                                                    <img src="{{url('/uploads/categories/resize200')}}/{{$category->image}}" width="70">
-                                                @else
-                                                    <img src="{{url('resources/assets/back/img/noimage.png')}}" width="70">
-                                                @endif
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('categories.edit', $category->id) }}">
-                                            @if($category->parent_id == 0)
-                                                {{trans('home.main_category')}}
-                                            @elseif($category->parent)
-                                                {{(app()->getLocale() == 'en')?$category->parent->name_en :$category->parent->name_ar}}
-                                            @else
-                                                {{trans('home.unknown')}}
-                                            @endif
-                                            
-                                            </a>
-                                        </td>
-                                        <td><a href="{{ route('categories.edit', $category->id) }}">@if($category->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
+                            <table class="table" id="exportexample">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="checkAll"/></th>
+                                        <th>{{trans('home.id')}}</th>
+                                        <th>{{trans('home.name_en')}}</th>
+                                        <th>{{trans('home.name_ar')}}</th>
+                                        <th>{{trans('home.image')}}</th>
+                                        <th>{{trans('home.parnet_category')}}</th>
+                                        <th>{{trans('home.status')}}</th>
                                     </tr>
-                                @endforeach
+                                </thead>
+                                <tbody>
+                                    @foreach($categories as $category)
+                                        <tr id="{{$category->id}}">
+                                            <td> <input type="checkbox" name="checkbox"  class="tableChecked" value="{{$category->id}}" /> </td>
+                                            <td><a href="{{ route('categories.edit', $category->id) }}">{{$category->id}}</a></td>
+                                            <td><a href="{{ route('categories.edit', $category->id) }}">{{$category->name_en}}</a></td>
+                                            <td><a href="{{ route('categories.edit', $category->id) }}">{{$category->name_ar}}</a></td>
+                                            <td>
+                                                <a href="{{ route('categories.edit', $category->id) }}">
+                                                    <img src="{{$category->image_200}}" width="70">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('categories.edit', $category->id) }}">
+                                                    {{ $category->parent_name}}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('categories.edit', $category->id) }}" class="status">@if($category->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                            </tbody>
-                        </table>
-					</div>
+                                </tbody>
+                            </table>
+					    </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>

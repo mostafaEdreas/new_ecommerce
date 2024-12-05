@@ -3,7 +3,7 @@
 <title>{{trans('home.add_products')}}</title>
 @endsection
 @section('content')
-<div class="spainer"> </div>
+<div class="spainer"></div>
 <div class="container-fluid">
         <!-- Page Header -->
         <div class="page-header">
@@ -27,194 +27,150 @@
                     <h6 class="card-title mb-1">{{trans('home.product_main_info')}}</h6>
                 </div>
                 <div class="form-group col-md-6">
-                    <label class="">{{trans('home.name_en')}}</label>
-                    <input class="form-control" name="name_en" type="text" placeholder="{{trans('home.name_en')}}" required>
+                    <label>{{trans('home.name_en')}}</label>
+                    <input class="form-control" name="name_en" value="{{old('name_en')}}" type="text" placeholder="{{trans('home.name_en')}}" required>
                  </div>
 
                  <div class="form-group col-md-6">
-                    <label class="">{{trans('home.name_ar')}}</label>
-                    <input class="form-control" name="name_ar" type="text" placeholder="{{trans('home.name_ar')}}" required>
+                    <label>{{trans('home.name_ar')}}</label>
+                    <input class="form-control" name="name_ar" value="{{old('name_ar')}}" type="text" placeholder="{{trans('home.name_ar')}}" required>
                 </div>
-                <div class="form-group col-md-12">
-                    <label for="parent">{{trans('home.category')}}</label>
+
+                <div class="form-group col-md-3">
+                    <label>{{trans('home.code')}}</label>
+                    <input class="form-control" name="code" value="{{old('code')}}" type="text" placeholder="{{trans('home.code')}}">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label>{{trans('home.category')}}</label>
                     <select class="form-control select2" name="category_id" >
+                        <option value="null" @selected(!old('category_id') )> {{__('home.no category') }} </option>
                         @foreach($categories as $category)
-                            <option value="{{$category->id}}">{{(app()->getLocale() == 'en')?$category->name_en:$category->name_ar}}</option>
+                            <option value="{{$category->id}}" @selected(old('category_id') == $category->id )>{{ $brand->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                {{-- <div class="form-group col-md-6">
-                    <label for="parent">{{trans('home.brands')}}</label>
+                <div class="form-group col-md-3">
+                    <label>{{trans('home.brands')}}</label>
                     <select class="form-control select2" name="brand_id">
+                        <option value="null" @selected(!old('brand_id') )> {{__('home.no brand') }} </option>
                         @foreach($brands as $brand)
-                            <option value="{{$brand->id}}">{{(app()->getLocale() == 'en')?$brand->name_en:$brand->name_ar}}</option>
+                            <option value="{{$brand->id}}" @selected(old('brand_id') == $brand->id )>{{ $brand->name }}</option>
                         @endforeach
                     </select>
-                </div> --}}
+                </div>
+                <div class="form-group col-md-3">
+                    <label>{{trans('home.order')}}</label>
+                    <input class="form-control" name="order" value="{{old('order')}}" type="text" placeholder="{{trans('home.order')}}" >
+                </div>
+
+                <div class="col-md-6">
+                    <label>{{trans('home.main_image')}} (50px  * 50px max 1mb)</label>
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> {{trans('home.upload')}}</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="main_image">
+                            <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label>{{trans('home.second_image')}} (50px  * 50px max 1mb)</label>
+                    <div class="input-group mb-1">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> {{trans('home.upload')}}</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="second_image">
+                            <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="helperText">{{trans('home.attributes')}}</label>
+                    <select class="form-control role select2" name="attributes[]" multiple>
+                        @foreach($attributes as $attribut)
+                            <option @selected(old('attributs')?in_array($attribut,old('attributes',[])):false) value="{{$attribut->id}}" >{{ $attribut->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="form-group col-md-6">
-                    <label for="short_desc_ar"> {{ trans('home.short_desc_ar') }}</label>
-                    <textarea class="form-control" name="short_desc_ar"></textarea>
+                    <label> {{ trans('home.short_text_en') }} </label>
+                    <textarea class="form-control" name="short_text_en"  rows="10" placeholder="{{ trans('home.short_text_en') }}" > {{old('short_text_en')}} </textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="short_desc_en"> {{ trans('home.short_desc_en') }}</label>
-                    <textarea class="form-control" name="short_desc_en"></textarea>
+                    <label> {{ trans('home.short_text_ar') }}</label>
+                    <textarea class="form-control" name="short_text_ar" rows="10" placeholder="{{ trans('home.short_text_ar') }}"> {{old('short_text_ar')}} </textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="long_desc_ar"> {{ trans('home.long_desc_ar') }}</label>
-                    <textarea class="area1" name="long_desc_ar"></textarea>
+                    <label> {{ trans('home.text_en') }} </label>
+                    <textarea class="area1" name="text_en" placeholder="{{ trans('home.text_en') }}"> {{old('text_en')}} </textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="long_desc_en"> {{ trans('home.long_desc_en') }}</label>
-                    <textarea class="area1" name="long_desc_en"></textarea>
+                    <label> {{ trans('home.text_ar') }} </label>
+                    <textarea class="area1" name="text_ar" placeholder="{{ trans('home.text_ar') }}">  {{old('text_ar')}} </textarea>
                 </div>
                 <div class="form-group col-md-12">
                     <label class="ckbox">
-                        <input name="status" type="checkbox"><span class="tx-13">{{trans('home.publish')}}</span>
+                        <input name="status" checked value="1" type="checkbox"><span class="tx-13">{{trans('home.publish')}}</span>
                     </label>
                 </div>
             </div>
         </div>
 
-
-        <div class="row">
-            <div class="col-sm-12 col-xl-12 col-lg-12">
-                <div class="card custom-card overflow-hidden">
-                    <div class="card-body">
-                        <div class="row">
-                            {{-- <div class="form-group col-md-3">
-                                <label class="">{{trans('home.price')}}</label>
-                                <input class="form-control" name="price" step="0.01" type="number" placeholder="{{trans('home.price')}}">
-                            </div> --}}
-                            <div class="form-group col-md-3">
-                                <label class="">{{trans('home.discount')}}</label>
-                                <input class="form-control" name="discount" step="0.01" type="number" placeholder="{{trans('home.discount')}}">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="parent">{{trans('home.value_type')}}</label>
-                                <select class="form-control" name="value_type">
-                                        <option value="percentage">@lang('home.percentage') </option>
-                                        <option value="percentage">@lang('home.percentage') </option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="">{{ trans('home.start_date') }}</label>
-                                <input class="form-control" name="start_date" 
-                                     type="date" placeholder="{{ trans('home.start_date') }}">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="">{{ trans('home.end_date') }}</label>
-                                <input class="form-control" name="end_date" 
-                                     type="date" placeholder="{{ trans('home.end_date') }}">
-                            </div>
-                            {{-- <div class="form-group col-md-3">
-                                <label class="">{{trans('home.rate')}}</label>
-                                <input class="form-control" name="rate" type="number" max="5" min="1" value="5" placeholder="{{trans('home.rate')}}">
-                            </div> --}}
-
-                            {{-- <div class="form-group col-md-12">
-                                <label for="parent">{{trans('home.color')}} <span class="badge badge-secondary">{{trans('home.first_select_category')}}</span></label>
-                                <select class="form-control select2 colors" name="color_id[]" multiple required>
-
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label class="code">{{trans('home.code')}}</label>
-                                <input class="form-control noEnterSubmit" name="code" type="text"  placeholder="{{trans('home.code')}}" value="{{$code}}" readonly>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label class="ean">{{trans('home.ean')}}</label>
-                                <input class="form-control noEnterSubmit" name="ean" type="text"  placeholder="{{trans('home.ean')}}" autocomplete="off">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label class="code">{{trans('home.sku_code')}}</label>
-                                <input class="form-control noEnterSubmit" name="sku_code" type="text"  placeholder="{{trans('home.sku_code')}}" autocomplete="off">
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label class="barcode">{{trans('home.barcode')}}</label>
-                                <input class="form-control noEnterSubmit barcode readonly" name="barcode" type="text"  placeholder="{{trans('home.barcode')}}" autocomplete="off"  required>
-                                <button type="button" role="button" class="btn generate-barcode">{{trans('home.generate_barcode')}}</button>
-                            </div>
-
-                            <div class="form-group col-md-12 print text-center">
-
-                            </div> --}}
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="card p-3 mb-3">
             <div class="row ">
                 <div class="mb-3 col-12">
                     <h6 class="card-title mb-1">{{ trans('home.seo') }}</h6>
                 </div>
-                <!--<div class="form-group col-md-12">-->
-                <!--    <hr>-->
-                <!--    <span class="badge badge-success">{{trans('home.en')}}</span>-->
-                <!--</div>-->
-                
-                <!--<div class="form-group col-md-2">-->
-                <!--    <label for="name_ar">{{trans('home.link')}}</label>-->
-                <!--    <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link')}}" name="link_en">-->
-                <!--</div> -->
-                    
-                <!--<div class="form-group col-md-5">-->
-                <!--    <label for="meta_title"> {{trans('home.meta_title')}}</label>-->
-                <!--    <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title')}}"></textarea>-->
-                <!--</div>-->
-                
-                <!--<div class="form-group col-md-5">-->
-                <!--    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>-->
-                <!--    <textarea class="form-control" name="meta_desc_en" placeholder="{{trans('home.meta_desc')}}"></textarea>-->
-                <!--</div>-->
+
                 <div class="form-group col-md-12">
                     <hr>
                     <span class="badge badge-success">{{trans('home.en')}}</span>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="name_ar">{{trans('home.link_en')}}</label>
-                    <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link_en')}}" name="link_en">
+                    <input type="text" autocomplete="off" value="{{old('link_en')}}"  class="form-control" placeholder="{{trans('home.link_en')}}" name="link_en">
                 </div>
-                
+
                 <div class="form-group col-md-5">
                     <label for="meta_title"> {{trans('home.meta_title_en')}}</label>
-                    <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title_en')}}"></textarea>
+                    <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title_en')}}"> {{old('meta_title_en') }} </textarea>
                 </div>
-                
+
                 <div class="form-group col-md-5">
                     <label for="meta_desc"> {{trans('home.meta_desc_en')}}</label>
-                    <textarea class="form-control" name="meta_desc_en" placeholder="{{trans('home.meta_desc_en')}}"></textarea>
+                    <textarea class="form-control" name="meta_desc_en" placeholder="{{trans('home.meta_desc_en')}}"> {{old('meta_desc_en') }} </textarea>
                 </div>
 
                 <div class="form-group col-md-12">
                     <hr>
                     <span class="badge badge-success">{{trans('home.ar')}}</span>
                 </div>
-                
+
                 <div class="form-group col-md-2">
                     <label for="name_ar">{{trans('home.link_ar')}}</label>
-                    <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link_ar')}}" name="link_ar">
+                    <input type="text" autocomplete="off" value="{{old('link_ar') }}"  class="form-control" placeholder="{{trans('home.link_ar')}}" name="link_ar">
                 </div>
-                
+
                 <div class="form-group col-md-5">
                     <label for="meta_title"> {{trans('home.meta_title_ar')}}</label>
-                    <textarea class="form-control" name="meta_title_ar" placeholder="{{trans('home.meta_title_ar')}}"></textarea>
+                    <textarea class="form-control" name="meta_title_ar" placeholder="{{trans('home.meta_title_ar')}}"> {{old('meta_title_ar') }}</textarea>
                 </div>
-                
+
                 <div class="form-group col-md-5">
                     <label for="meta_desc"> {{trans('home.meta_desc_ar')}}</label>
-                    <textarea class="form-control" name="meta_desc_ar" placeholder="{{trans('home.meta_desc')}}"></textarea>
+                    <textarea class="form-control" name="meta_desc_ar" placeholder="{{trans('home.meta_desc')}}"> {{old('meta_desc_ar') }}</textarea>
                 </div>
-                
+
                 <div class="form-group col-md-12">
                     <label class="ckbox">
-                        <input name="meta_robots" value="1" type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
+                        <input name="index" value="{{old('index') ?? 1}}" checked type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
                     </label>
                 </div>
             </div>

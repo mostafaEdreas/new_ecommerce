@@ -29,34 +29,31 @@
                         </div>
                         {!! Form::open(['method'=>'PATCH','url' => 'admin/categories/'.$category->id, 'data-toggle'=>'validator', 'files'=>'true']) !!}
                             <div class="row">
-
                                 <div class="form-group col-md-4">
                                     <label class="">{{trans('home.name_en')}}</label>
                                     <input class="form-control" name="name_en" type="text" placeholder="{{trans('home.name_en')}}"  value="{{$category->name_en}}" required>
                                 </div>
-
                                 <div class="form-group col-md-4">
                                     <label class="">{{trans('home.name_ar')}}</label>
-                                    <input class="form-control" name="name_ar" type="text" placeholder="{{trans('home.name_ar')}}" value="{{$category->name_ar}}" >
+                                    <input class="form-control" name="name_ar" type="text" placeholder="{{trans('home.name_ar')}}" value="{{$category->name_ar}}" required>
                                 </div>
-
                                 <div class="form-group col-md-3">
                                     <label for="parent">{{trans('home.parent')}}</label>
                                     <select class="form-control select2" name="parent_id">
-                                        <option value="0">{{trans('home.no_parent')}}</option>
+                                        <option value="null" {{ !old('parent_id') ? 'selected' : '' }}>{{ trans('home.no_parent') }}</option>
                                         @foreach($categories as $categ)
-                                            <option value="{{$categ->id}}" {{($categ->id == $category->parent_id)?'selected':''}}>{{(app()->getLocale()=='en')? $categ->name_en:$categ->name_ar}}</option>
-                                        @endforeach    
+                                            <option value="{{$categ->id}}" {{($categ->id == $category->parent_id)?'selected':''}}>{{ (app()->getLocale()=='en')? $categ->name_en:$categ->name_ar}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                                
+
                                  <div class="form-group col-md-1">
                                     <label class="">{{trans('home.order')}}</label>
-                                    <input class="form-control" name="order" type="number" min="0" placeholder="{{trans('home.order')}}" value="{{$category->order}}" >
+                                    <input class="form-control" name="order" type="number" min="0" placeholder="{{trans('home.order')}}" value="{{$category->order}}">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label>{{trans('home.image')}} (225px  * 225px)</label>
+                                    <label>{{trans('home.image')}} (225px  * 225px max 1mb)</label>
                                     <div class="input-group mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
@@ -67,9 +64,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6">
-                                    <label>{{trans('home.icon')}} (50px  * 50px)</label>
+                                    <label>{{trans('home.icon')}} (50px  * 50px max 1mb)</label>
                                     <div class="input-group mb-1">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
@@ -80,49 +77,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                {{-- <div class="col-md-4">
-                                    <label>{{trans('home.banner')}} (1920px * height auto)</label>
-                                    <div class="input-group mb-1">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"> {{trans('home.upload')}}</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="banner">
-                                            <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_banner')}}</label>
-                                        </div>
-                                    </div>
-                                </div> --}}
-                                <div class="row">
+                                <div class="row col-12">
                                     <div class="col-md-6">
                                         @if($category->image)
-                                            <img src="{{url('\uploads\categories\resize200')}}\{{$category->image}}" width="150">
+                                            <img src="{{$category->image_200}}" width="150">
                                         @endif
                                     </div>
-                                    
+
                                     <div class="col-md-6">
                                         @if($category->icon)
-                                            <img src="{{url('\uploads\categories\resize200')}}\{{$category->icon}}" width="150">
+                                            <img src="{{$category->icon_200}}" width="150">
                                         @endif
                                     </div>
                                 </div>
-
-                                
-                                {{-- <div class="col-md-4">
-                                    @if($category->banner)
-                                        <img src="{{url('\uploads\categories\resize200')}}\{{$category->banner}}" width="150">
-                                    @endif
-                                </div> --}}
-                                
-
                                 <div class="form-group col-md-6">
                                     <label class="">{{trans('home.desc_en')}}</label>
-                                    <textarea class="form-control area1" name="desc_en" type="text" placeholder="{{trans('home.desc_en')}}" >{{$category->desc_en}}</textarea>
+                                    <textarea class="form-control area1" name="text_en" type="text" placeholder="{{trans('home.desc_en')}}" >{{$category->desc_en}}</textarea>
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label class="">{{trans('home.desc_ar')}}</label>
-                                    <textarea class="form-control area1" name="desc_ar" type="text" placeholder="{{trans('home.desc_ar')}}">{{$category->desc_ar}}</textarea>
+                                    <textarea class="form-control area1" name="text_ar" type="text" placeholder="{{trans('home.desc_ar')}}">{{$category->desc_ar}}</textarea>
                                 </div>
 
                                 <div class="form-group col-md-12">
@@ -131,91 +106,65 @@
                                     </label>
                                 </div>
 
-                                {{-- <div class="form-group col-md-4">
-                                    <label class="ckbox">
-                                        <input name="menu" value="1" {{($category->menu == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.publish_side_menu')}}</span>
-                                    </label>
-                                </div> --}}
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <hr>
+                                            <span class="badge badge-success">{{trans('home.en')}}</span>
+                                        </div>
 
-                                {{-- <div class="form-group col-md-4">
-                                    <label class="ckbox">
-                                        <input name="home" value="1" {{($category->home == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.publish_in_home')}}</span>
-                                    </label>
-                                </div> --}}
-                                
-                               <div class="col-12">
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <hr>
-                                        <span class="badge badge-success">{{trans('home.en')}}</span>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-2">
-                                        <label for="name_ar">{{trans('home.link_en')}}</label>
-                                        <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link')}}" name="link_en" value="{{$category->link_en}}">
-                                    </div> 
-                                        
-                                    <div class="form-group col-md-5">
-                                        <label for="meta_title"> {{trans('home.meta_title_en')}}</label>
-                                        <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title')}}">{{$category->meta_title_en}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-5">
-                                        <label for="meta_desc"> {{trans('home.meta_desc_en')}}</label>
-                                        <textarea class="form-control" name="meta_desc_en" placeholder="{{trans('home.meta_desc')}}">{{$category->meta_desc_en}}</textarea>
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <hr>
-                                        <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <label for="name_ar">{{trans('home.link_ar')}}</label>
-                                        <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link')}}" name="link_ar" value="{{$category->link_en}}">
-                                    </div> 
-                                        
-                                    <div class="form-group col-md-5">
-                                        <label for="meta_title"> {{trans('home.meta_title_ar')}}</label>
-                                        <textarea class="form-control" name="meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$category->meta_title_en}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-5">
-                                        <label for="meta_desc"> {{trans('home.meta_desc_ar')}}</label>
-                                        <textarea class="form-control" name="meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$category->meta_desc_en}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <hr>
-                                        <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-2">
-                                        <label for="name_ar">{{trans('home.link')}}</label>
-                                        <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link')}}" name="link_ar" value="{{$category->link_ar}}">
-                                    </div>
-                                    
-                                    <div class="form-group col-md-5">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$category->meta_title_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-5">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$category->meta_desc_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <label class="ckbox">
-                                            <input name="meta_robots" value="1" {{($category->meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                        </label>
+                                        <div class="form-group col-md-2">
+                                            <label for="name_ar">{{trans('home.link_en')}}</label>
+                                            <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link')}}" name="link_en" value="{{$category->link_en}}">
+                                        </div>
+
+                                        <div class="form-group col-md-5">
+                                            <label for="meta_title"> {{trans('home.meta_title_en')}}</label>
+                                            <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title_en')}}">{{$category->meta_title_en}}</textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-5">
+                                            <label for="meta_desc"> {{trans('home.meta_desc_en')}}</label>
+                                            <textarea class="form-control" name="meta_desc_en" placeholder="{{trans('home.meta_desc_en')}}">{{$category->meta_desc_en}}</textarea>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <hr>
+                                            <span class="badge badge-success">{{trans('home.ar')}}</span>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="name_ar">{{trans('home.link_ar')}}</label>
+                                            <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link_ar')}}" name="link_ar" value="{{$category->link_ar}}">
+                                        </div>
+
+                                        <div class="form-group col-md-5">
+                                            <label for="meta_title"> {{trans('home.meta_title_ar')}}</label>
+                                            <textarea class="form-control" name="meta_title_ar" placeholder="{{trans('home.meta_title_ar')}}">{{$category->meta_title_ar}}</textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-5">
+                                            <label for="meta_desc"> {{trans('home.meta_desc_ar')}}</label>
+                                            <textarea class="form-control" name="meta_desc_ar" placeholder="{{trans('home.meta_desc_ar')}}">{{$category->meta_desc_ar}}</textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <hr>
+                                            <span class="badge badge-success">{{trans('home.ar')}}</span>
+                                        </div>
+
+
+                                        <div class="form-group col-md-12">
+                                            <label class="ckbox">
+                                                <input name="index" value="1" {{($category->index == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
                                 <div class="form-group col-md-12">
                                     <button type="submit" class="btn btn-success"><i class="icon-note"></i> {{trans('home.save')}} </button>
                                     <a href="{{url('/admin/categories')}}"><button type="button" class="btn btn-danger mr-1"><i class="icon-trash"></i> {{trans('home.cancel')}}</button></a>
                                 </div>
-                                
+
                             </div>
                         {!! Form::close() !!}
                     </div>

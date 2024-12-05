@@ -47,6 +47,8 @@
                                     <th>{{trans('home.id')}}</th>
                                     <th class="wd-20p">{{trans('home.name_en')}}</th>
                                     <th class="wd-25p">{{trans('home.name_ar')}}</th>
+                                    <th class="wd-25p">{{trans('home.parent')}}</th>
+                                    <th class="wd-25p">{{trans('home.link')}}</th>
                                     <th class="wd-15p">{{trans('home.status')}}</th>
                                 </tr>
                             </thead>
@@ -57,7 +59,9 @@
                                         <td><a href="{{ route('menus.edit', $menu->id) }}">{{$menu->id}}</a></td>
                                         <td><a href="{{ route('menus.edit', $menu->id) }}">{{$menu->name_en}}</a></td>
                                         <td><a href="{{ route('menus.edit', $menu->id) }}">{{$menu->name_ar}}</a></td>
-                                        <td><a href="{{ route('menus.edit', $menu->id) }}">@if($menu->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
+                                        <td><a href="{{ route('menus.edit', $menu->id) }}">{{$menu->parent_name}}</a></td>
+                                        <td><a href="{{ route('menus.edit', $menu->id) }}">{{$menu->segment}}</a></td>
+                                        <td><a href="{{ route('menus.edit', $menu->id) }}" class="status" >@if($menu->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
                                     </tr>
                                 @endforeach
 

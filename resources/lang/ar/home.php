@@ -1,7 +1,14 @@
 <?php
 
 return array(
+    'no category' => 'بدون قئة' ,
+    'no brand' => 'بدون ماركه' ,
+    'second_image' => 'الصورة الثانية' ,
+    'main_image' => 'الصورة الرئبسية' ,
     'compare_list' => 'قائمة المقارنه',
+    'short_text_ar' => 'نص مختصر بالعربية' ,
+    'short_text_en' => 'نص مختصر بالانجليزية' ,
+
     'totalOrders' => 'الطلبات',
     'currentMonthOrders' => 'الطلبات للشهر الحالي',
     'pendingOrders' => 'الطلبات المعلقه',
@@ -16,21 +23,27 @@ return array(
     'usersCount' => 'المستخدمين',
     'categoriesNumber' => 'الفئات',
     'brandsNumber' => 'الماركات',
-
-
-
-
-
+    'chenged' => "نم التحديث" ,
+    'doesn\'t have' => 'Doesn\'t have' ,
+    'cannot delete a category that has related products' => "لا يمكن حذف الفئة التي تحتوي على منتجات مرتبطة" ,
+    'go_to_site' => 'Go to site' ,
+    'meta_desc_en' => 'وصف الميتا بالعربية' ,
+    'meta_title_en' => 'عنوان الميتا بالعربية' ,
+    'meta_desc_ar' => 'وصف الميتا بالانجليزية' ,
+    'meta_title_ar' => 'عنوان الميتا بالانجليزية' ,
+    'cannot delete an attribute that has related products' => 'لا يمكن حذف السمة التي تحتوي على منتجات ذات صلة' ,
+    'your_items_deleted_successfully' => 'تم حذف العنصر بنجاح' ,
 
 
     'You need to assign a delivery person before the order can be shipped' => 'تحتاج إلى تعيين شخص توصيل قبل أن يتم شحن الطلب.',
     'changing the status of a delivered order is not allowed' => 'لا يُسمح بتغيير حالة الطلب الذي تم تسليمه',
     'you should write the reason for cancellation' => 'يجب كتابة سبب الإلغاء' ,
     'you should write the reason for acceptance if the order is canceled later' => 'يجب عليك كتابة سبب القبول إذا تم إلغاء الطلب لاحقًا' ,
+    'cannot delete a category that has related child child' => "لا يمكن حذف الفئة التي تحتوي على فئات فرعية مرتبطة",
 
     'remove checked values' => 'حذف القيم المختارة' ,
     'yes, delete it' => 'نعم, احذفه' ,
-    'yes, change it' => 'نعم, حدثه' ,
+    'yes, change it' => 'نعم, حدث' ,
     'change status checked values' => 'تحديث حاله القيم المختارة' ,
     'order' => 'تم الحجز فى',
     'product_quality' => 'جودة الضمان',

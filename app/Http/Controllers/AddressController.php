@@ -41,7 +41,7 @@ class AddressController extends Controller
     public function edit($id)
     {
         if($address = Address::find($id)){
-            return view('admin.aboutStrucs.edit',compact('address'));        
+            return view('admin.aboutStrucs.edit',compact('address'));
         }
         return abort(404);
     }
@@ -51,30 +51,50 @@ class AddressController extends Controller
     {
         $data =$request->validated() ;
         $data['user_id'] = auth()->user()->id ;
-       
+
         if( $update = Address::find($id)){
             $update->update($request->validated());
             return redirect()->back()->with('success',trans('home.your_item_updated_successfully'));
         }
 
-        return abort(404);    
+        return abort(404);
     }
 
 
     public function destroy($id)
     {
+
         if( request('id')){
+            request()->validate([
+                'id' => 'array|min:1|',
+                'id.*' => 'exists:addresses,id'
+            ]);
             $ids =  request('id') ;
-            $ids = is_array(   $ids ) ?    $ids  : [ $ids ];
-            Address::whereIn('id',$ids)->delete();
+           
+            $delete = Address::whereIn('id',$ids)->delete();
+            // check if comming from ajax
             if(request()->ajax()){
+                // check is is deleted or has any exception
+                if( !$delete ){
+                    return response()->json(['message'=> $delete??__('home.an messages.error entering data')],422);
+                }
                 return response()->json(['message'=>trans('home.your_items_deleted_successfully')]);
             }
+            if( !$delete ){
+                return redirect()->back()->withErrors( $delete??__('home.an error has occurred. Please contact the developer to resolve the issue'));
+            }
             return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
-        }elseif($address = Address::find($id)){
-            $address->delete();
+        }elseif($aboutStruc = Address::find($id)){
+               // check is is deleted or has any exception
+               $delete = $aboutStruc->delete();
             if(request()->ajax()){
+                if( !$delete ){
+                    return response()->json(['message'=> $delete??__('home.an messages.error entering data')],422);
+                }
                 return response()->json(['message'=>trans('home.your_item_deleted_successfully')]);
+            }
+            if( !$delete ){
+                return redirect()->back()->withErrors( $delete??__('home.an error has occurred. Please contact the developer to resolve the issue'));
             }
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }

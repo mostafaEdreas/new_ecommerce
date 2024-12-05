@@ -1,19 +1,19 @@
 $(function() {
 	'use strict'
-	
-	/* chartjs (#sales) */
+    /* chartjs (#sales) */
 	var myCanvas = document.getElementById("sales");
-	myCanvas.height = "350";
-	
+	if(myCanvas){
+        myCanvas.height = "350";
+
 	var myCanvasContext = myCanvas.getContext("2d");
 	var gradientStroke1 = myCanvasContext.createLinearGradient(0, 80, 0, 280);
 	gradientStroke1.addColorStop(0, 'rgba(85, 56, 171, 0.8)');
 	gradientStroke1.addColorStop(1, 'rgba(85, 56, 171, 0.2) ');
-	
+
 	var gradientStroke2 = myCanvasContext.createLinearGradient(0, 80, 0, 280);
 	gradientStroke2.addColorStop(0, 'rgba(1, 184, 255, 0.8)');
 	gradientStroke2.addColorStop(1, 'rgba(1, 184, 255, 0.2) ');
-	
+
     var myChart = new Chart( myCanvas, {
 		type: 'line',
 		data: {
@@ -74,7 +74,7 @@ $(function() {
 			},
 			scales: {
 				xAxes: [{
-					
+
 					display: true,
 					gridLines: {
 						display: true,
@@ -118,12 +118,12 @@ $(function() {
 		}
 	});
 	/* chartjs (#sales) closed */
-	
-	
-	
+
+
+
 	// Peity-donut
 	$('.peity-donut').peity('donut');
-	
+
 	// Datepicker
 	$('.fc-datepicker').datepicker({
 		showOtherMonths: true,
@@ -146,12 +146,16 @@ $(function() {
 	  templateSelection: formatState,
 	   width: '100%'
 	});
-	
+
 	$(".scroll-widget").mCustomScrollbar({
 		theme: "minimal",
 		autoHideScrollbar: true,
 		scrollbarPosition: "outside"
 	});
-	
 
-});;;
+    }
+
+
+
+
+});

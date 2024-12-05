@@ -22,8 +22,13 @@ class CheckLang
         if ($lang = Session::get('lang')) {
             App::setlocale($lang);
         }
+        elseif( $lang = $request->hasHeader('lang')){
+            $lang = $request->header('lang');
+            App::setlocale($lang);
+
+        }
         else {
-            
+
             $lang = config('site_lang');
             App::setlocale($lang);
         }

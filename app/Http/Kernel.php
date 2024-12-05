@@ -22,6 +22,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\CheckLang::class,
         \App\Http\Middleware\ConvertYoutubeLinkToEmbed::class,
         \App\Http\Middleware\ApiLocalization::class,
+        \App\Http\Middleware\ConvertNullStringToNull::class,
+        \App\Http\Middleware\FormatLinkFields::class,
         // \App\Http\Middleware\VerifyCsrfToken::class,
     ];
 
@@ -72,9 +74,9 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
-     
-        
-        
+
+
+
         'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
         'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
         'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,

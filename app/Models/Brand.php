@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\Helper;
+use App\Helpers\SaveImageTo3Path;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -48,11 +49,13 @@ class Brand extends Model
         if ($this->products()->exists()) {
             $errors[] = 'Cannot delete an value that has related products.';
         }
-      
+
         if(count( $errors)){
             return $errors;
            }
-           
+
+           SaveImageTo3Path::deleteImage($this->image,'brands');
+           SaveImageTo3Path::deleteImage($this->icon,'brands');
            return parent::delete();
     }
 	public function products(){
@@ -76,21 +79,26 @@ class Brand extends Model
         return $this->{'link_'.$this->lang} ;
     }
 
-    public function getImageAttribute(){
-        Helper::imageIsExists($this->image ,'brands') ? $this->image : Helper::noImage() ;
+    public function getImageSourceAttribute($value){
+
+        return Helper::imageIsExists($this->image ,'brands') ?  Helper::uploadedImagesPath('brands',$this->image)   : Helper::noImage() ;
+
     }
 
-    public function getIconAttribute(){
-        Helper::imageIsExists($this->icon ,'brands') ? $this->icon : Helper::noImage() ;
+    public function getImage200Attribute($value){
+
+        return Helper::imageIsExists($this->image ,'brands') ?  Helper::uploadedImages200Path('brands',$this->image)  : Helper::noImage();
+
     }
 
+    public function getIconSourceAttribute(){
 
-    public function getImageSourceAttribute(){
-        Helper::imageIsExists($this->image ,'brands') ? $this->image : Helper::noImage() ;
+        return Helper::imageIsExists($this->icon ,'brands') ? Helper::uploadedImagesPath('brands',$this->icon) : Helper::noImage();
     }
 
     public function getIcon200Attribute(){
-        Helper::imageIsExists($this->icon ,'brands') ? $this->icon : Helper::noImage() ;
+
+        return Helper::imageIsExists($this->icon ,'brands') ?Helper::uploadedImages200Path('brands',$this->icon) : Helper::noImage();
     }
 
     public function getActiveAttribute(){

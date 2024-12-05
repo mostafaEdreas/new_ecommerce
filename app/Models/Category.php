@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\Helper;
+use App\Helpers\SaveImageTo3Path;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -20,18 +21,20 @@ class Category extends Model
         $errors = [] ;
         // Check if the category has related products
         if ($this->products()->exists()) {
-            $errors[] =  'Cannot delete a category that has related products.';
+            $errors[] =  __('home.cannot delete a category that has related products');
         }
 
         // Check if the category has children, and if any child has related products
         if ($this->children()->exists() ) {
-             $errors[] = 'Cannot delete a category that has related child products.';
-           
+             $errors[] = __( 'home.cannot delete a category that has related child child');
+
         }
         if(count( $errors)){
-         return $errors;
+            return $errors;
         }
-        
+
+        SaveImageTo3Path::deleteImage($this->image,'categories');
+        SaveImageTo3Path::deleteImage($this->icon,'categories');
         return parent::delete();
     }
     protected $fillable = [
@@ -94,7 +97,7 @@ class Category extends Model
 
 
     public function getParentNameAttribute(){
-        return  $this->parent?->name ;
+        return  $this->parent?->name ?? trans('home.main_category');
     }
 
     public function getParentTextAttribute(){
@@ -108,24 +111,24 @@ class Category extends Model
 
     public function getImageSourceAttribute($value){
 
-        return Helper::imageIsExists($this->image ,'categories') ? $this->image : Helper::noImage() ;
+        return Helper::imageIsExists($this->image ,'categories') ?  Helper::uploadedImagesPath('categories',$this->image)   : Helper::noImage() ;
 
     }
 
     public function getImage200Attribute($value){
 
-        return Helper::imageIsExists($this->image ,'categories') ? $this->image : Helper::noImage();
+        return Helper::imageIsExists($this->image ,'categories') ?  Helper::uploadedImages200Path('categories',$this->image)  : Helper::noImage();
 
     }
 
     public function getIconSourceAttribute(){
 
-        return Helper::imageIsExists($this->icon ,'categories') ? $this->icon : Helper::noImage();
+        return Helper::imageIsExists($this->icon ,'categories') ? Helper::uploadedImagesPath('categories',$this->icon) : Helper::noImage();
     }
 
     public function getIcon200Attribute(){
 
-        return Helper::imageIsExists($this->icon ,'categories') ? $this->icon : Helper::noImage();
+        return Helper::imageIsExists($this->icon ,'categories') ?Helper::uploadedImages200Path('categories',$this->icon) : Helper::noImage();
     }
 
     public function getActiveAttribute(){

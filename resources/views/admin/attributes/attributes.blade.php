@@ -14,7 +14,7 @@
             </div>
 
             <div class="btn btn-list">
-                {{-- <a href="{{url('admin/attributes/create')}}"><button class="btn ripple btn-primary"><i class="fas fa-plus-circle"></i> {{trans('home.add')}}</button></a> --}}
+                <a href="{{url('admin/attributes/create')}}"><button class="btn ripple btn-primary"><i class="fas fa-plus-circle"></i> {{trans('home.add')}}</button></a>
                 <a id="btn_active"><button class="btn ripple btn-dark"><i class="fas fa-eye"></i> {{trans('home.publish/unpublish')}}</button></a>
                 <a id="btn_delete" ><button class="btn ripple btn-danger"><i class="fas fa-trash"></i> {{trans('home.delete')}}</button></a>
             </div>
@@ -49,7 +49,6 @@
                                     <th>{{trans('home.id')}}</th>
                                     <th class="wd-20p">{{trans('home.name_en')}}</th>
                                     <th class="wd-20p">{{trans('home.name_ar')}}</th>
-                                    <!--<th class="wd-25p">{{trans('home.icon')}}</th>-->
                                     <th class="wd-15p">{{trans('home.status')}}</th>
                                 </tr>
                             </thead>
@@ -60,16 +59,8 @@
                                         <td><a href="{{ route('attributes.edit', $attribute->id) }}">{{$attribute->id}}</a></td>
                                         <td><a href="{{ route('attributes.edit', $attribute->id) }}">{{$attribute->name_en}}</a></td>
                                         <td><a href="{{ route('attributes.edit', $attribute->id) }}">{{$attribute->name_ar}}</a></td>
-                                        <!--<td>-->
-                                        <!--    <a href="{{ route('attributes.edit', $attribute->id) }}">-->
-                                        <!--        @if($attribute->icon)-->
-                                        <!--            <img src="{{url('/uploads/attribute/resize200')}}/{{$attribute->icon}}" width="70">-->
-                                        <!--        @else-->
-                                        <!--            <img src="{{url('resources/assets/back/img/noimage.png')}}" width="70">-->
-                                        <!--        @endif-->
-                                        <!--    </a>-->
-                                        <!--</td>-->
-                                        <td><a href="{{ route('attributes.edit', $attribute->id) }}">@if($attribute->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
+
+                                        <td><a href="{{ route('attributes.edit', $attribute->id) }}" class="status">@if($attribute->status == 1) {{trans('home.yes')}} @else  {{trans('home.no')}} @endif</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

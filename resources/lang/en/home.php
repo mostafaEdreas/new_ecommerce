@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'no category' => 'Doesn\'t have category' ,
+    'no brand' => 'Doesn\'t have brand' ,
+    'second_image' => 'Second image' ,
+    'main_image' => 'Main image' ,
+    'short_text_ar' => 'Short text in arabic' ,
+    'short_text_en' => 'Short text in english' ,
+
+
     'totalOrders' => 'Total Orders',
     'currentMonthOrders' => 'Total orders for the current month',
     'pendingOrders' => 'Pending orders',
@@ -15,12 +23,15 @@ return [
     'usersCount' => 'Number of users',
     'categoriesNumber' => 'Number of categories',
     'brandsNumber' => 'Number of brands',
-
-
-
-
-
-
+    'chenged' => "Chenged" ,
+    'doesn\'t have' => 'لا يملك' ,
+    'cannot delete a category that has related products' => "Cannot delete a category that has related products." ,
+    'meta_desc_en' => 'Meta desc en' ,
+    'meta_title_en' => 'Meta title en' ,
+    'meta_desc_ar' => 'Meta desc ar' ,
+    'meta_title_ar' => 'Meta title ar' ,
+    'cannot delete an attribute that has related products' => 'Cannot delete an attribute that has related products' ,
+    'your_items_deleted_successfully' => 'Your items deleted successfully' ,
     'clear_filter'=>'Clear Filter',
     'You need to assign a delivery person before the order can be shipped' => 'You need to assign a delivery person before the order can be shipped.',
     'changing the status of a delivered order is not allowed' => 'Changing the status of a delivered order is not allowed',

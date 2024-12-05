@@ -40,13 +40,13 @@ class AttributeValue extends Model
     {
         $errors = [] ;
         if ($this->products()->exists()) {
-            $errors[] = 'Cannot delete an value that has related products.';
+            $errors[] = __('home.cannot delete an attribute that has related products');
         }
-      
+
         if(count( $errors)){
             return $errors;
            }
-           
+
            return parent::delete();
     }
 

@@ -22,14 +22,16 @@ class AttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar' => 'required|string|max:255|unique:menus,name_ar,' . $this->route('id'), // Exclude current menu record from uniqueness check
-            'name_en' => 'required|string|max:255|unique:menus,name_en,' . $this->route('id'), // Exclude current menu record from uniqueness check
+            'name_ar' => 'required|string|max:255|unique:menus,name_ar,' . $this->route('menu'), // Exclude current menu record from uniqueness check
+            'name_en' => 'required|string|max:255|unique:menus,name_en,' . $this->route('menu'), // Exclude current menu record from uniqueness check
             'status' => 'nullable|boolean', // Optional, should be a boolean value
-            'value_ar.*' => 'required|string|max:255', // Exclude current menu record from uniqueness check
+            'value_en' => $this->isMethod('post')? 'required|array|min:1' : 'nullable|array|min:1', // Exclude current menu record from uniqueness check
+            'value_ar' => $this->isMethod('post')? 'required|array|min:1' : 'nullable|array|min:1', // Exclude current menu record from uniqueness check
             'value_en.*' => 'required|string|max:255', // Exclude current menu record from uniqueness check
-            'value_ar' => 'required|array|min:1', // Exclude current menu record from uniqueness check
-            'value_en' => 'required|array|min:1', // Exclude current menu record from uniqueness check
-          
+            'value_ar.*' => 'required|string|max:255', // Exclude current menu record from uniqueness check
+
+
+
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Menu;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MenuRequest extends FormRequest
@@ -29,7 +30,7 @@ class MenuRequest extends FormRequest
             'status' => 'nullable|boolean',
             'parent_id' => 'nullable|exists:menus,id',
             'segment' => 'nullable|string|max:255',
-            'type' => 'nullable|string|max:255|in:main,about', // Adjust allowed types if needed
+            'type' => 'nullable|string|max:255|in:'.implode(',' ,Menu::TYPES), // Adjust allowed types if needed
             'order' => 'nullable|integer|min:1',
         ];
     }

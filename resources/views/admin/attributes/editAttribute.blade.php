@@ -24,25 +24,25 @@
                 </button>
             </div>
         @endif
-        
-        
-        
+
+
+
 
         <!-- Row-->
         <div class="row">
             <div class="col-sm-12 col-xl-12 col-lg-12">
-            	
-            	
-            	
-            	
+
+
+
+
                 <div class="card custom-card overflow-hidden">
-                    
+
                     <div class="card-body">
                         <div>
                             <h6 class="card-title mb-1">{{trans('home.add_attribute')}}</h6>
                         </div>
                         {!! Form::open(['method'=>'PATCH','url' => 'admin/attributes/'.$attribute->id, 'data-toggle'=>'validator', 'files'=>'true']) !!}
-                          
+
                         <div class="border">
                             <div class="bg-light">
                                 <nav class="nav nav-tabs">
@@ -50,7 +50,7 @@
                                     <a class="nav-link" data-toggle="tab" href="#tab2">{{trans('home.values')}}</a>
                                 </nav>
                             </div>
-                            
+
                             <div class="card-body tab-content">
                                 <div class="tab-pane active show" id="tab1">
                                     <div class="row">
@@ -62,38 +62,7 @@
                                         <div class="form-group col-md-6">
                                             <label class="">{{trans('home.name_ar')}}</label>
                                             <input class="form-control" name="name_ar" type="text" placeholder="{{trans('home.name_ar')}}"value="{{$attribute->name_ar}}" >
-                                        </div>                                        
-
-                                        <div class="col-md-12">
-                                            <label>{{trans('home.icon')}}</label>
-                                            <div class="input-group mb-1">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"> {{trans('home.upload')}}</span>
-                                                </div>
-                                                <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="icon">
-                                                    <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_icon')}}</label>
-                                                </div>
-                                            </div>
                                         </div>
-
-                                        @if($attribute->icon)
-                                        <div class="col-md-12">
-                                            <img src="{{url('\uploads\attributes\resize200')}}\{{$attribute->icon}}" width="150">
-                                        </div>
-                                        @endif
-
-                                        {{-- <div class="form-group col-md-12">
-                                            <label for="category">{{trans('home.categories')}}</label>
-                                            <select class="form-control select2" name="category_id[]" multiple>
-                                                @foreach($categories as $categ)
-                                                    <option value="{{$categ->id}}" @foreach($categories_ids as $id)@if($categ->id == $id )selected @endif @endforeach>{{(app()->getLocale()=='en')? $categ->name_en:$categ->name_ar}}</option>
-                                                @endforeach    
-                                            </select>
-                                            <br>
-                                            <input type="checkbox" id="checkbox">  {{trans('home.selectall')}}
-                                        </div> --}}
-                                        
 
                                         <div class="form-group col-md-12">
                                             <label class="ckbox">
@@ -102,12 +71,12 @@
                                         </div>
 
                                     </div>
-                                    
+
                                 </div>
-                                <div class="tab-pane" id="tab2">
-                                    @foreach($values as $key=>$value)
+                                <div class="tab-pane field_wrapper" id="tab2">
+                                    @foreach($attribute->values as $key=>$value)
                                         <div class="row">
-                                            <div class="form-group col-md-5"> 
+                                            <div class="form-group col-md-5">
                                                 <label for="value_en">{{trans('home.value_en')}}</label>
                                                 <input type="text"  class="form-control" placeholder="{{trans('home.value_en')}}" value="{{$value->value_en}}" readonly>
                                             </div>
@@ -115,44 +84,31 @@
                                             <div class="form-group col-md-5">
                                                 <label for="value_ar">{{trans('home.value_ar')}}</label>
                                                 <input type="text"  class="form-control" placeholder="{{trans('home.value_ar')}}" value="{{$value->value_ar}}" readonly>
-                                            </div> 
+                                            </div>
 
                                             <div class="form-group col-md-2">
                                                 <button type="button" style="margin-top: 28px;" class="btn" data-toggle="modal" data-target="#iconForm_{{$key}}"><i class="fas fa-edit"></i></button>
                                                 <button type="button" style="margin-top: 28px;" class="btn rmv" data-value_id="{{$value->id}}" id="type-error"><i class="fas fa-trash-alt"></i></button>
                                             </div>
-                                        </div>  
-                                    @endforeach 
+                                        </div>
+                                    @endforeach
 
-                                    <div class="field_wrapper">
-                                        <div class="row">
-                                            <!--<div class="form-group col-md-6"> -->
-                                            <!--    <label for="value_en">{{trans('home.value_en')}}</label>-->
-                                            <!--    <input type="text"  class="form-control" placeholder="{{trans('home.value_en')}}" name="value_en[]">-->
-                                            <!--</div>-->
 
-                                    <!--        <div class="form-group col-md-6">-->
-                                    <!--            <label for="value_ar">{{trans('home.value_ar')}}</label>-->
-                                    <!--            <input type="text"  class="form-control" placeholder="{{trans('home.value_ar')}}" name="value_ar[]">-->
-                                    <!--        </div> -->
-                                        </div>  
-                                    </div>       
                                     <a href="javascript:void(0);" class="add_button btn" title="Add field"><i class="fas fa-plus-square"></i></a>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group col-md-12" style="margin-top: 10px;">
                                 <button type="submit" class="btn btn-success">{{trans('home.save')}} </button>
                                 <a href="{{url('/admin/attributes')}}"><button type="button" class="btn btn-danger mr-1">{{trans('home.cancel')}}</button></a>
                             </div>
                         </div>
-   					                          
-                            
+
                         {!! Form::close() !!}
 
 
                          <!-- Modal -->
-                        @foreach($values as $key=>$value)
+                        @foreach($attribute->values as $key => $value)
                             <div class="modal fade text-left" id="iconForm_{{$key}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -166,7 +122,7 @@
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="form-group col-md-6"> 
+                                                    <div class="form-group col-md-6">
                                                         <label for="value_en">{{trans('home.value_en')}}</label>
                                                         <input type="text"  class="form-control" placeholder="{{trans('home.value_en')}}" name="value_en" value="{{$value->value_en}}">
                                                     </div>
@@ -174,14 +130,14 @@
                                                     <div class="form-group col-md-6">
                                                         <label for="value_ar">{{trans('home.value_ar')}}</label>
                                                         <input type="text"  class="form-control" placeholder="{{trans('home.value_ar')}}" name="value_ar" value="{{$value->value_ar}}">
-                                                    </div> 
+                                                    </div>
 
                                                     <input type="hidden" name="value_id" value="{{$value->id}}"/>
 
                                                     <div class="form-group col-md-12">
                                                         <button type="submit" class="btn btn-success">{{trans('home.save')}} </button>
                                                     </div>
-                                                </div>                             
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -222,6 +178,8 @@
 
             //Once add button is clicked
             $(addButton).click(function(){
+            console.log(12);
+
                 //Check maximum number of input fields
                 if(x < maxField){
                     x++; //Increment field counter
@@ -258,9 +216,9 @@
                     }
                 });
             });
-            
+
         });
-  
+
     </script>
 @endsection
 
