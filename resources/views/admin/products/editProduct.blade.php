@@ -40,14 +40,6 @@
         </div>
         <!-- End Page Header -->
 
-        @if (session()->has('success'))
-            <div class="alert alert-success">
-                {{ session()->pull('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
 
         <!-- Row-->
         {!! Form::open([
@@ -63,60 +55,61 @@
                     <h6 class="card-title mb-1">{{ trans('home.product_main_info') }}</h6>
                 </div>
                 <div class="form-group col-md-6">
-                    <label class="">{{ trans('home.name_en') }}</label>
+                    <label>{{ trans('home.name_en') }}</label>
                     <input class="form-control" name="name_en" value="{{ $product->name_en }}" type="text"
                         placeholder="{{ trans('home.name_en') }}" required>
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label class="">{{ trans('home.name_ar') }}</label>
+                    <label>{{ trans('home.name_ar') }}</label>
                     <input class="form-control" name="name_ar" value="{{ $product->name_ar }}" type="text"
                         placeholder="{{ trans('home.name_ar') }}" required>
                 </div>
-                <div class="form-group col-md-12">
-                    <label for="parent">{{ trans('home.category') }}</label>
+
+                <div class="form-group col-md-3">
+                    <label>{{ trans('home.code') }}</label>
+                    <input class="form-control" name="code" value="{{ $product->code }}" type="text"  placeholder="{{ trans('home.code') }}" required>
+                </div>
+                <div class="form-group col-md-3">
+                    <labe>{{ trans('home.category') }}</labe>
                     <select class="form-control select2" name="category_id">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" @selected($product->category_id == $category->id)>
-                                {{ app()->getLocale() == 'en' ? $category->name_en : $category->name_ar }}</option>
+                                {{  $category->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
-                {{-- <div class="form-group col-md-6">
-                    <label for="parent">{{ trans('home.brands') }}</label>
+                <div class="form-group col-md-3">
+                    <label>{{ trans('home.brands') }}</label>
                     <select class="form-control select2" name="brand_id">
                         @foreach ($brands as $brand)
                             <option value="{{ $brand->id }}" @selected($product->brang_id == $brand->id)>
-                                {{ app()->getLocale() == 'en' ? $brand->name_en : $brand->name_ar }}</option>
+                                {{  $brand->name }}
+                            </option>
                         @endforeach
                     </select>
-                </div> --}}
-                <div class="form-group col-md-6">
-                    <label for="short_desc_en"> {{ trans('home.short_desc_en') }}</label>
-                    <textarea class="form-control" name="short_desc_en">{!! $product->short_desc_en !!}</textarea>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>{{ trans('home.order') }}</label>
+                    <input class="form-control" name="order" value="{{ $product->order }}" type="number" min="1" step="1"  placeholder="{{ trans('home.order') }}" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="short_desc_ar"> {{ trans('home.short_desc_ar') }}</label>
-                    <textarea class="form-control" name="short_desc_ar">{!! $product->short_desc_ar !!}</textarea>
+                    <label> {{ trans('home.short_text_en') }}</label>
+                    <textarea class="form-control" name="short_text_en">{!! $product->short_text_en !!}</textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="long_desc_en"> {{ trans('home.long_desc_en') }}</label>
-                    <textarea class="area1" name="long_desc_en">{!! $product->long_desc_en !!}</textarea>
+                    <label> {{ trans('home.short_text_ar') }}</label>
+                    <textarea class="form-control" name="short_text_ar">{!! $product->short_text_ar !!}</textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="long_desc_ar"> {{ trans('home.long_desc_ar') }}</label>
-                    <textarea class="area1" name="long_desc_ar">{!! $product->long_desc_ar !!}</textarea>
+                    <label> {{ trans('home.text_en') }}</label>
+                    <textarea class="area1" name="text_en">{!! $product->text_en !!}</textarea>
                 </div>
-                {{-- <div class="form-group col-md-6">
-                    <label class="">{{ trans('home.rate') }}</label>
-                    <input class="form-control" name="rate" type="number" max="10" min="0"
-                        value="{{ $product->rate }}" placeholder="{{ trans('home.rate') }}">
-                </div> --}}
-                {{-- <div class="form-group col-md-12">
-                    <label class="">{{ trans('home.stock') }}</label>
-                    <input class="form-control" name="stock" type="number" min="0"
-                        value="{{ $product->stock }}" placeholder="{{ trans('home.stock') }}">
-                </div> --}}
+                <div class="form-group col-md-6">
+                    <label> {{ trans('home.text_ar') }}</label>
+                    <textarea class="area1" name="text_ar">{!! $product->text_ar !!}</textarea>
+                </div>
                 <div class="form-group col-md-12">
                     <label class="ckbox">
                         <input name="status" value="1" {{($product->status == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.publish')}}</span>
@@ -125,72 +118,12 @@
             </div>
         </div>
 
-
-        <div class="row">
-            <div class="col-sm-12 col-xl-12 col-lg-12">
-                <div class="card custom-card overflow-hidden">
-                    <div class="card-body">
-                        <div class="row">
-                            {{-- <div class="form-group col-md-4">
-                                <label class="">{{ trans('home.price') }}</label>
-                                <input class="form-control" name="price" step="0.01" value="{{ $product->price }}"
-                                    type="number" placeholder="{{ trans('home.price') }}">
-                            </div> --}}
-                            <div class="form-group col-md-3">
-                                <label class="">{{ trans('home.discount') }}</label>
-                                <input class="form-control" name="value" value="{{ $product->discount?->value }}"
-                                    step="0.01" type="number" placeholder="{{ trans('home.discount') }}">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="parent">{{ trans('home.value_type') }}</label>
-                                <select class="form-control" name="value_type">
-                                    <option value="percentage" @selected($product->discount?->value_type == 'percentage')>@lang('home.percentage') </option>
-                                    <option value="value" @selected($product->discount?->value_type == 'value')>@lang('home.value')</option>
-                                </select>
-
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="">{{ trans('home.start_date') }}</label>
-                                <input class="form-control" name="start_date" value="{{ $product->discount?->start_date }}"
-                                     type="date" placeholder="{{ trans('home.start_date') }}">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="">{{ trans('home.end_date') }}</label>
-                                <input class="form-control" name="end_date" value="{{ $product->discount?->end_date }}"
-                                     type="date" placeholder="{{ trans('home.end_date') }}">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         <div class="card p-3 mb-3">
             <div class="row ">
                 <div class="mb-3 col-12">
                     <h6 class="card-title mb-1">{{ trans('home.seo') }}</h6>
                 </div>
-                <!--<div class="form-group col-md-12">-->
-                <!--    <hr>-->
-                <!--    <span class="badge badge-success">{{trans('home.en')}}</span>-->
-                <!--</div>-->
-
-                <!--<div class="form-group col-md-2">-->
-                <!--    <label for="name_ar">{{trans('home.link')}}</label>-->
-                <!--    <input type="text" autocomplete="off"  class="form-control" placeholder="{{trans('home.link')}}" name="link_en">-->
-                <!--</div> -->
-
-                <!--<div class="form-group col-md-5">-->
-                <!--    <label for="meta_title"> {{trans('home.meta_title')}}</label>-->
-                <!--    <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title')}}"></textarea>-->
-                <!--</div>-->
-
-                <!--<div class="form-group col-md-5">-->
-                <!--    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>-->
-                <!--    <textarea class="form-control" name="meta_desc_en" placeholder="{{trans('home.meta_desc')}}"></textarea>-->
-                <!--</div>-->
+    
                 <div class="form-group col-md-12">
                     <hr>
                     <span class="badge badge-success">{{trans('home.en')}}</span>

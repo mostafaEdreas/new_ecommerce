@@ -158,6 +158,7 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         require base_path('routes/admin/brands.php');
         require base_path('routes/admin/categories.php');
         require base_path('routes/admin/discounts.php');
+        require base_path('routes/admin/products.php');
         Route::get('', 'AdminController@admin');
         Route::get('/switch-theme', 'AdminController@switchTheme');
         Route::get('translations', 'AdminController@translations');
@@ -185,7 +186,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         Route::post('removeAttributeValue', 'AttributeController@removeAttributeValue')->name('removeAttributeValue');
         Route::post('updateAttributeValue', 'AttributeController@updateAttributeValue')->name('updateAttributeValue');
 
-        Route::resource('/products', 'ProductController');
         ///////// product operations///////////
         Route::post('products/sub-categories', 'ProductController@getSubCategories');
         Route::post('products/generate-barcode', 'ProductController@generateBarcode');

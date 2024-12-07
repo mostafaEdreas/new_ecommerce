@@ -7,8 +7,13 @@ return [
     'main_image' => 'Main image' ,
     'short_text_ar' => 'Short text in arabic' ,
     'short_text_en' => 'Short text in english' ,
-
-
+    'product_not_found' => 'Product  Not Found' ,
+    'edit_product_dicount' => 'Edit product discount' ,
+    'amount' => 'Amount' ,
+    'cannot delete' => 'Cannot delete' ,
+  
+    'cannot update' => 'Cannot update' ,
+    'discounts' => 'Discounts',
     'totalOrders' => 'Total Orders',
     'currentMonthOrders' => 'Total orders for the current month',
     'pendingOrders' => 'Pending orders',

@@ -7,12 +7,15 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\CategoryAttribute;
 use App\Models\Attribute;
+use App\Http\Requests\ImageRequest;
 
 use App\Models\Color;
 use App\Models\Brand;
 use App\Models\ProductImage;
 use App\Models\ProductAttribute;
 use App\Models\ProductColor;
+use App\Traits\ImagesTrait;
+use App\Traits\ProductDiscountTrait;
 use Illuminate\Http\Request;
 use Picqer;
 use App\Models\ProductDiscount;
@@ -30,6 +33,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class ProductController extends Controller
 {
 
+    use ProductDiscountTrait, ImagesTrait ;
 
     public function __construct(){
 
@@ -42,9 +46,35 @@ class ProductController extends Controller
         return view('admin.products.products',compact('products'));
     }
 
+
+    public function images($id){
+        $product = Product::with('images')->find($id) ;
+        if( $product){
+           $data['parent'] = $product ;
+           $data['remove_url'] = route('products.images.remove',$product->id) ;
+           $data['upload_url'] = route('products.images.upload',$product->id) ;
+         
+           return view('admin.products.images.index',$data);
+           
+        }
+        
+    }
+    public function uploadImages(ImageRequest $request,$id){
+        $product = Product::find($id) ;
+
+        if( $product){
+          
+            $response =  $this->saveImages($request, $product) ;
+            return $response 
+            ? redirect()->back()->with( 'success',__('home.your_items_added_successfully')) 
+            : redirect()->back()->withErrors($response);
+        }
+        
+    }
+
     /////// function return first level sub categories//////
     public function getSubCategories(){
-        $categoryId=$_POST['categoryId'];
+        $categoryId = $_POST['categoryId'];
         $categories=Category::where('parent_id',$categoryId)->get();
         $colorIds= CategoryColor::where('category_id',$categoryId)->pluck('color_id')->toArray();
         $colors = Color::whereIn('id',$colorIds)->get();

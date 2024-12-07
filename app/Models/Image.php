@@ -33,13 +33,13 @@ class Image extends Model
 
     public function getImageSourceAttribute(){
 
-        return Helper::imageIsExists($this->image ,'images') ? $this->image : Helper::noImage() ;
+        return Helper::imageIsExists($this->image ,'images') ? Helper::uploadedImagesPath('images',$this->image)  : Helper::noImage() ;
 
     }
 
-    public function getImage200eAttribute(){
+    public function getImage200Attribute(){
 
-        return Helper::imageIsExists($this->image ,'images') ? $this->image : Helper::noImage() ;
+        return Helper::imageIsExists($this->image ,'images') ? Helper::uploadedImages200Path('images',$this->image)  : Helper::noImage() ;
 
     }
 }

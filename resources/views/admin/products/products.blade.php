@@ -44,6 +44,7 @@
                                     <th class="wd-20p">{{trans('home.category')}}</th>
                                     <th class="wd-20p">{{trans('home.brand')}}</th>
                                     <th class="wd-20p">{{trans('home.hot_offers')}}</th>
+                                    <th class="wd-20p">{{trans('home.images')}}</th>
                                     <th class="wd-15p">{{trans('home.status')}}</th>
                                 </tr>
                             </thead>
@@ -63,7 +64,7 @@
                                         <td><a href="{{ route('products.edit', $product->id) }}"> {{ $product->category_name ?? __('home.no category') }} </a></td>
                                         <td><a href="{{ route('products.edit', $product->id) }}"> {{ $product->brand_name ?? __('home.no brand') }} </a></td>
                                         <td>
-                                            <a href="{{ route('discounts.index') }}">
+                                            <a href="{{ route('discounts.index', $product->id) }}">
                                                 @if($product->discount)
                                                     <span class="btn badge-success" style="min-width: 100%">{{trans('home.yes')}}</span>
                                                 @else
@@ -71,7 +72,7 @@
                                                 @endif
                                             </a>
                                         </td>
-
+                                        <td><a href="{{ route('products.images.index', $product->id) }}">{{__('home.view')}} <br>({{$product->images()->count();}} {{__('home.image')}}) </a></td>
                                         <td>
                                             <a href="{{ route('products.edit', $product->id) }}" class="status">
                                                 @if($product->status == 1)

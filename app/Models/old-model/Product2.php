@@ -14,7 +14,7 @@ use App\Models\Color;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Product extends Model
+class Product2 extends Model
 {
     public function productAttributs(){
         return $this->hasMany(ProductAttribute::class);

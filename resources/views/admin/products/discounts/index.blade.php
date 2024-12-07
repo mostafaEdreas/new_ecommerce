@@ -17,6 +17,9 @@
                     <li class="breadcrumb-item active" aria-current="page">{{ trans('home.discounts') }}</li>
                 </ol>
             </div>
+            <div class="btn btn-list">
+                <a id="btn_delete" ><button class="btn ripple btn-danger"><i class="fas fa-trash"></i> {{trans('home.delete')}}</button></a>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-xl-12 col-lg-12">
@@ -24,6 +27,7 @@
                     <div class="card-body">
                         <form action="{{ route('discounts.store') }}" method="post">
                             <div class="row">
+                                @csrf
                                 <div class="form-group col-md-3">
                                     <label class="">{{ trans('home.discount') }}</label>
                                     <input class="form-control" name="discount" step="0.01" type="number"
@@ -32,8 +36,8 @@
                                 <div class="form-group col-md-3">
                                     <label for="parent">{{ trans('home.type') }}</label>
                                     <select class="form-control" name="type">
-                                        <option value="percentage" @selected(request()->isMethod('post') && old('start_date') == "percentage" )>@lang('home.percentage') </option>
-                                        <option value="amount" @selected(request()->isMethod('post') && old('type') == "amount" )>@lang('home.amount') </option>
+                                        <option value="1" @selected(request()->isMethod('post') && old('start_date') == "percentage" )>@lang('home.percentage') </option>
+                                        <option value="0" @selected(request()->isMethod('post') && old('type') == "amount" )>@lang('home.amount') </option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
@@ -45,6 +49,12 @@
                                     <label class="">{{ trans('home.end_date') }}</label>
                                     <input class="form-control" name="end_date" type="date" value="{{request()->isMethod('post') ? old('end_date') : ''}}"
                                         placeholder="{{ trans('home.end_date') }}">
+                                </div>
+                            </div>
+                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="btn btn-success"> {{trans('home.save')}} </button>
                                 </div>
                             </div>
                         </form>
@@ -70,7 +80,6 @@
                                     <tr>
                                         <th><input type="checkbox" id="checkAll" /></th>
                                         <th>#</th>
-                                        <th>{{ trans('home.id') }}</th>
                                         <th class="wd-20p">{{ trans('home.start_date') }}</th>
                                         <th class="wd-25p">{{ trans('home.end_date') }}</th>
                                         <th class="wd-20p">{{ trans('home.discount') }}</th>
@@ -79,19 +88,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $key => $product)
-                                        <tr id="{{ $product->id }}">
-                                            <td>
-                                                <input type="checkbox" name="checkbox" class="tableChecked" value="{{ $product->id }}" />
+                                   
+                                   
+                                    @foreach ($product->discounts as $key => $discount)
+                                        @php
+                                            $currentDiscount = $product->discount_id === $discount->id ? 'bg-success' : '' ;
+                                        @endphp
+                                        <tr id="{{ $discount->id }}" >
+                                            @if ($discount->can_edit_or_delete)
+                                                <td  class="{{ $currentDiscount }}">
+                                                    <input type="checkbox" name="checkbox" class="tableChecked" value="{{ $discount->id }}" />
+                                                </td>
+                                            @else
+                                            <td  class="{{$currentDiscount }}">
+                                                {{__('home.cannot delete it')}}
                                             </td>
-                                            <td> {{ $key + 1 }} </td>
+                                            @endif
+                                            
+                                            <td  class="{{$currentDiscount }}"> {{ $key + 1 }} </td>
 
-                                            <td> {{ $discount->start_date }}  </td>
-                                            <td> {{ $discount->end_date }}  </td>
-                                            <td> {{ $discount->discount }}  </td>
-                                            <td> {{ $discount->discount_type  }} </td>
-                                            <td>
-                                                <button type="button" style="margin-top: 28px;" class="btn btn-info" data-toggle="modal" data-target="#discForm_{{$key}}"><i class="fas fa-edit"></i></button>
+                                            <td  class="{{$currentDiscount }}"> {{ $discount->start_date }}  </td>
+                                            <td  class="{{$currentDiscount }}"> {{ $discount->end_date }}  </td>
+                                            <td  class="{{$currentDiscount }}"> {{ $discount->discount }}  </td>
+                                            <td  class="{{$currentDiscount }}"> {{ $discount->discount_type  }} </td>
+                                            <td  class="{{$currentDiscount }}">
+                                                @if ($discount->can_edit_or_delete)
+                                                    <button type="button"  class="btn btn-info" data-toggle="modal" data-target="#discForm_{{$key}}"><i class="fas fa-edit"></i></button>
+                                                @else
+                                                    {{__('home.cannot update it')}}
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -103,19 +128,19 @@
             </div>
         </div>
         <!-- End Row -->
-        @foreach ($attribute->values as $key => $value)
+        @foreach ($product->discounts as $key => $discount)
             <div class="modal fade text-left" id="discForm_{{ $key }}" tabindex="-1" role="dialog"
                 aria-labelledby="myModalLabel34" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title" id="myModalLabel34">{{ trans('home.edit_attribute_value') }}</h3>
+                            <h3 class="modal-title" id="myModalLabel34">{{ trans('home.edit_product_dicount') }}</h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ route('discount.update') }}" method="post">
-                            @method('put')
+                        <form action="{{ route('discounts.updata', $discount->id ) }}" method="post">
+                            @method('PATCH')
                             @csrf
                             <div class="modal-body">
                                 <div class="row">
@@ -123,17 +148,17 @@
                                     <div class="form-group col-md-6">
                                         <label>{{ trans('home.start_date') }}</label>
                                         <input type="text" class="form-control"  placeholder="{{ trans('home.start_date') }}" name="start_date"
-                                            value="{{ $value->start_date }}">
+                                            value="{{ $discount->start_date }}">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label >{{ trans('home.end_date') }}</label>
                                         <input type="text" class="form-control"
                                             placeholder="{{ trans('home.end_date') }}" name="end_date"
-                                            value="{{ $value->end_date }}">
+                                            value="{{ $discount->end_date }}">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label class="">{{ trans('home.discount') }}</label>
-                                        <input class="form-control" name="discount" step="0.01" type="number"  value="{{ $value->discount }}"  placeholder="{{ trans('home.discount') }}">
+                                        <input class="form-control" name="discount" step="0.01" type="number"  value="{{ $discount->discount }}"  placeholder="{{ trans('home.discount') }}">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="parent">{{ trans('home.type') }}</label>
@@ -154,3 +179,4 @@
             </div>
         @endforeach
     </div>
+    @endsection

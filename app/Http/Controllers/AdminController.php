@@ -31,6 +31,7 @@ use App\Models\ShippingMethod;
 use App\Models\PaymentMethod;
 use App\Models\Coupon;
 use App\Models\Branche;
+use App\Models\Discount;
 use App\Models\Service;
 use App\Models\InstallmentPartner;
 use App\Models\ProductStock;

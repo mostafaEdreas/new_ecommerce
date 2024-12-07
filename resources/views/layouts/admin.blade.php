@@ -794,6 +794,7 @@
                     dom: 'Bfrtip',
                     "pageLength": 50,
                     buttons: [ 'copy', 'excel', 'colvis' ],
+                    order: false ,
                     language: {
                         url: '//cdn.datatables.net/plug-ins/1.13.3/i18n/ar.json',
                     },
@@ -803,6 +804,7 @@
                     lengthChange: false,
                     dom: 'Bfrtip',
                     "pageLength": 50,
+                    ordering: false, // Disable all ordering functionality
                     buttons: [ 'copy', 'excel', 'colvis' ],
                 } );
             }

@@ -2,7 +2,6 @@
 <title>{{trans('home.home_sliders')}}</title>
 @section('content')
     <div class="container-fluid">
-
         <!-- Page Header -->
         <div class="page-header">
             <div>
@@ -12,16 +11,13 @@
                     <li class="breadcrumb-item active" aria-current="page">{{trans('home.home_sliders')}}</li>
                 </ol>
             </div>
-            
             <div class="btn btn-list">
                 <a href="{{url('admin/sliders/create')}}"><button class="btn ripple btn-primary">{{trans('home.add')}}</button></a>
                 <a id="btn_active"><button class="btn ripple btn-dark">{{trans('home.publish/unpublish')}}</button></a>
                 <a id="btn_delete" ><button class="btn ripple btn-danger">{{trans('home.delete')}}</button></a>
             </div>
-                
         </div>
         <!-- End Page Header -->
-
         @if(session()->has('success'))
             <div class="alert alert-success">
                 {{ session()->pull('success') }}
@@ -30,7 +26,6 @@
                 </button>
             </div>
         @endif
-
         <!-- Row-->
         <div class="row">
             <div class="col-sm-12 col-xl-12 col-lg-12">

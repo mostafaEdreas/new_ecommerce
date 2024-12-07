@@ -19,6 +19,18 @@ class Discount extends Model
         'product_id',
     ];
 
+    public function delete()
+    {
+        $errors = [] ;
+        if ($this->can_delete_or_update) {
+            $errors[] = __('home.cannot delete an discount that is  used');
+        }
+
+        if(count( $errors)){
+                return $errors;
+           }
+           return parent::delete();
+    }
 
     public function product(){
         return $this->belongsTo(product::class);
@@ -30,7 +42,10 @@ class Discount extends Model
 
 
     public function getDiscountTypeAttribute(){
-        return $this->type? 'Percentage'  : 'Amount';
+        return $this->type?__( 'home.percentage')  : __('home.amount');
     }
 
+    public function getCanEditOrDeleteAttribute(){
+         return OrderProduct::where('discount_id', $this->id)->count() === 0;
+    }
 }

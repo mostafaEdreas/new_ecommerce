@@ -9,6 +9,13 @@ return array(
     'short_text_ar' => 'نص مختصر بالعربية' ,
     'short_text_en' => 'نص مختصر بالانجليزية' ,
 
+    'cannot delete' => 'لا يمكن الحذف' ,
+    'cannot update' => 'لا يمكن التعديل' ,
+
+    'product_not_found' => 'منتج غير موجود' ,
+    'edit_product_dicount' => 'نعديل خصم منتج' ,
+    'amount' => 'مبلغ' ,
+    'discounts' => 'الخصم',
     'totalOrders' => 'الطلبات',
     'currentMonthOrders' => 'الطلبات للشهر الحالي',
     'pendingOrders' => 'الطلبات المعلقه',

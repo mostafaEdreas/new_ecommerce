@@ -78,7 +78,7 @@ class Product extends Model
     {
         $latestProduct = self::orderBy('id', 'desc')->first();
         $latestId = $latestProduct ? $latestProduct->id : 0;
-        return 'PROD-' . str_pad($latestId + 1, 4, '0', STR_PAD_LEFT);
+        return config('site_perfix') . str_pad($latestId + 1, 4, '0', STR_PAD_LEFT);
     }
     public function getNameAttribute(){
         return $this->{'name_'.$this->lang} ;
@@ -131,15 +131,25 @@ class Product extends Model
     }
 
 
-    public function getImageAttribute($value){
+    public function getMainImageSourceAttribute($value){
 
-        return Helper::imageIsExists($this->main_image ,'products') ? $this->main_image : Helper::noImage() ;
+        return Helper::imageIsExists($this->main_image ,'products') ? Helper::uploadedImagesPath('products',$this->main_image)   : Helper::noImage() ;
 
     }
 
-    public function getSecondImageAttribute(){
+    public function getMainImage200Attribute($value){
 
-        return Helper::imageIsExists($this->second_image ,'products') ? $this->second_image : Helper::noImage() ;
+        return Helper::imageIsExists($this->main_image ,'products') ? Helper::uploadedImages200Path('products',$this->main_image)  : Helper::noImage() ;
+    }
+
+    public function getSecondImageSourceAttribute(){
+
+        return Helper::imageIsExists($this->second_image ,'products') ? Helper::uploadedImagesPath('products',$this->second_image)  : Helper::noImage() ;
+    }
+
+    public function getSecondImage200Attribute(){
+
+        return Helper::imageIsExists($this->second_image ,'products') ? Helper::uploadedImages200Path('products',$this->second_image)  : Helper::noImage() ;
     }
 
     public function images(){
@@ -166,6 +176,14 @@ class Product extends Model
         return $this->hasMany(ProductStock::class);
     }
 
+    public function discounts(){
+        return $this->hasMany(Discount::class); 
+    }
+
+    
+    public function getDiscountIdAttribute(){
+        return $this->discount?->id; 
+    }
     public function discount(){
         return $this->hasOne(Discount::class)
         ->where('start_date', '<=', now())
