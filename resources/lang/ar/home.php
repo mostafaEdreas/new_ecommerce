@@ -8,6 +8,7 @@ return array(
     'compare_list' => 'قائمة المقارنه',
     'short_text_ar' => 'نص مختصر بالعربية' ,
     'short_text_en' => 'نص مختصر بالانجليزية' ,
+    'product not found' => 'المنتج غير موجود' ,
 
     'cannot delete' => 'لا يمكن الحذف' ,
     'cannot update' => 'لا يمكن التعديل' ,
@@ -40,6 +41,8 @@ return array(
     'meta_title_ar' => 'عنوان الميتا بالانجليزية' ,
     'cannot delete an attribute that has related products' => 'لا يمكن حذف السمة التي تحتوي على منتجات ذات صلة' ,
     'your_items_deleted_successfully' => 'تم حذف العنصر بنجاح' ,
+    'cannot delete an product that has related orders' => 'لا يمكن حذف منتج تم بيعه' ,
+    'add_values_to' => 'اضافة قيم الى' ,
 
 
     'You need to assign a delivery person before the order can be shipped' => 'تحتاج إلى تعيين شخص توصيل قبل أن يتم شحن الطلب.',

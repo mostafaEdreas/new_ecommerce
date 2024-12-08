@@ -10,9 +10,13 @@
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">{{ trans('home.discounts') }}</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/admin') }}">{{ trans('home.admin') }}</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('admin/products') }}">{{ trans('home.products') }}</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('admin/product/' . $product->link) }}">{{ $product->name }}</a>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url('/admin') }}"> {{ trans('home.admin') }}</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url('admin/products') }}">{{ trans('home.products') }} </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/products/' . $product->id.'/edit') }}">{{ $product->name }}</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ trans('home.discounts') }}</li>
                 </ol>
@@ -88,8 +92,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
-                                   
+
+
                                     @foreach ($product->discounts as $key => $discount)
                                         @php
                                             $currentDiscount = $product->discount_id === $discount->id ? 'bg-success' : '' ;
@@ -104,7 +108,7 @@
                                                 {{__('home.cannot delete it')}}
                                             </td>
                                             @endif
-                                            
+
                                             <td  class="{{$currentDiscount }}"> {{ $key + 1 }} </td>
 
                                             <td  class="{{$currentDiscount }}"> {{ $discount->start_date }}  </td>

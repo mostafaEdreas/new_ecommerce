@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 
 
-class Attribute extends Model
+class Attribute2 extends Model
 {
     //
 	protected $table = 'attributes';

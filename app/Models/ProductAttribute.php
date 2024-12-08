@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductAttribute extends Model
@@ -32,10 +31,10 @@ class ProductAttribute extends Model
                 }
             }
         }
-      
+
         if(count( $errors)){
             return $errors;
-           } 
+           }
         return parent::delete();
     }
     public function product(){
@@ -50,10 +49,13 @@ class ProductAttribute extends Model
         return $this->attribute?->name;
     }
 
-    public function getAttributeIdAttribute(){
-        return $this->attribute?->id;
-    }
+
     public function values(){
         return $this->hasMany(ProductAttributeValue::class);
     }
+
+    public function getAllValuesAttribute(){
+       return $this->attribute?->values;
+    }
+
 }

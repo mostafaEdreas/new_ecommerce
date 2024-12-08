@@ -63,7 +63,7 @@ class Product extends Model
         if ($this->stocks()->exists()) {
           foreach ($this->stocks as  $stock) {
             if ($stock->orders()->exists()) {
-                $errors[] = 'Cannot delete an product that has related orders.';
+                $errors[] = __('home.cannot delete an product that has related orders');
             }
           }
         }
@@ -177,12 +177,12 @@ class Product extends Model
     }
 
     public function discounts(){
-        return $this->hasMany(Discount::class); 
+        return $this->hasMany(Discount::class);
     }
 
-    
+
     public function getDiscountIdAttribute(){
-        return $this->discount?->id; 
+        return $this->discount?->id;
     }
     public function discount(){
         return $this->hasOne(Discount::class)

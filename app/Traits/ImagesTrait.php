@@ -7,7 +7,7 @@ use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 
 trait ImagesTrait {
-  
+
 
     private function saveImages(ImageRequest $request , Model $model ){
         $data = $request->validated() ;
@@ -16,19 +16,20 @@ trait ImagesTrait {
             $fileName = $saveImage->saveImages('images');
             Image::create(['image'=> $fileName ,'imageable_id' => $model->id ,'imageable_type' => $model->getMorphClass()]);
         }
-        
+
         return true ;
-    
+
     }
 
 
     public function removeImages($id ){
-    
+
       if($id = request('id')){
         return  Image::find($id)->delete()
-        ? redirect()->back()->with( 'success',__('home.your_item_deleted_successfully')) 
+        ? redirect()->back()->with( 'success',__('home.your_item_deleted_successfully'))
         : redirect()->back()->withErrors(__('home.an error occurred'));
       }
+      return redirect()->back()->withErrors(__('home.not_found'));
     }
 
 }

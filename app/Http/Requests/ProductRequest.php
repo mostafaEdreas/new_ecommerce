@@ -24,8 +24,8 @@ class ProductRequest extends FormRequest
             'text_en' => 'nullable|string',
             'short_text_ar' => 'nullable|string',
             'short_text_en' => 'nullable|string',
-            'main_image' => 'required|string|max:20',
-            'second_image' => 'nullable|string|max:20',
+            'main_image' => $this->isMethod('post') ? 'required|image|mimes:jpeg,png,gif,bmp,webp|max:1024' : 'nullable|image|mimes:jpeg,png,gif,bmp,webp|max:1024',
+            'second_image' => $this->isMethod('post') ? 'required|image|mimes:JPEG,PNG,GIF,BMP,WebP|max:1024' : 'nullable|image|mimes:jpeg,png,gif,bmp,webp|max:1024',
             'icon' => 'nullable|string|max:255',
             'status' => 'nullable|in:0,1', // Validate as 0 or 1
             'link_ar' => 'required|string|max:255|unique:products,link_ar,' . $this->route('product'),
@@ -35,6 +35,9 @@ class ProductRequest extends FormRequest
             'mete_description_ar' => 'nullable|string',
             'mete_description_en' => 'nullable|string',
             'index' => 'nullable|boolean',
+            'attributes' => 'nullable|array|min:1',
+            'attributes.*' => 'required|exists:attributes,id',
+
         ];
     }
 }

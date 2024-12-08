@@ -19,7 +19,6 @@ class RoleController extends Controller
 
     public function create()
     {
-        //
         $permissions= Permission::all();
         return view('admin.roles.addRole',compact('permissions'));
     }
@@ -27,7 +26,6 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        //
         $role = Role::create(['name' => $request->name]);
         $role->syncPermissions($request->permissions);
         return redirect('admin/roles');

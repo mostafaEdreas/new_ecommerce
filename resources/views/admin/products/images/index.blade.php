@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('meta')
-    <title>{{ trans('home.discounts') }}</title>
+    <title>{{ trans('home.images') }}</title>
     <style>
         /* Parent container for images */
         .image-preview-container {
@@ -51,13 +51,13 @@
         <!-- Page Header -->
         <div class="page-header">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-5">{{ trans('home.discounts') }}</h2>
+                <h2 class="main-content-title tx-24 mg-b-5">{{ trans('home.images') }}</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/admin') }}">{{ trans('home.admin') }}</a></li>
-                    <li class="breadcrumb-item"><a
-                            href="{{ url('admin/' .$parent.'/'. $parent->link) }}">{{ $parent->name }}</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ trans('home.discounts') }}</li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/products') }}">{{ trans('home.products') }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/products/' . $parent->id.'/edit') }}">{{ $parent->name }}</a>
+
+                    <li class="breadcrumb-item active" aria-current="page">{{ trans('home.images') }}</li>
                 </ol>
             </div>
         </div>
@@ -67,15 +67,15 @@
                     <div class="card-body">
                        <form action="{{$upload_url}}" class="col-12 row" method="post"  name="images[]" multiple  enctype="multipart/form-data">
                         @csrf
-                            
+
 
                             <div class="mb-3">
                                 <label for="image-upload" class="form-label">{{__("home.images")}}</label>
                                 <input class="form-control" type="file" id="image-upload" name="images[]" multiple accept="image/jpeg,image/jpg,image/png,image/webp">
                               </div>
-                            
+
                             <div class="image-preview-container" id="image-preview-container">
-                               
+
                             </div>
                             <button type="submit" class="btn btn-primary">{{__('home.upload')}}</button>
                        </form>
@@ -113,8 +113,8 @@
 
         function deleteImage(form_id){
             console.log(form_id);
-            
-            
+
+
             let form = document.getElementById(form_id);
             if (! confirm( '{{ __("home.delete ?") }}' ) || !form.querySelector('input[name="id"]')) {
                 e.preventDefault();
@@ -182,7 +182,7 @@
             imageUpload.files = dt.files;
         }
 
-        
+
     </script>
 
 

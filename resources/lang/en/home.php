@@ -11,7 +11,12 @@ return [
     'edit_product_dicount' => 'Edit product discount' ,
     'amount' => 'Amount' ,
     'cannot delete' => 'Cannot delete' ,
-  
+    'cannot delete an product that has related orders' => 'Cannot delete an product that has related orders' ,
+    'product not found' => 'Product not found' ,
+    'add_values_to' => 'Add values to' ,
+
+
+
     'cannot update' => 'Cannot update' ,
     'discounts' => 'Discounts',
     'totalOrders' => 'Total Orders',

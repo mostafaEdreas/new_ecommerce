@@ -30,7 +30,7 @@ class AboutStrucRequest extends FormRequest
             'text_en' => 'nullable|string|max:4294967295',
             'status' => 'nullable|boolean',
             'parent_id' => 'nullable|exists:menus,id',
-            'image' => 'nullable|image|max:1024',
+            'image' => 'nullable|image|mimes:JPEG,PNG,GIF,BMP,WebP|max:1024',
             'order' => 'nullable|integer',
         ];
     }

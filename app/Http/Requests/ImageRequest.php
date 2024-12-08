@@ -23,7 +23,7 @@ class ImageRequest extends FormRequest
     {
         return [
             'images' => 'required|array|min:1',
-            'images.*' => 'required|image|mimes:jpeg,jpg,png,webp',
+            'images.*' => 'required|image|mimes:JPEG,PNG,GIF,BMP,WebP',
         ];
     }
 }
