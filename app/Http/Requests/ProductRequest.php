@@ -13,10 +13,11 @@ class ProductRequest extends FormRequest
 
     public function rules()
     {
+       
         return [
             'name_ar' => 'required|string|max:255|unique:products,name_ar,' . $this->route('product'),
             'name_en' => 'required|string|max:255|unique:products,name_en,' . $this->route('product'),
-            'code' => 'required|string|max:10|unique:products,code,' . $this->route('product'),
+            'code' => 'nullable|string|max:10|unique:products,code,' . $this->route('product'),
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'nullable|exists:brands,id',
             'order' => 'required|integer',

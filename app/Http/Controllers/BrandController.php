@@ -107,17 +107,17 @@ class BrandController extends Controller
                 return redirect()->back()->withErrors( $delete??__('home.an messages.error entering data'));
             }
             return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));
-        }elseif($aboutStruc = Brand::find($id)){
+        }elseif($brand = Brand::find($id)){
                // check is is deleted or has any exception
-               $delete = $aboutStruc->delete();
+               $delete = $brand->delete();
             if(request()->ajax()){
                 // check is is deleted or has any exception
-                if( !$delete ){
+                if( $delete != 1 ){
                     return response()->json(['message'=> $delete??__('home.an message.error entering data')],422);
                 }
                 return response()->json(['message'=>trans('home.your_item_deleted_successfully')]);
             }
-            if( !$delete ){
+            if( $delete != 1 ){
                 return redirect()->back()->withErrors( $delete??__('home.an messages.error entering data'));
             }
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));

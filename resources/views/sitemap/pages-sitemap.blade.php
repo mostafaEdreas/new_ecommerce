@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($pages as $page)
         <url>
-            <loc>{{($lang == 'en')?LaravelLocalization::localizeUrl('page/'.$page->link_en):LaravelLocalization::localizeUrl('page/'.$page->link_ar)}}</loc>
-            <lastmod>{{ $page->created_at->tz('UTC')->toAtomString() }}</lastmod>
+            <loc>{{ LaravelLocalization::localizeUrl("page/".$page->link) }}</loc>
+            <lastmod>{{ $page->created_at->tz("UTC")->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.6</priority>
         </url>

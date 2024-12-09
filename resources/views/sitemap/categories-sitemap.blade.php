@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($categories as $category)
         <url>
-            <loc>{{($lang == 'en')? LaravelLocalization::localizeUrl('category/'.$category->link_en) : LaravelLocalization::localizeUrl('category/'.$category->link_ar)}}</loc>
-            <lastmod>{{ $category->created_at->tz('UTC')->toAtomString() }}</lastmod>
+            <loc>{{  LaravelLocalization::localizeUrl("category/".$category->link_en) }}</loc>
+            <lastmod>{{ $category->created_at->tz("UTC")->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.6</priority>
         </url>

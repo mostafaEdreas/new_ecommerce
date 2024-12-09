@@ -28,23 +28,20 @@
         <div class="row">
             <div class="col-sm-12 col-xl-12 col-lg-12">
                 <div class="card custom-card overflow-hidden">
-                    <div class="card-body">
+                    <form method="post" action="{{ route('products.attributes.value.store', $product->id) }}" class="card-body row justify-content-between">
                         @forelse ($product->attributes as $attribute)
-                            <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+                            <div class="card text-bg-light mb-3 col-md-3 p-0">
                                 <div class="card-header bg-primary text-white"> @lang('home.add_values_to') {{$attribute->attribute_name}}</div>
-                                <div class="card-body">
-                                    <h5 class="card-title  badge badge-pill badge-info text-white">{{$attribute->attribute_name}}</h5>
+                                <div class="card-body p-0 m-1">
                                     <br>
-                                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                                         <div class="form-group col-md-12">
-                                            <label for="helperText">{{trans('home.attributes')}}</label>
-                                            <select id="select-attribute"  class="form-control role select2" name="{{$attribute->id}}[]" multiple>
+                                            <h5 class="card-title  badge badge-pill badge-info text-white">{{$attribute->attribute_name}}</h5>
+                                            <select  class="form-control role select2" name="{{$attribute->id}}[]" multiple>
                                                 @foreach($attribute->all_values as $value)
-                                                    <option @selected(old($attribute->id)?in_array($value->id,old($attribute->id,[])):false) value="{{ $value->id }}" >{{ $value->value }}</option>
+                                                    <option @selected(in_array($value->id,$attribute->values->pluck('value_id')->toArray())) value="{{ $value->id }}" >{{ $value->value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         @empty
@@ -52,7 +49,9 @@
                                 {{__('home.doesn\'t have')}}
                             </h4>
                         @endforelse
-                    </div>
+                        @csrf
+                        <div class="col-12"><button class="btn btn-primary">@lang('home.save')</button></div>
+                    </form>
                 </div>
             </div>
         </div>

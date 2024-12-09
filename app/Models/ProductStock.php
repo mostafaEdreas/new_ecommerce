@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPUnit\Framework\isEmpty;
+
 class ProductStock extends Model
 {
     use HasFactory;
@@ -19,7 +21,7 @@ class ProductStock extends Model
     {
         $errors = [] ;
         // Check if the category has related products
-        if ($this->orders()->exists()) {
+        if (isEmpty($this->orders)) {
             $errors[] =  'Cannot delete a stock that has related orders.';
         }
 
@@ -73,4 +75,8 @@ class ProductStock extends Model
     public function getNetPriceAttribute(){
         return $this->price - $this->product_discount_amount ;
     }
+
+    public function getCanEditOrDeleteAttribute(){
+        return OrderProduct::where('product_stock_id', $this->id)->count() === 0;
+   }
 }

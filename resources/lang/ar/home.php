@@ -9,6 +9,12 @@ return array(
     'short_text_ar' => 'نص مختصر بالعربية' ,
     'short_text_en' => 'نص مختصر بالانجليزية' ,
     'product not found' => 'المنتج غير موجود' ,
+    'stocks' => 'المخزون' ,
+    'stock' => 'المخزون' ,
+    'edit_product_stock' => 'نعديل مخزون منتج' ,
+
+
+
 
     'cannot delete' => 'لا يمكن الحذف' ,
     'cannot update' => 'لا يمكن التعديل' ,

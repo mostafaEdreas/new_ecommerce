@@ -143,7 +143,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ route('discounts.updata', $discount->id ) }}" method="post">
+                        <form action="{{ route('discounts.update', $discount->id ) }}" method="post">
                             @method('PATCH')
                             @csrf
                             <div class="modal-body">

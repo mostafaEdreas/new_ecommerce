@@ -108,12 +108,12 @@ class AttributeController extends Controller
             // check if comming from ajax
             if(request()->ajax()){
                 // check is is deleted or has any exception
-                if( !$delete ){
+                if( $delete != 1 ){
                     return response()->json(['message'=> $delete??__('home.an messages.error entering data')],422);
                 }
                 return response()->json(['message'=>trans('home.your_items_deleted_successfully')]);
             }
-            if( !$delete ){
+            if( $delete != 1 ){
                 return redirect()->back()->withErrors( $delete??__('home.an messages.error entering data'));
             }
             return redirect()->back()->with('success',trans('home.your_items_deleted_successfully'));

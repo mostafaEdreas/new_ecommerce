@@ -14,6 +14,11 @@ return [
     'cannot delete an product that has related orders' => 'Cannot delete an product that has related orders' ,
     'product not found' => 'Product not found' ,
     'add_values_to' => 'Add values to' ,
+    'stocks' => 'Stocks' ,
+    'stock' => 'Stock' ,
+    'edit_product_stock' => 'Edit product stock' ,
+
+
 
 
 

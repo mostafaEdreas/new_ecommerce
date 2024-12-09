@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Models\ProductAttribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Maatwebsite\Excel\Concerns\ToArray;
 
 
 class Product extends Model
@@ -19,6 +20,7 @@ class Product extends Model
         'name_en',
         'category_id',
         'brand_id',
+        'code',
         'order',
         'text_ar',
         'text_en',
@@ -192,11 +194,16 @@ class Product extends Model
     }
 
     public function getDiscountTypeAttribute(){
-        $this->discount?->type ;
+        return $this->discount?->type ;
     }
 
     public function getDiscountValueAttribute(){
-        $this->discount?->discount ;
+        return $this->discount?->discount ;
+    }
+
+    public function getAttributeValuesAttribute(){
+        $product_Attributes_id = $this->attributes()->pluck('id')->ToArray();
+        return ProductAttributeValue::whereIn('product_attribute_id' , $product_Attributes_id)->get();
     }
 
     public function scopeHasStock($query){

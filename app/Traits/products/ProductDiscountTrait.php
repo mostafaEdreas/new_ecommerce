@@ -1,5 +1,5 @@
 <?php
-namespace App\Traits;
+namespace App\Traits\products;
 
 use App\Http\Requests\DiscountRequest;
 use App\Models\Discount;

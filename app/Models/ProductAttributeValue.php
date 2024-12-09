@@ -57,13 +57,10 @@ class ProductAttributeValue extends Model
     }
 
 
-    public function getValueNameAttribute(){
+    public function getValueNameAttribute(): mixed{
         return $this->value?->value ;
     }
 
-    public function getValueIdAttribute(){
-        return $this->value?->id ;
-    }
 
     public function variants(){
         return $this->hasMany(ProductVariant::class) ;

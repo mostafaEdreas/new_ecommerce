@@ -6,23 +6,22 @@ use App\Helpers\SaveImageTo3Path;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Attribute;
-use App\Http\Requests\ImageRequest;
 use App\Http\Requests\ProductRequest;
 use App\Models\Color;
 use App\Models\Brand;
-
-use App\Traits\ImagesTrait;
-use App\Traits\ProductDiscountTrait;
-use Illuminate\Http\Request;
 use Picqer;
-
 use App\Models\CategoryColor;
-use App\Traits\ProductAjaxTrait;
+use App\Traits\ImagesTrait;
+use App\Traits\products\ProductAjaxTrait;
+use App\Traits\products\ProductAttributeTrait;
+use App\Traits\products\ProductDiscountTrait;
+use App\Traits\products\ProductImageTrait;
+use App\Traits\products\productStockTrait;
 
 class ProductController extends Controller
 {
 
-    use ProductDiscountTrait, ImagesTrait, ProductAjaxTrait ;
+    use ProductDiscountTrait, ImagesTrait, ProductAjaxTrait, ProductImageTrait ,productStockTrait ,ProductAttributeTrait;
 
     public function __construct(){
 
@@ -36,38 +35,10 @@ class ProductController extends Controller
     }
 
 
-    public function images($id){
-        $product = Product::with('images')->find($id) ;
-        if( $product){
-           $data['parent'] = $product ;
-           $data['remove_url'] = route('products.images.remove',$product->id) ;
-           $data['upload_url'] = route('products.images.upload',$product->id) ;
-
-           return view('admin.products.images.index',$data);
-
-        }
-
-    }
-    public function uploadImages(ImageRequest $request,$id){
-        $product = Product::find($id) ;
-        if( $product){
-            $response =  $this->saveImages($request, $product) ;
-            return $response
-            ? redirect()->back()->with( 'success',__('home.your_items_added_successfully'))
-            : redirect()->back()->withErrors($response);
-        }
-        return redirect()->back()->withErrors(__('home.not_found'));
-    }
 
 
-    public function getAttributes($id){
-        $product = Product::with(['attributes.values' , 'attributes.attribute'])->find($id) ;
-        if( $product){
-            $data['product'] =  $product;
-            return view('admin.products.attributes.index',$data);
-        }
-        return redirect()->back()->withErrors(__('home.not_found'));
-    }
+
+   
     /////// function return first level sub categories//////
     public function getSubCategories(){
         $categoryId = $_POST['categoryId'];
@@ -118,7 +89,8 @@ class ProductController extends Controller
 
         $product = Product::create($data) ;
 
-        foreach ($data['attributes'] as $key => $value) {
+        $product->attributes()->delete();
+        foreach ($data['attributes'] ??  [] as  $value) {
             $product->attributes()->create(['attribute_id' => $value]);
 
         }
@@ -163,12 +135,11 @@ class ProductController extends Controller
         $product->update( $data);
 
         $product->attributes()->delete();
-        foreach ($data['attributes'] as $key => $value) {
+       
+        foreach ($data['attributes'] ??  [] as $key => $value) {
             $product->attributes()->create(['attribute_id' => $value]);
 
         }
-
-
 
         return redirect()->back()->with('success',trans('home.product_data_updated_successfully'));
     }
@@ -208,4 +179,8 @@ class ProductController extends Controller
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }
     }
+
+
+
+
 }
