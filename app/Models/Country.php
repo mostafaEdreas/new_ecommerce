@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
@@ -10,6 +11,15 @@ class Country extends Model
 {
     //
 	protected $table='countries';
+    private $lang ;
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
 
     public function delete()
     {
@@ -25,5 +35,9 @@ class Country extends Model
 
     public function regions(){
         return $this->hasMany('App\Models\Region');
+    }
+
+    public function getNameAttribute(){
+        return $this->{'name_'.$this->lang};
     }
 }

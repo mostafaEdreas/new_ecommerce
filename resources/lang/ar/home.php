@@ -13,6 +13,8 @@ return array(
     'stock' => 'المخزون' ,
     'edit_product_stock' => 'نعديل مخزون منتج' ,
 
+    'discount_type' => 'نوع الخصم' ,
+
     'doesnt_use' => 'لا يوجد' ,
     'free' => 'مجانى' ,
     'one_cost' => 'تكلفة موحده' ,

@@ -25,17 +25,17 @@
             </div>
         @endif
 
-        {!! Form::open(['method'=>'PATCH','url' => 'admin/seo-assistant/'.$seo->id, 'data-toggle'=>'validator', 'files'=>'true']) !!}
+        {!! Form::open(['method'=>'PATCH','url' => 'admin/seo-assistant', 'data-toggle'=>'validator', 'files'=>'true']) !!}
             <!-- Row-->
                 <div class="row">
                     <div class="col-sm-12 col-xl-12 col-lg-12">
                         <div class="card custom-card overflow-hidden">
-            
+
                             <div class="card-body">
                                 <div>
                                     <h6 class="card-title mb-1">{{trans('home.home_page')}}</h6>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <span class="badge badge-success">{{trans('home.en')}}</span>
@@ -45,27 +45,27 @@
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                         <textarea class="form-control" name="home_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->home_meta_title}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                         <textarea class="form-control" name="home_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->home_meta_desc}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <span class="badge badge-success">{{trans('home.ar')}}</span>
                                         <hr>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                         <textarea class="form-control" name="home_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->home_meta_title_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                         <textarea class="form-control" name="home_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->home_meta_desc_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <label class="ckbox">
                                             <input name="home_meta_robots" value="1" {{($seo->home_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
@@ -77,17 +77,69 @@
                     </div>
                 </div>
             <!-- End Row -->
-            
+
+               <!-- Row-->
+               <div class="row">
+                <div class="col-sm-12 col-xl-12 col-lg-12">
+                    <div class="card custom-card overflow-hidden">
+
+                        <div class="card-body">
+                            <div>
+                                <h6 class="card-title mb-1">{{trans('home.products')}}</h6>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <span class="badge badge-success">{{trans('home.en')}}</span>
+                                    <hr>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
+                                    <textarea class="form-control" name="home_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->products_meta_title}}</textarea>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
+                                    <textarea class="form-control" name="home_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->products_meta_desc}}</textarea>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <span class="badge badge-success">{{trans('home.ar')}}</span>
+                                    <hr>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
+                                    <textarea class="form-control" name="home_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->products_meta_title_ar}}</textarea>
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
+                                    <textarea class="form-control" name="home_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->products_meta_desc_ar}}</textarea>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label class="ckbox">
+                                        <input name="home_meta_robots" value="1" {{($seo->products_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- End Row -->
+
             <!-- Row-->
                 <div class="row">
                     <div class="col-sm-12 col-xl-12 col-lg-12">
                         <div class="card custom-card overflow-hidden">
-            
+
                             <div class="card-body">
                                 <div>
                                     <h6 class="card-title mb-1">{{trans('home.about_us')}}</h6>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <span class="badge badge-success">{{trans('home.en')}}</span>
@@ -97,178 +149,30 @@
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                         <textarea class="form-control" name="about_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->about_meta_title}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                         <textarea class="form-control" name="about_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->about_meta_desc}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <span class="badge badge-success">{{trans('home.ar')}}</span>
                                         <hr>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                         <textarea class="form-control" name="about_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->about_meta_title_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                         <textarea class="form-control" name="about_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->about_meta_desc_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <label class="ckbox">
                                             <input name="about_meta_robots" value="1" {{($seo->about_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- End Row -->
-            
-            <!-- Row-->
-                <div class="row">
-                    <div class="col-sm-12 col-xl-12 col-lg-12">
-                        <div class="card custom-card overflow-hidden">
-                            <div class="card-body">
-                                <div>
-                                    <h6 class="card-title mb-1">{{trans('home.contact_us')}}</h6>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.en')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="contact_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->contact_meta_title}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="contact_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->contact_meta_desc}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="contact_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->contact_meta_title_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="contact_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->contact_meta_desc_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <label class="ckbox">
-                                            <input name="contact_meta_robots" value="1" {{($seo->contact_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- End Row -->
-            
-            <!-- Row-->
-                <div class="row">
-                    <div class="col-sm-12 col-xl-12 col-lg-12">
-                        <div class="card custom-card overflow-hidden">
-                            <div class="card-body">
-                                <div>
-                                    <h6 class="card-title mb-1">{{trans('home.galleryImages')}}</h6>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.en')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="gallery_images_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->gallery_images_meta_title}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="gallery_images_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->gallery_images_meta_desc}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="gallery_images_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->gallery_images_meta_title_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="gallery_images_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->gallery_images_meta_desc_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <label class="ckbox">
-                                            <input name="gallery_images_meta_robots" value="1" {{($seo->gallery_images_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- End Row -->
-            
-            <!-- Row-->
-                <div class="row">
-                    <div class="col-sm-12 col-xl-12 col-lg-12">
-                        <div class="card custom-card overflow-hidden">
-                            <div class="card-body">
-                                <div>
-                                    <h6 class="card-title mb-1">{{trans('home.galleryVideos')}}</h6>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.en')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="gallery_videos_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->gallery_videos_meta_title}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="gallery_videos_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->gallery_videos_meta_desc}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="gallery_videos_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->gallery_videos_meta_title_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="gallery_videos_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->gallery_videos_meta_desc_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <label class="ckbox">
-                                            <input name="gallery_videos_meta_robots" value="1" {{($seo->gallery_videos_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
                                         </label>
                                     </div>
                                 </div>
@@ -284,42 +188,41 @@
                         <div class="card custom-card overflow-hidden">
                             <div class="card-body">
                                 <div>
-                                    <h6 class="card-title mb-1">{{trans('home.services')}}</h6>
+                                    <h6 class="card-title mb-1">{{trans('home.contact_us')}}</h6>
                                 </div>
+
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <span class="badge badge-success">{{trans('home.en')}}</span>
                                         <hr>
                                     </div>
-                                    
                                     <div class="form-group col-md-6">
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="services_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->services_meta_title}}</textarea>
+                                        <textarea class="form-control" name="contact_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->contact_meta_title}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="services_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->services_meta_desc}}</textarea>
+                                        <textarea class="form-control" name="contact_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->contact_meta_desc}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <span class="badge badge-success">{{trans('home.ar')}}</span>
                                         <hr>
                                     </div>
-                                    
                                     <div class="form-group col-md-6">
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="services_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->services_meta_title_ar}}</textarea>
+                                        <textarea class="form-control" name="contact_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->contact_meta_title_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="services_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->services_meta_desc_ar}}</textarea>
+                                        <textarea class="form-control" name="contact_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->contact_meta_desc_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <label class="ckbox">
-                                            <input name="services_meta_robots" value="1" {{($seo->services_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
+                                            <input name="contact_meta_robots" value="1" {{($seo->contact_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
                                         </label>
                                     </div>
                                 </div>
@@ -328,56 +231,8 @@
                     </div>
                 </div>
             <!-- End Row -->
-            
-            <!-- Row-->
-                <div class="row">
-                    <div class="col-sm-12 col-xl-12 col-lg-12">
-                        <div class="card custom-card overflow-hidden">
-                            <div class="card-body">
-                                <div>
-                                    <h6 class="card-title mb-1">{{trans('home.featuredPrdoucts')}}</h6>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.en')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="featuredProducts_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->featuredProducts_meta_title}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="featuredProducts_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->featuredProducts_meta_desc}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                        <hr>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                        <textarea class="form-control" name="featuredProducts_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->featuredProducts_meta_title_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                        <textarea class="form-control" name="featuredProducts_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->featuredProducts_meta_desc_ar}}</textarea>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-12">
-                                        <label class="ckbox">
-                                            <input name="featuredProducts_meta_robots" value="1" {{($seo->featuredProducts_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <!-- End Row -->
-            
+
+
             <!-- Row-->
                 <div class="row">
                     <div class="col-sm-12 col-xl-12 col-lg-12">
@@ -391,32 +246,32 @@
                                         <span class="badge badge-success">{{trans('home.en')}}</span>
                                         <hr>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                         <textarea class="form-control" name="dealsProducts_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->dealsProducts_meta_title}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                         <textarea class="form-control" name="dealsProducts_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->dealsProducts_meta_desc}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <span class="badge badge-success">{{trans('home.ar')}}</span>
                                         <hr>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                         <textarea class="form-control" name="dealsProducts_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->dealsProducts_meta_title_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                         <textarea class="form-control" name="dealsProducts_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->dealsProducts_meta_desc_ar}}</textarea>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-12">
                                         <label class="ckbox">
                                             <input name="dealsProducts_meta_robots" value="1" {{($seo->dealsProducts_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
@@ -428,56 +283,8 @@
                     </div>
                 </div>
             <!-- End Row -->
-            
-            <!-- Row-->
-            <div class="row">
-                <div class="col-sm-12 col-xl-12 col-lg-12">
-                    <div class="card custom-card overflow-hidden">
-                        <div class="card-body">
-                            <div>
-                                <h6 class="card-title mb-1">{{trans('home.blogs')}}</h6>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <span class="badge badge-success">{{trans('home.en')}}</span>
-                                    <hr>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                    <textarea class="form-control" name="blogs_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->blogs_meta_title}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                    <textarea class="form-control" name="blogs_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->blogs_meta_desc}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-12">
-                                    <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                    <hr>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                    <textarea class="form-control" name="blogs_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->blogs_meta_title_ar}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                    <textarea class="form-control" name="blogs_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->blogs_meta_desc_ar}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-12">
-                                    <label class="ckbox">
-                                        <input name="blogs_meta_robots" value="1" {{($seo->blogs_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Row -->
-            
+
+
             <!-- Row-->
             <div class="row">
                 <div class="col-sm-12 col-xl-12 col-lg-12">
@@ -495,12 +302,12 @@
                                     <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                     <textarea class="form-control" name="categories_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->categories_meta_title}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-6">
                                     <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                     <textarea class="form-control" name="categories_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->categories_meta_desc}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-12">
                                     <span class="badge badge-success">{{trans('home.ar')}}</span>
                                     <hr>
@@ -509,12 +316,12 @@
                                     <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                     <textarea class="form-control" name="categories_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->categories_meta_title_ar}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-6">
                                     <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                     <textarea class="form-control" name="categories_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->categories_meta_desc_ar}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-12">
                                     <label class="ckbox">
                                         <input name="categories_meta_robots" value="1" {{($seo->categories_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
@@ -526,7 +333,7 @@
                 </div>
             </div>
             <!-- End Row -->
-            
+
             <!-- Row-->
             <div class="row">
                 <div class="col-sm-12 col-xl-12 col-lg-12">
@@ -544,12 +351,12 @@
                                     <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                     <textarea class="form-control" name="brands_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->brands_meta_title}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-6">
                                     <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                     <textarea class="form-control" name="brands_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->brands_meta_desc}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-12">
                                     <span class="badge badge-success">{{trans('home.ar')}}</span>
                                     <hr>
@@ -558,12 +365,12 @@
                                     <label for="meta_title"> {{trans('home.meta_title')}}</label>
                                     <textarea class="form-control" name="brands_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->brands_meta_title_ar}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-6">
                                     <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
                                     <textarea class="form-control" name="brands_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->brands_meta_desc_ar}}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group col-md-12">
                                     <label class="ckbox">
                                         <input name="brands_meta_robots" value="1" {{($seo->brands_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
@@ -575,104 +382,9 @@
                 </div>
             </div>
             <!-- End Row -->
-            
-             <!-- Row-->
-            <div class="row">
-                <div class="col-sm-12 col-xl-12 col-lg-12">
-                    <div class="card custom-card overflow-hidden">
-                        <div class="card-body">
-                            <div>
-                                <h6 class="card-title mb-1">{{trans('home.branches')}}</h6>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <span class="badge badge-success">{{trans('home.en')}}</span>
-                                    <hr>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                    <textarea class="form-control" name="branches_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->branches_meta_title}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                    <textarea class="form-control" name="branches_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->branches_meta_desc}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-12">
-                                    <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                    <hr>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                    <textarea class="form-control" name="branches_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->branches_meta_title_ar}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                    <textarea class="form-control" name="branches_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->branches_meta_desc_ar}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-12">
-                                    <label class="ckbox">
-                                        <input name="branches_meta_robots" value="1" {{($seo->branches_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Row -->
-            
-            <div class="row">
-                <div class="col-sm-12 col-xl-12 col-lg-12">
-                    <div class="card custom-card overflow-hidden">
-                        <div class="card-body">
-                            <div>
-                                <h6 class="card-title mb-1">{{trans('home.inspection_request')}}</h6>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-12">
-                                    <span class="badge badge-success">{{trans('home.en')}}</span>
-                                    <hr>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                    <textarea class="form-control" name="inspectionRequest_meta_title" placeholder="{{trans('home.meta_title')}}">{{$seo->inspectionRequest_meta_title}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                    <textarea class="form-control" name="inspectionRequest_meta_desc" placeholder="{{trans('home.meta_desc')}}">{{$seo->inspectionRequest_meta_desc}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-12">
-                                    <span class="badge badge-success">{{trans('home.ar')}}</span>
-                                    <hr>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                    <textarea class="form-control" name="inspectionRequest_meta_title_ar" placeholder="{{trans('home.meta_title')}}">{{$seo->inspectionRequest_meta_title_ar}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-6">
-                                    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                    <textarea class="form-control" name="inspectionRequest_meta_desc_ar" placeholder="{{trans('home.meta_desc')}}">{{$seo->inspectionRequest_meta_desc_ar}}</textarea>
-                                </div>
-                                
-                                <div class="form-group col-md-12">
-                                    <label class="ckbox">
-                                        <input name="inspectionRequest_meta_robots" value="1" {{($seo->inspectionRequest_meta_robots == 1)? 'checked':''}} type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Row -->
-            
+
+
+
             <!-- Row-->
                 <div class="row">
                     <div class="col-sm-12 col-xl-12 col-lg-12">
@@ -684,13 +396,13 @@
                                         <a href="{{url('/admin')}}"><button type="button" class="btn btn-danger mr-1"><i class="icon-trash"></i> {{trans('home.cancel')}}</button></a>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
             <!-- End Row -->
-        
+
         {!! Form::close() !!}
     </div>
 @endsection

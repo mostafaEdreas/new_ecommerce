@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -79,12 +80,22 @@ class User extends Authenticatable implements JWTSubject
         return $this->is_admin;
     }
 
-    public function GetnameAttribute(){
+    public function getNameAttribute(){
         return $this->f_name.' '.$this->l_name;
     }
 
     public function name(){
         return $this->f_name.' '.$this->l_name;
+    }
+
+    public function getImage200Attribute(){
+
+        return Helper::imageIsExists($this->image ,'users') ? Helper::uploadedImages200Path('users',$this->image)  : Helper::noImage() ;
+    }
+
+    public function getImageSourceAttribute(){
+
+        return Helper::imageIsExists($this->image ,'users') ? Helper::uploadedImagesPath('users',$this->image)  : Helper::noImage() ;
     }
 
 

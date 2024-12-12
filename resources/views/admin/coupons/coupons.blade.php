@@ -15,7 +15,6 @@
 
             <div class="btn btn-list">
                 <a href="{{url('admin/coupons/create')}}"><button class="btn ripple btn-primary"><i class="fas fa-plus-circle"></i> {{trans('home.add')}}</button></a>
-                <a id="btn_active"><button class="btn ripple btn-dark"><i class="fas fa-eye"></i> {{trans('home.publish/unpublish')}}</button></a>
                 <a id="btn_delete" ><button class="btn ripple btn-danger"><i class="fas fa-trash"></i> {{trans('home.delete')}}</button></a>
             </div>
         </div>
@@ -58,12 +57,12 @@
                                 @foreach($coupons as $coupon)
                                     <tr id="{{$coupon->id}}">
                                         <td> <input type="checkbox" name="checkbox"  class="tableChecked" value="{{$coupon->id}}" /> </td>
-                                        <td><a href="{{ route('coupons.edit', $coupon->id) }}">{{$coupon->id}}</a></td>
-                                        <td><a href="{{ route('coupons.edit', $coupon->id) }}">{{$coupon->name}}</a></td>
-                                        <td><a href="{{ route('coupons.edit', $coupon->id) }}">{{$coupon->expire_date}}</a></td>
-                                        <td><a href="{{ route('coupons.edit', $coupon->id) }}">{{$coupon->value}}</a></td>
-                                        <td><a href="{{ route('coupons.edit', $coupon->id) }}">{{$coupon->value_type}}</a></td>
-                                        <td><a href="{{ route('coupons.edit', $coupon->id) }}">{{trans("home.$coupon->coupon_type")}} {{trans('home.coupon')}}</a></td>
+                                        <td><a href="{{ route('admin.coupons.edit', $coupon->id) }}">{{$coupon->id}}</a></td>
+                                        <td><a href="{{ route('admin.coupons.edit', $coupon->id) }}">{{$coupon->name}}</a></td>
+                                        <td><a href="{{ route('admin.coupons.edit', $coupon->id) }}">{{$coupon->end_date}}</a></td>
+                                        <td><a href="{{ route('admin.coupons.edit', $coupon->id) }}">{{$coupon->discount}}</a></td>
+                                        <td><a href="{{ route('admin.coupons.edit', $coupon->id) }}">{{$coupon->discount_type_text}}</a></td>
+                                        <td><a href="{{ route('admin.coupons.edit', $coupon->id) }}"> {{trans("home.$coupon->type")}} </a></td>
                                     </tr>
                                 @endforeach
                             </tbody>

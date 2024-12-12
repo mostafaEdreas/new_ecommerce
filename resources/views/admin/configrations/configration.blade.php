@@ -41,17 +41,17 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="app_name">{{trans('home.app_name')}}</label>
-                                    <input type="text"  class="form-control" placeholder="{{trans('home.app_name')}}" name="app_name" value="{{ config('site_app_name') }}">
+                                    <input type="text"  class="form-control" placeholder="{{trans('home.app_name')}}" name="app_name" value="{{ $configrations->app_name }}">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="app_name">{{trans('home.top text')}}</label>
-                                    <input type="text"  class="form-control" placeholder="{{trans('home.top text')}}" name="top_text" value="{!! config('site_top_text') !!}">
+                                    <input type="text"  class="form-control" placeholder="{{trans('home.top text')}}" name="top_text" value="{{ $configrations->top_text }}">
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <fieldset class="form-group">
                                         <label for="about_app">{{trans('home.about_app')}}</label>
-                                        <textarea class="form-control area1" placeholder="{{trans('home.about_app')}}" name="about_app"> {!! config('site_about_app') !!}</textarea>
+                                        <textarea class="form-control area1" placeholder="{{trans('home.about_app')}}" name="about_app"> {!! $configrations->about_app !!}</textarea>
                                     </fieldset>
                                 </div>
 
@@ -108,21 +108,21 @@
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <img src="{{config('image_200_logo')}}" width="150">
+                                    <img src="{{$configrations->logo}}" width="150">
                                 </div>
 
 
 
                                 <div class="form-group col-md-3">
-                                    <img src="{{ config('image_200_logo_footer')}}" width="150">
+                                    <img src="{{ $configrations->logo_footer}}" width="150">
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <img src="{{config('image_200_favicon')}}" width="150">
+                                    <img src="{{$configrations->favicon}}" width="150">
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <img src="{{ config('image_200_inspection_image')}}" width="150">
+                                    <img src="{{ $configrations->inspection_image}}" width="150">
                                 </div>
 
 
@@ -130,27 +130,27 @@
                                 <div class="form-group col-md-6">
                                     <fieldset class="form-group">
                                         <label for="address1">{{trans('home.address1')}}</label>
-                                        <input type="text" class="form-control" placeholder="{{trans('home.address1')}}" name="address1" value="{{ config('site_address1') }}">
+                                        <input type="text" class="form-control" placeholder="{{trans('home.address1')}}" name="address1" value="{{ $configrations->address1 }}">
                                     </fieldset>
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <fieldset class="form-group">
                                         <label for="address2">{{trans('home.address2')}}</label>
-                                        <input type="text" class="form-control" placeholder="{{trans('home.address2')}}" name="address2" value="{{ config('site_address2') }}">
+                                        <input type="text" class="form-control" placeholder="{{trans('home.address2')}}" name="address2" value="{{ $configrations->address2 }}">
                                     </fieldset>
                                 </div>
 
 
                                 <div class="form-group col-md-6">
                                     <label>{{trans('home.place_order_msg')}}</label>
-                                    <textarea class="form-control" name="place_order_msg" type="text" placeholder="{{trans('home.place_order_msg')}}">{{config('site_place_order_msg')}}</textarea>
+                                    <textarea class="form-control" name="place_order_msg" type="text" placeholder="{{trans('home.place_order_msg')}}">{{$configrations->place_order_msg}}</textarea>
                                 </div>
 
 
                                 <div class="form-group col-md-6">
                                     <label>{{trans('home.place_order_msg')}}</label>
-                                    <textarea class="form-control" name="place_order_message" type="text" placeholder="{{trans('home.place_order_msg')}}">{{config('site_place_order_msg')}}</textarea>
+                                    <textarea class="form-control" name="place_order_message" type="text" placeholder="{{trans('home.place_order_msg')}}">{{$configrations->place_order_msg}}</textarea>
                                 </div>
 
                                 <div class="form-group col-md-12">

@@ -198,7 +198,7 @@
 
                         @can('coupons')
                             <li class="nav-item @if(Request::segment(2) == 'coupons') active show @endif">
-                                <a class="nav-link" href="{{url('admin/coupons')}}"><i class="fas fa-id-card"></i><span class="sidemenu-label">{{trans('home.coupons')}}</span></a>
+                                <a class="nav-link" href="{{ route('admin.coupons.index') }}"><i class="fas fa-id-card"></i><span class="sidemenu-label">{{trans('home.coupons')}}</span></a>
                             </li>
                         @endcan
 
@@ -294,8 +294,8 @@
                                     <a class="nav-link with-sub" href=""><i class="fas fa-shipping-fast"></i><span class="sidemenu-label">{{trans('home.shipping')}}</span><i class="angle fe fe-chevron-right"></i></a>
                                     <ul class="nav-sub">
                                         @can('shipping-methods')
-                                            <li class="nav-sub-item @if(Request::segment(2) == 'shipping-methods') active @endif">
-                                                <a class="nav-sub-link" href="{{url('admin/shipping-methods')}}">{{trans('home.shippingMethods')}}</a>
+                                            <li class="nav-sub-item @if(Request::segment(2) == 'shipping') active @endif">
+                                                <a class="nav-sub-link" href="{{ route('admin.shipping.fees.index') }}">{{trans('home.shipping_fees')}}</a>
                                             </li>
                                         @endcan
                                         @can('deliveries')
@@ -303,9 +303,6 @@
                                                 <a class="nav-sub-link" href="{{url('admin/deliveries')}}">{{trans('home.deliveries')}}</a>
                                             </li>
                                         @endcan
-                                        <li class="nav-sub-item @if(Request::segment(2) == 'free_shipping') active @endif">
-                                            <a class="nav-sub-link" href="{{url('admin/free_shipping')}}">{{trans('home.Free Shipping')}}</a>
-                                        </li>
                                     </ul>
                                 </li>
                             @endcan
@@ -400,16 +397,16 @@
 
                             <div class="arrow_box_right">
                                 @if(app()->getLocale() == 'en')
-
-                                    <a href="{{ url('lang/ar') }}" class="dropdown-item py-1">
-                                        <img src="{{ URL::to('public/assets/back/img/flags/eg.png') }}" alt="Arabic Flag" class="langimg"/>
+                                    <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}" class="dropdown-item py-1">
+                                        <img src="{{ asset('public/assets/back/img/flags/eg.png') }}" alt="Arabic Flag" class="langimg"/>
                                     </a>
                                 @else
-                                    <a href="{{ url('lang/en') }}" class="dropdown-item py-1">
-                                            <img src="{{ URL::to('public/assets/back/img/flags/us.png') }}" alt="English Flag" class="langimg"/>
+                                    <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item py-1">
+                                        <img src="{{ asset('public/assets/back/img/flags/us.png') }}" alt="English Flag" class="langimg"/>
                                     </a>
                                 @endif
                             </div>
+
 
                             <div class="dropdown d-md-flex">
                                 <a class="nav-link icon full-screen-link">

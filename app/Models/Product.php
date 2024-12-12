@@ -213,6 +213,15 @@ class Product extends Model
     }
 
 
+    public function reviews($query){
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public function getReviewsCountAttribute(){
+        return $this->reviews->count();
+    }
+
+
 
 
 }

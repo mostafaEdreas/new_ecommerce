@@ -158,6 +158,10 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         require base_path('routes/admin/discounts.php');
         require base_path('routes/admin/products.php');
         require base_path('routes/admin/menu.php');
+        require base_path('routes/admin/shippingFees.php');
+        require base_path('routes/admin/seo-assistant.php');
+        require base_path('routes/admin/coupon.php');
+
         Route::get('', 'AdminController@admin');
         Route::get('/switch-theme', 'AdminController@switchTheme');
         Route::get('translations', 'AdminController@translations');
@@ -185,45 +189,14 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         Route::post('removeAttributeValue', 'AttributeController@removeAttributeValue')->name('removeAttributeValue');
         Route::post('updateAttributeValue', 'AttributeController@updateAttributeValue')->name('updateAttributeValue');
 
-        ///////// product operations///////////
-        Route::post('products/sub-categories', 'ProductController@getSubCategories');
-        Route::post('products/generate-barcode', 'ProductController@generateBarcode');
-        Route::post('products/changeCategory/{id}', 'ProductController@changeCategory');
-        Route::post('products/changeColors/{id}', 'ProductController@changeColors');
-        Route::post('products/uploadImages', 'ProductController@uploadImages');
-        Route::post('products/removeUploadImages', 'ProductController@removeUploadImages');
-        Route::post('products/sub-sub-categories', 'ProductController@productCategoryAttributes');
-        Route::post('/productCategoryAttributes', 'ProductController@productCategoryAttributes');
-        Route::post('product/deleteImege', 'ProductController@deleteImege');
-        Route::post('product/updatePriceList', 'ProductController@updatePriceList');
-        Route::delete('products/remove-product-attribute-value/{id}', 'ProductController@removeProductAttributeValue');
-        Route::post('products/add-product-attribute-value', 'ProductController@addProductAttributeValue');
-        Route::get('products/appends/doesntHaveAttr/{id}', 'ProductController@getDoesntHaveAttr');
-        Route::get('products/appends/doesntHaveVal', 'ProductController@getDoesntHaveVal');
-        Route::get('products/appends/doesntHaveAttr/{id}', 'ProductController@getDoesntHaveAttr');
-        Route::delete('products/images/delete-image/{image_id}', 'ProductController@deleteFromImages');
-        Route::post('products/images/save-image/{product_id}', 'ProductController@saveToImages');
-        Route::put('products/product-attribute/save-price', 'ProductController@addPriceToValue');
-        Route::get('products/product-attribute/handle-attributes', 'ProductController@handleAttributesInProduct');
-        Route::post('products/stock/new-group/{product_id}', 'ProductController@newGroupForStockAndPrice');
-        Route::post('products/stock/add-to-group/{stock_id}', 'ProductController@addToStock');
-        Route::delete('products/stock/delete-value', 'ProductController@removeValueFromStock');
+
 
 
 
 
 
         Route::resource('pages', 'PageController');
-        Route::resource('menu-items', 'MenuItemController');
 
-        Route::post('menuTypeValue', 'MenuItemController@menuTypeValue')->name('menuTypeValue');
-        Route::resource('intro-sliders', 'IntroSliderController');
-        Route::resource('home-sliders', 'HomeSliderController');
-        Route::resource('offers-sliders', 'OfferSliderController');
-        Route::resource('shipping-methods', 'ShippingMethodController');
-        Route::resource('payment-methods', 'PaymentMethodController');
-        Route::resource('coupons', 'CouponController');
-        Route::post('couponType', 'CouponController@couponType')->name('couponType');
         Route::resource('deliveries', 'DeliveryController');
         Route::resource('services', 'ServiceController');
 
@@ -242,8 +215,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
 
         Route::resource('contact-us-messages', 'ContactusController');
         Route::resource('pages', 'PageController');
-        Route::resource('blog-categories', 'BlogCategoryController');
-        Route::resource('blog-items', 'BlogItemController');
         Route::resource('home-images', 'HomeImageController');
 
         Route::resource('gallery-images', 'GalleryImageController');
@@ -271,7 +242,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         Route::post('orderProducts-report', 'ReportController@ordersProductsReportResult');
         Route::resource('winners', 'WinnerController');
         Route::resource('branches', 'BrancheController');
-        Route::resource('seo-assistant', 'SeoAssistantContoller');
         Route::resource('installmentPartners', 'InstallmentPartnerController');
 
         Route::get('top_header','TopHeaderController@index');

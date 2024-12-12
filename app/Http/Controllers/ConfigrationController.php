@@ -16,7 +16,8 @@ class ConfigrationController extends Controller
 
     public function show($lang)
     {
-        $data['configrations'] =Setting::where('lang',$lang)->first();
+        $data['configrations'] =  (object) Setting::where('lang', $lang)->get()->pluck('value_200', 'key')->toArray();
+
         $data['edit_lang'] = $lang;
         return view('admin.configrations.configration', $data);
     }
@@ -34,7 +35,7 @@ class ConfigrationController extends Controller
                 if (in_array($key , Setting::IMAGES)) {
                     $saveImage = new SaveImageTo3Path($value,true);
                     $fileName = $saveImage->saveImages('settings');
-                    SaveImageTo3Path::deleteImage(config("image_$key"),'settings');
+                    SaveImageTo3Path::deleteImage($row->value,'settings');
                     $value = $fileName;
                 }
 

@@ -15,7 +15,7 @@ class Attribute extends Model
 {
 
     use HasFactory;
-    private $lang ;
+
 	protected $table = 'attributes';
 
     protected $fillable = [
@@ -24,6 +24,7 @@ class Attribute extends Model
         'status',
     ];
 
+    private $lang ;
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

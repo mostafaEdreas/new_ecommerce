@@ -56,6 +56,13 @@ return new class extends Migration
             $table->text('categories_meta_desc_ar')->nullable();
             $table->string('categories_meta_robots')->nullable();
 
+
+            $table->string('products_meta_title_en')->nullable();
+            $table->text('products_meta_desc_en')->nullable();
+            $table->string('products_meta_title_ar')->nullable();
+            $table->text('products_meta_desc_ar')->nullable();
+            $table->string('products_meta_robots')->nullable();
+
             $table->timestamps();
         });
     }

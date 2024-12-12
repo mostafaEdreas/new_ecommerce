@@ -4,9 +4,7 @@ namespace App\Models;
 
 use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
-use stdClass;
 use Carbon\Carbon ;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Coupon extends Model
 {
@@ -41,11 +39,11 @@ class Coupon extends Model
         if ($this->users()->exists()) {
             $errors[] = 'The used coupon cannot be deleted.';
         }
-      
+
         if(count( $errors)){
             return $errors;
            }
-           
+
            return parent::delete();
     }
 
@@ -78,10 +76,22 @@ class Coupon extends Model
     }
 
 
-    public function getTypeAttribute()
+    public function getDiscountTypeTextAttribute()
     {
         return $this->discount_type ?  __('home.percentage') :__('home.amount') ;
     }
+
+
+    public function getStartDateAttribute($value)
+    {
+        return  Carbon::parse($value) ->format('Y-m-d') ;
+    }
+
+    public function getEndDateAttribute($value)
+    {
+        return Carbon::parse($value) ->format('Y-m-d') ;
+    }
+
 
 
 

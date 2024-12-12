@@ -440,7 +440,7 @@ return [
     'go_home' => 'Go Home',
     'you must have at least one address to calculate shipping' => 'You must have at least one address to calculate shipping' ,
     'shipping_free_in' => 'Shipping free when or order greater than' ,
-
+'discount_type' => 'Discount type' ,
     'main_page' => "Main Page",
 
     'height' => 'Height',

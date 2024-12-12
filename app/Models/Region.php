@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Helper;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
@@ -11,6 +12,15 @@ class Region extends Model
     //
     protected $table='regions';
 
+    private $lang ;
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        // Set the current locale dynamically
+        $this->lang = Helper::getLang();
+
+    }
     public function delete()
     {
         if ( $this->addresses) {
@@ -41,5 +51,9 @@ class Region extends Model
     function scopeCheckBeforDelete($query){
         return $query->whereHas('addresses')
         ->orWhereHas('areas');
+    }
+
+    public function getNameAttribute(){
+        return $this->{'name_'.$this->lang};
     }
 }
