@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\AboutStrucController;
-use App\Http\Controllers\WebsiteController;
-use App\Models\Setting;
+
 use Illuminate\Support\Facades\Artisan;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Auth;
@@ -159,6 +157,7 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
         require base_path('routes/admin/categories.php');
         require base_path('routes/admin/discounts.php');
         require base_path('routes/admin/products.php');
+        require base_path('routes/admin/menu.php');
         Route::get('', 'AdminController@admin');
         Route::get('/switch-theme', 'AdminController@switchTheme');
         Route::get('translations', 'AdminController@translations');
@@ -215,7 +214,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
 
 
         Route::resource('pages', 'PageController');
-        Route::resource('menus', 'MenuController');
         Route::resource('menu-items', 'MenuItemController');
 
         Route::post('menuTypeValue', 'MenuItemController@menuTypeValue')->name('menuTypeValue');

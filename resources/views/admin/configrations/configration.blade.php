@@ -9,7 +9,7 @@
         <!-- Page Header -->
         <div class="page-header">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-5">{{trans('home.edit_configration')}} {{trans("home.config('')")}}</h2>
+                <h2 class="main-content-title tx-24 mg-b-5">{{trans('home.edit_configration')}} {{trans("home.$edit_lang")}}</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('/admin')}}">{{trans('home.admin')}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{trans('home.edit_configration')}} {{trans("home.$edit_lang")}}</li>
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="app_name">{{trans('home.top text')}}</label>
-                                    <input type="text"  class="form-control" placeholder="{{trans('home.top text')}}" name="top_text" value="{{ config('site_top_text') }}">
+                                    <input type="text"  class="form-control" placeholder="{{trans('home.top text')}}" name="top_text" value="{!! config('site_top_text') !!}">
                                 </div>
 
                                 <div class="form-group col-md-12">
@@ -62,7 +62,7 @@
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="app_logo">
+                                            <input type="file" class="custom-file-input" name="logo">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>
@@ -75,7 +75,7 @@
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="app_footer_logo">
+                                            <input type="file" class="custom-file-input" name="logo_footer">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="about_image">
+                                            <input type="file" class="custom-file-input" name="favicon">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>
@@ -101,42 +101,28 @@
                                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="inspection_request_image">
+                                            <input type="file" class="custom-file-input" name="inspection_image">
                                             <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    @if($configrations->app_logo)
-                                        <img src="{{url('\uploads\settings\source')}}\{{$configration->app_logo}}" width="150">
-                                    @else
-                                    <img src="{{Helper::$noimage}}" width="150">
-                                    @endif
+                                    <img src="{{config('image_200_logo')}}" width="150">
+                                </div>
+
+
+
+                                <div class="form-group col-md-3">
+                                    <img src="{{ config('image_200_logo_footer')}}" width="150">
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    @if($configrations->app_footer_logo)
-                                        <img src="{{url('\uploads\settings\source')}}\{{$configration->app_footer_logo}}" width="150">
-                                    @else
-                                        <img src="{{Helper::$noimage}}" width="150">
-                                    @endif
+                                    <img src="{{config('image_200_favicon')}}" width="150">
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    @if($configrations->about_image)
-                                        <img src="{{url('\uploads\settings\source')}}\{{$configration->about_image}}" width="150">
-                                    @else
-                                        <img src="{{Helper::$noimage}}" width="150">
-                                    @endif
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    @if($configrations->inspection_request_image)
-                                        <img src="{{url('uploads/settings/source/'.$configration->inspection_request_image)}}" width="150">
-                                    @else
-                                        <img src="{{Helper::$noimage}}" width="150">
-                                    @endif
+                                    <img src="{{ config('image_200_inspection_image')}}" width="150">
                                 </div>
 
 
@@ -144,15 +130,27 @@
                                 <div class="form-group col-md-6">
                                     <fieldset class="form-group">
                                         <label for="address1">{{trans('home.address1')}}</label>
-                                        <input type="text" class="form-control" placeholder="{{trans('home.address1')}}" name="address1" value="{{ $configrations->address1 }}">
+                                        <input type="text" class="form-control" placeholder="{{trans('home.address1')}}" name="address1" value="{{ config('site_address1') }}">
                                     </fieldset>
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <fieldset class="form-group">
                                         <label for="address2">{{trans('home.address2')}}</label>
-                                        <input type="text" class="form-control" placeholder="{{trans('home.address2')}}" name="address2" value="{{ $configrations->address2 }}">
+                                        <input type="text" class="form-control" placeholder="{{trans('home.address2')}}" name="address2" value="{{ config('site_address2') }}">
                                     </fieldset>
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+                                    <label>{{trans('home.place_order_msg')}}</label>
+                                    <textarea class="form-control" name="place_order_msg" type="text" placeholder="{{trans('home.place_order_msg')}}">{{config('site_place_order_msg')}}</textarea>
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+                                    <label>{{trans('home.place_order_msg')}}</label>
+                                    <textarea class="form-control" name="place_order_message" type="text" placeholder="{{trans('home.place_order_msg')}}">{{config('site_place_order_msg')}}</textarea>
                                 </div>
 
                                 <div class="form-group col-md-12">

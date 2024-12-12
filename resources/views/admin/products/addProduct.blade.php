@@ -46,7 +46,7 @@
                     <select class="form-control select2" name="category_id" >
                         <option value="null" @selected(!old('category_id') )> {{__('home.no category') }} </option>
                         @foreach($categories as $category)
-                            <option value="{{$category->id}}" @selected(old('category_id') == $category->id )>{{ $brand->name }}</option>
+                            <option value="{{$category->id}}" @selected(old('category_id') == $category->id )>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -68,11 +68,11 @@
                     <label>{{trans('home.main_image')}} (50px  * 50px max 1mb)</label>
                     <div class="input-group mb-1">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"> {{trans('home.upload')}}</span>
+                            <span class="input-group-text"  id="inputGroupFileAddon01"> {{trans('home.upload')}}</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="main_image">
-                            <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
+                            <inputtype="file" class="custom-file-input"  aria-describedby="inputGroupFileAddon01" id="main_image" name="main_image">
+                            <label class="custom-file-label" for="main_image">{{trans('home.choose_image')}}</label>
                         </div>
                     </div>
                 </div>
@@ -84,8 +84,8 @@
                             <span class="input-group-text"> {{trans('home.upload')}}</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="second_image">
-                            <label class="custom-file-label" for="inputGroupFile01">{{trans('home.choose_image')}}</label>
+                            <input type="file" class="custom-file-input" id="second_image" name="second_image">
+                            <label class="custom-file-label" for="second_image">{{trans('home.choose_image')}}</label>
                         </div>
                     </div>
                 </div>

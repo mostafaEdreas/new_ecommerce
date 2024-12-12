@@ -19,6 +19,12 @@ class ContactUs extends Model
     ];
 
 	public static function messageCount(){
-	    return ContactUs::where('admin_seen',0)->count();
+	    return ContactUs::where('seen',0)->count();
 	}
+
+
+    public  function getBgGroundAttribute($value){
+	    return $this->seen ? 'bg-light' : '';
+	}
+
 }

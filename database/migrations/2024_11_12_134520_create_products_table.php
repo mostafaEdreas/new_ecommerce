@@ -23,9 +23,8 @@ return new class extends Migration
             $table->longText('text_en')->nullable();
             $table->longText('short_text_ar')->nullable();
             $table->longText('short_text_en')->nullable();
-            $table->string('main_image',20);
-            $table->string('second_image',20)->nullable();
-            $table->string('icon',255)->nullable();
+            $table->string('main_image',50);
+            $table->string('second_image',50)->nullable();
             $table->string('status',255)->nullable()->default(0);
             $table->string('link_ar',255)->unique();
             $table->string('link_en',255)->unique();

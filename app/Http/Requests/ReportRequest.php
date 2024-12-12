@@ -27,7 +27,7 @@ class ReportRequest extends FormRequest
         return [
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
-            'icon' => 'nullable|image|mimes:png,JPEG,GIF,TIF,BMP,jpg,webp',
+            'icon' => 'nullable|image|mimes:png,jpeg,png,gif,bmp,webp',
             'number' => 'required|integer',
             'status' => 'nullable|boolean',
         ];

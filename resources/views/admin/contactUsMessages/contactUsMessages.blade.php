@@ -12,6 +12,12 @@
                     <li class="breadcrumb-item active" aria-current="page">{{trans('home.contactUsMessages')}}</li>
                 </ol>
             </div>
+
+            <div class="btn btn-list">
+                <a href="{{url('admin/counters/create')}}"><button class="btn ripple btn-primary"><i class="fas fa-plus-circle"></i> {{trans('home.add')}}</button></a>
+                <a id="btn_active"><button class="btn ripple btn-dark"><i class="fas fa-eye"></i> {{trans('home.publish/unpublish')}}</button></a>
+                <a id="btn_delete" ><button class="btn ripple btn-danger"><i class="fas fa-trash"></i> {{trans('home.delete')}}</button></a>
+            </div>
         </div>
         <!-- End Page Header -->
 
@@ -44,18 +50,16 @@
                                     <th>{{trans('home.name')}}</th>
                                     <th>{{trans('home.email')}}</th>
                                     <th>{{trans('home.phone')}}</th>
-                                    <th>{{trans('home.seen')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($contactUsMessages as $contactUsMessage)
                                     <tr id="{{$contactUsMessage->id}}">
-                                        <td> <input type="checkbox" name="checkbox"  class="tableChecked" value="{{$contactUsMessage->id}}" /> </td>
-                                        <td><a href="{{ route('contact-us-messages.edit', $contactUsMessage->id) }}">{{$contactUsMessage->id}}</a></td>
-                                        <td><a href="{{ route('contact-us-messages.edit', $contactUsMessage->id) }}">{{$contactUsMessage->name}}</a></td>
-                                        <td><a href="{{ route('contact-us-messages.edit', $contactUsMessage->id) }}">{{$contactUsMessage->email}}</a></td>
-                                        <td><a href="{{ route('contact-us-messages.edit', $contactUsMessage->id) }}">{{$contactUsMessage->phone}}</a></td>
-                                        <td><a href="{{ route('contact-us-messages.edit', $contactUsMessage->id) }}">{{$contactUsMessage->admin_seen==1?__('home.seen'):__('home.not_seen')}}</a></td>
+                                        <td class=" {{$contactUsMessage->bg_ground}}"><input type="checkbox" name="checkbox"  class="tableChecked" value="{{$contactUsMessage->id}}" /> </td>
+                                        <td class=" {{$contactUsMessage->bg_ground}}"><a href="{{ route('contact-us-messages.show', $contactUsMessage->id) }}">{{$contactUsMessage->id}}</a></td>
+                                        <td class=" {{$contactUsMessage->bg_ground}}"><a href="{{ route('contact-us-messages.show', $contactUsMessage->id) }}">{{$contactUsMessage->name}}</a></td>
+                                        <td class=" {{$contactUsMessage->bg_ground}}"><a href="{{ route('contact-us-messages.show', $contactUsMessage->id) }}">{{$contactUsMessage->email}}</a></td>
+                                        <td class=" {{$contactUsMessage->bg_ground}}"><a href="{{ route('contact-us-messages.show', $contactUsMessage->id) }}">{{$contactUsMessage->phone}}</a></td>
                                     </tr>
                                 @endforeach
 

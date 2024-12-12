@@ -13,7 +13,16 @@ return array(
     'stock' => 'المخزون' ,
     'edit_product_stock' => 'نعديل مخزون منتج' ,
 
+    'doesnt_use' => 'لا يوجد' ,
+    'free' => 'مجانى' ,
+    'one_cost' => 'تكلفة موحده' ,
+    'by_place' => 'حسب المنطقه' ,
+    'use_shipping_details' => 'استخدام البيانات الخاصه بنا',
 
+    'go_to_site' => 'ذهاب الى الموقع' ,
+    'main_page' => "الذهاب الي الموقع",
+    'shipping_free_in' => 'الشحن مجانى عندما يكون الطلب اكبر من' ,
+    'you must have at least one address to calculate shipping' => 'يجب ان يكون لديك عنوان لحساب قيمه الشحن' ,
 
 
     'cannot delete' => 'لا يمكن الحذف' ,

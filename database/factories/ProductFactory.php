@@ -29,7 +29,6 @@ class ProductFactory extends Factory
             'short_text_en' => $this->faker->sentence,
             'main_image' => $this->faker->imageUrl(640, 480, 'products'),
             'second_image' => $this->faker->imageUrl(640, 480, 'products'),
-            'icon' => $this->faker->imageUrl(100, 100, 'icons'),
             'status' => $this->faker->boolean,
             'link_ar' => $this->faker->unique()->url,
             'link_en' => $this->faker->unique()->url,

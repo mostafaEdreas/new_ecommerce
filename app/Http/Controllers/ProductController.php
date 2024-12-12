@@ -38,7 +38,7 @@ class ProductController extends Controller
 
 
 
-   
+
     /////// function return first level sub categories//////
     public function getSubCategories(){
         $categoryId = $_POST['categoryId'];
@@ -89,7 +89,7 @@ class ProductController extends Controller
 
         $product = Product::create($data) ;
 
-        $product->attributes()->delete();
+    
         foreach ($data['attributes'] ??  [] as  $value) {
             $product->attributes()->create(['attribute_id' => $value]);
 
@@ -135,7 +135,7 @@ class ProductController extends Controller
         $product->update( $data);
 
         $product->attributes()->delete();
-       
+
         foreach ($data['attributes'] ??  [] as $key => $value) {
             $product->attributes()->create(['attribute_id' => $value]);
 

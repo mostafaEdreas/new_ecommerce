@@ -14,6 +14,11 @@ return [
     'cannot delete an product that has related orders' => 'Cannot delete an product that has related orders' ,
     'product not found' => 'Product not found' ,
     'add_values_to' => 'Add values to' ,
+    'doesnt_use' => 'Doesnt use' ,
+    'free' => 'Free' ,
+    'one_cost' => 'One cost' ,
+    'by_place' => 'By place' ,
+    'use_shipping_details' => 'Use shipping details',
     'stocks' => 'Stocks' ,
     'stock' => 'Stock' ,
     'edit_product_stock' => 'Edit product stock' ,
@@ -433,6 +438,11 @@ return [
     'generate_invoice' => 'Generate Invoice',
     'get_in_touch' => 'Get in touch',
     'go_home' => 'Go Home',
+    'you must have at least one address to calculate shipping' => 'You must have at least one address to calculate shipping' ,
+    'shipping_free_in' => 'Shipping free when or order greater than' ,
+
+    'main_page' => "Main Page",
+
     'height' => 'Height',
     'hello' => 'Hello',
     'hex_code' => 'Hex Code',

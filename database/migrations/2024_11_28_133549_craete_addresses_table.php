@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('area_id')->constrained('areas')->onDelete('cascade');
             $table->string('phone');
             $table->boolean('is_primary')->nullable()->default(0);
+            $table->boolean('for_bill')->nullable()->default(0);
             $table->foreignId('user_id');
             $table->boolean('status')->nullable()->default(1);
 

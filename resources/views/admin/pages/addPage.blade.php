@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-sm-12 col-xl-12 col-lg-12">
                 <div class="card custom-card overflow-hidden">
-                    
+
                     <div class="card-body">
                         <div>
                             <h6 class="card-title mb-1">{{trans('home.add_page')}}</h6>
@@ -43,8 +43,8 @@
                                     <label for="text_en"> {{trans('home.text_en')}}</label>
                                     <textarea class="area1" name="text_en"></textarea>
                                 </div>
-                                
-                                <div class="form-group col-md-12">
+
+                                <div class="form-group col-md-6">
                                     <label for="text_ar"> {{trans('home.text_ar')}}</label>
                                     <textarea class="area1" name="text_ar"></textarea>
                                 </div>
@@ -54,41 +54,40 @@
                                         <input name="status" value="1" type="checkbox"><span class="tx-13">{{trans('home.publish')}}</span>
                                     </label>
                                 </div>
-                                
+
                                 <div class="col-12">
                                     <div class="row">
-                                        <!--<div class="form-group col-md-12">-->
-                                        <!--    <hr>-->
-                                        <!--    <span class="badge badge-success">{{trans('home.en')}}</span>-->
-                                        <!--</div>-->
-                                        <!--<div class="form-group col-md-6">-->
-                                        <!--    <label for="meta_title"> {{trans('home.meta_title')}}</label>-->
-                                        <!--    <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title')}}"></textarea>-->
-                                        <!--</div>-->
-                                        
-                                        <!--<div class="form-group col-md-6">-->
-                                        <!--    <label for="meta_desc"> {{trans('home.meta_desc')}}</label>-->
-                                        <!--    <textarea class="form-control" name="meta_desc_en" placeholder="{{trans('home.meta_desc')}}"></textarea>-->
-                                        <!--</div>-->
-                                        
+                                        <div class="form-group col-md-12">
+                                            <hr>
+                                            <span class="badge badge-success">{{trans('home.en')}}</span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="meta_title"> {{trans('home.meta_title_en')}}</label>
+                                            <textarea class="form-control" name="meta_title_en" placeholder="{{trans('home.meta_title_en')}}"></textarea>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="meta_desc"> {{trans('home.meta_desc_en')}}</label>
+                                            <textarea class="form-control" name="mete_description_en" placeholder="{{trans('home.meta_desc_en')}}"></textarea>
+                                        </div>
+
                                         <div class="form-group col-md-12">
                                             <hr>
                                             <span class="badge badge-success">{{trans('home.ar')}}</span>
                                         </div>
-                                        
+
                                         <div class="form-group col-md-6">
-                                            <label for="meta_title"> {{trans('home.meta_title')}}</label>
-                                            <textarea class="form-control" name="meta_title_ar" placeholder="{{trans('home.meta_title')}}"></textarea>
+                                            <label for="meta_title"> {{trans('home.meta_title_ar')}}</label>
+                                            <textarea class="form-control" name="meta_title_ar" placeholder="{{trans('home.meta_title_ar')}}"></textarea>
                                         </div>
-                                        
+
                                         <div class="form-group col-md-6">
                                             <label for="meta_desc"> {{trans('home.meta_desc')}}</label>
-                                            <textarea class="form-control" name="meta_desc_ar" placeholder="{{trans('home.meta_desc')}}"></textarea>
+                                            <textarea class="form-control" name="mete_description_ar" placeholder="{{trans('home.meta_desc_ar ')}}"></textarea>
                                         </div>
-                                        
+
                                         <div class="form-group col-md-12">
                                             <label class="ckbox">
-                                                <input name="meta_robots" value="1" type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
+                                                <input name="index" checked value="1" type="checkbox"><span class="tx-13">{{trans('home.meta_robots')}} (index)</span>
                                             </label>
                                         </div>
                                     </div>
@@ -99,7 +98,7 @@
                                     <button type="submit" class="btn btn-success"><i class="icon-note"></i> {{trans('home.save')}} </button>
                                     <a href="{{url('/admin/pages')}}"><button type="button" class="btn btn-danger mr-1"><i class="icon-trash"></i> {{trans('home.cancel')}}</button></a>
                                 </div>
-                                
+
                             </div>
                         {!! Form::close() !!}
                     </div>

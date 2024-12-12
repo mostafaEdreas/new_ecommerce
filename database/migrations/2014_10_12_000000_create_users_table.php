@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('l_name');
             $table->string('phone');
             $table->string('email')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image',50)->nullable();
             $table->string('them')->nullable()->default('default');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable()->default(Hash::make(date('YmdHi')));

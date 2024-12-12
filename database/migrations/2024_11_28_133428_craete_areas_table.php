@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ar')->unique();
-            $table->string('name_en')->unique();
+            $table->string('name_ar');
+            $table->string('name_en');
             $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
             $table->boolean('status')->nullable()->default(1);
+            $table->unique(['name_ar' , 'region_id']);
+            $table->unique(['name_en' , 'region_id']);
             $table->timestamps();
         });
     }

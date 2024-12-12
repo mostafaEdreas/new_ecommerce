@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\SaveImageTo3Path;
-use Illuminate\Http\Request;
-use App\Models\Configration;
-use File;
-use Image;
+
+use App\Http\Requests\ConfigrationRequest;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 class ConfigrationController extends Controller
 {
     public function __construct(){
@@ -15,22 +16,47 @@ class ConfigrationController extends Controller
 
     public function show($lang)
     {
-        //
-        $configrations =Configration::where('lang',$lang)->first();
-        return view('admin.configrations.configration',compact('configrations'));
+        $data['configrations'] =Setting::where('lang',$lang)->first();
+        $data['edit_lang'] = $lang;
+        return view('admin.configrations.configration', $data);
     }
 
 
-    public function update(Request $request, $lang)
+    public function update(ConfigrationRequest $request, $lang)
     {
-        $configration = Configration::where('lang',$lang)->first();
-        $configration -> app_name = $request -> app_name;
-        $configration -> about_app = $request -> about_app;
-        $configration -> address1 = $request -> address1;
-        $configration -> address2 = $request -> address2;
-        $configration -> top_text = $request -> top_text;
-        if ($request->hasFile("app_logo")) {
 
+        try {
+            DB::beginTransaction();
+            $data = $request->validated() ;
+            foreach ($data as $key => $value) {
+                $row = Setting::whereLang($lang)
+                ->where('key' , $key)->first();
+                if (in_array($key , Setting::IMAGES)) {
+                    $saveImage = new SaveImageTo3Path($value,true);
+                    $fileName = $saveImage->saveImages('settings');
+                    SaveImageTo3Path::deleteImage(config("image_$key"),'settings');
+                    $value = $fileName;
+                }
+
+                if($row){
+                    $row->update(['value' => $value]);
+                }else{
+                    Setting::create(['key' => $key , 'value' =>  $value , 'lang' => $lang]);
+                }
+            }
+            DB::commit();
+
+            Cache::forget("settings_$lang");
+            Cache::forget("settings_Images");
+            Cache::forget("settings_Images_200");
+
+            return back()->with('success',trans('home.configurations_updated_successfully'));
+        } catch (\Exception $ex) {
+           DB::rollBack() ;
+           return redirect()->back()->withErrors($ex->getMessage());
+        }
+
+        if ($request->hasFile("app_logo")) {
             $saveImage = new SaveImageTo3Path(request()->file('app_logo'),true);
             $fileName = $saveImage->saveImages('settings');
             SaveImageTo3Path::deleteImage($configration->app_logo,'settings');
@@ -60,7 +86,7 @@ class ConfigrationController extends Controller
             $configration->inspection_request_image = $fileName;
         }
 
-        $configration->save() ;
+
         return back()->with('success',trans('home.configurations_updated_successfully'));
     }
 }

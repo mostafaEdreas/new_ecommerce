@@ -26,22 +26,12 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
-       
+
         Schema::defaultStringLength(191);
-        
+
         view()->composer('*', function($view){
             $lang = LaravelLocalization::getCurrentLocale();
-            $configurations = Cache::remember("settings_$lang", 3600, function () use ($lang) {
-                return Setting::whereLang($lang)
-                    ->orWhere('lang', 'all')
-                    ->orWhereNull('lang')
-                    ->get()
-                    ->mapWithKeys(function ($config) {
-                        return ['site_' . $config->key => $config->value];
-                    })
-                    ->toArray();
-            });
-            config()->set($configurations);
+
             View::share('lang', $lang);
         });
     }

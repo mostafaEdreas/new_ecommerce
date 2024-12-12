@@ -13,11 +13,18 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('name_ar')->unique();
-            $table->string('name_en')->unique();
-            $table->longText('content_ar');
-            $table->longText('content_en');
-            $table->string('status',255)->nullable()->default(0);
+            $table->string('title_ar')->unique();
+            $table->string('title_en')->unique();
+            $table->longText('text_ar');
+            $table->longText('text_en');
+            $table->string('link_ar',255)->unique();
+            $table->string('link_en',255)->unique();
+            $table->string('mete_title_ar',255)->nullable();
+            $table->string('mete_title_en',255)->nullable();
+            $table->longText('mete_description_ar')->nullable();
+            $table->longText('mete_description_en')->nullable();
+            $table->string('status',255)->nullable()->default(1);
+            $table->boolean('index')->default(0)->nullable();
             $table->timestamps();
         });
     }

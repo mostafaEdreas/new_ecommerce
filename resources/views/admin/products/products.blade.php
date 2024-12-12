@@ -58,7 +58,7 @@
                                         <td><a href="{{ route('products.edit', $product->id) }}">{{$product->name_ar}}</a></td>
                                         <td>
                                             <a href="{{ route('products.edit', $product->id) }}">
-                                                <img style="border-radius:50%" src="{{$product->image_200}}"  alt="product-image" title="{{$product->name}}" width="50" height="50">
+                                                <img style="border-radius:50%" src="{{$product->main_image_200}}"  alt="product-image" title="{{$product->name}}" width="50" height="50">
                                             </a>
                                         </td>
                                         <td><a href="{{ route('products.edit', $product->id) }}"> {{ $product->category_name ?? __('home.no category') }} </a></td>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('key');
             $table->text('value')->nullable();
             $table->string('lang')->nullable()->default('all');
+            $table->unique(['lang' , 'key']);
             $table->timestamps();
         });
 

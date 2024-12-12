@@ -71,7 +71,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function getPrimaryAddressAttribute(){
-        return $this->addresses()->where('is_primary', 1)->first();
+        return $this->addresses()->where('is_primary', 1)->first() ?? $this->addresses()->first() ;
     }
 
 

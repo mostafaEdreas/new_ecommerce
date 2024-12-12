@@ -30,8 +30,8 @@ class BrandsRequest extends FormRequest
             'order' => 'nullable|integer',
             'text_ar' => 'nullable|string',
             'text_en' => 'nullable|string',
-            'image' => 'nullable|image|mimes:JPEG,PNG,GIF,BMP,WebP|max:1024',  // Allows jpeg, png, jpg, gif, svg, and webp formats with a max size of 1MB
-            'icon' => 'nullable|image|mimes:JPEG,PNG,GIF,BMP,WebP|max:1024',   // Allows jpeg, png, jpg, gif, svg, and webp formats with a max size of 1MB
+            'image' => 'nullable|image|mimes:jpeg,png,gif,bmp,webp|max:1024',
+            'icon' => 'nullable|image|mimes:jpeg,png,gif,bmp,webp|max:1024',  
             'status' => 'nullable|string|max:255',
             'link_ar' => 'required|string|max:255|unique:categories,link_ar,' .$this->route('brand'),
             'link_en' => 'required|string|max:255|unique:categories,link_en,' . $this->route('brand'),

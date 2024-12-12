@@ -24,6 +24,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\ApiLocalization::class,
         \App\Http\Middleware\ConvertNullStringToNull::class,
         \App\Http\Middleware\FormatLinkFields::class,
+        \App\Http\Middleware\GlobalConfigMiddleware::class,
         // \App\Http\Middleware\VerifyCsrfToken::class,
     ];
 

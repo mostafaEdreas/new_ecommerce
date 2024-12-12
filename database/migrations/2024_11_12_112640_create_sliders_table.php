@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('text_ar')->nullable();
             $table->text('text_en')->nullable();
             $table->string('video_link')->nullable();
-            $table->string('image',25)->nullable();
+            $table->string('image',50)->nullable();
             $table->integer('order')->nullable()->nullable()->default(1);
             $table->string('type',50)->nullable()->default('home');
             $table->boolean('status')->nullable()->default(0);

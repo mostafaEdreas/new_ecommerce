@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('number')->unique();
             $table->foreignId('address_id')->constrained('addresses');
+            $table->foreignId('bill_address_id')->constrained('addresses');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('delivery_id')->constrained('deliveries');
-            $table->foreignId('payment_id')->constrained('payment_methods');
+            $table->string('payment_methods')->constrained(table: 'on delivered');
             $table->decimal('payment_fees', 10, 2)->nullable()->default(0.00);
-            $table->foreignId('shipping_id')->constrained('shipping_methods');
+            $table->string('shipping_methods')->default('one cost');
             $table->decimal('shipping_fees', 10, 2)->nullable()->default(0.00);
             $table->decimal('products_price', 10, 2)->nullable()->default(0.00);
             $table->foreignId('coupon_id')->constrained('coupons');

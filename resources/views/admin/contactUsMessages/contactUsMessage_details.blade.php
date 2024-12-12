@@ -10,7 +10,7 @@
                 <h2 class="main-content-title tx-24 mg-b-5">{{trans('home.contactUsMessages')}}</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('/admin')}}">{{trans('home.admin')}}</a></li>
-                    <li class="breadcrumb-item"><a href="{{url('admin/countries')}}">{{trans('home.contactUsMessages')}}</a></li>
+                    <li class="breadcrumb-item"><a href="{{url('admin/contact-us-messages')}}">{{trans('home.contactUsMessages')}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{trans('home.contactUsMessage')}}</li>
                 </ol>
             </div>

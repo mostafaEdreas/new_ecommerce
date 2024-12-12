@@ -18,8 +18,8 @@ return new class extends Migration
             $table->longText('text_ar')->nullable();
             $table->longText('text_en')->nullable();
             $table->string('video_link')->nullable();
-            $table->string('image',255)->nullable();
-            $table->string('banner',255)->nullable();
+            $table->string('image',50)->nullable();
+            $table->string('banner',50)->nullable();
             $table->timestamps();
         });
     }
