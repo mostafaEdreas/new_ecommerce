@@ -13,6 +13,12 @@ return array(
     'stock' => 'المخزون' ,
     'edit_product_stock' => 'نعديل مخزون منتج' ,
 
+    'This coupon has reached its maximum usage limit.' => 'لقد وصل هذا الكوبون إلى الحد الأقصى للاستخدام.',
+    'This coupon is not valid yet.' => 'هذا الكوبون غير صالح حتى الآن.',
+    'This coupon has expired.' => 'انتهت صلاحية هذا الكوبون.',
+    'You have already used this coupon.' => 'لقد استخدمت هذا الكوبون بالفعل.',
+    'This coupon requires your order amount to be greater than the minimum required.' => 'يتطلب هذا الكوبون أن يكون إجمالي الطلب أكبر من الحد الأدنى المطلوب.',
+
     'discount_type' => 'نوع الخصم' ,
 
     'doesnt_use' => 'لا يوجد' ,

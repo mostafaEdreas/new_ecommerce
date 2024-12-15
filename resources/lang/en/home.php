@@ -443,6 +443,12 @@ return [
 'discount_type' => 'Discount type' ,
     'main_page' => "Main Page",
 
+    'This coupon has reached its maximum usage limit.' => 'This coupon has reached its maximum usage limit.',
+    'This coupon is not valid yet.' => 'This coupon is not valid yet.',
+    'This coupon has expired.' => 'This coupon has expired.',
+    'You have already used this coupon.' => 'You have already used this coupon.',
+    'This coupon requires your order amount to be greater than the minimum required.' => 'This coupon requires your order amount to be greater than the minimum required.',
+
     'height' => 'Height',
     'hello' => 'Hello',
     'hex_code' => 'Hex Code',

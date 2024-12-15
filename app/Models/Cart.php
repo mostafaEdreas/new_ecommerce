@@ -15,66 +15,86 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function coupon(){
+    public function coupon()
+    {
         return $this->belongsTo(Coupon::class);
     }
 
-    public function items(){
+    public function items()
+    {
         return $this->hasMany(CartItems::class);
     }
 
-    public function getCouponNameAtrribute(){
-        return $this->coupon?->name ;
-    }
-
-    public function getCouponStratDateAtrribute(){
-        return $this->coupon?->end_data ;
-    }
-    public function getCouponEndDateAtrribute(){
-        return $this->coupon?->start_data ;
-    }
-
-    public function getCouponTypeAtrribute(){
-        return $this->coupon?->type ;
-    }
-
-    public function getTotalPriceAttribute ()
+    public function getCouponNameAttribute()
     {
-        return  $this->items()->sum('total');
+        return $this->coupon?->name;
     }
 
-
-    public function checkPrice ()
+    public function getCouponStartDateAttribute()
     {
-        return  $this->total_price >= $this->coupon?->min_price ; 
+        return $this->coupon?->start_date;
     }
 
+    public function getCouponEndDateAttribute()
+    {
+        return $this->coupon?->end_date;
+    }
 
+    public function getCouponTypeAttribute()
+    {
+        return $this->coupon?->type;
+    }
+
+    // Total price of items in the cart
+    public function getTotalPriceAttribute()
+    {
+        return $this->items()->sum('total');
+    }
+
+    // Calculate coupon amount based on the type of discount
     public function getCouponAmountAttribute()
     {
-        if(!$this->coupon?->discount_type){
-            return $this->coupon?->discount ;
+        if ($this->coupon) {
+            if ($this->coupon->discount_type) {
+                // Percentage discount
+                return ($this->coupon->discount * $this->total_price) / 100;
+            }
+            // Fixed discount value
+            return $this->coupon->discount;
         }
-        return  $this->coupon?->discount * $this->total_price / 100  ; // hhandle after create product model
+        return 0;
     }
 
-
-    public function getCouponPercentaAttribute()
+    // Calculate coupon percentage (if discount type is percentage)
+    public function getCouponPercentageAttribute()
     {
-        if($this->coupon?->discount_type){
-            return $this->coupon?->discount ;
+        if ($this->coupon) {
+            if ($this->coupon->discount_type) {
+                return $this->coupon->discount;
+            }
+            return ($this->coupon->discount / $this->total_price) * 100;
         }
-        return  $this->coupon?->discount / $this->total_price * 100  ; // hhandle after create product model
+        return 0;
     }
 
-    public function getNetTotalPriceAttribute ()
+    // Net total price after applying coupon (if applicable)
+    public function getNetTotalPriceAttribute()
     {
-        return  $this->total_price - $this->coupon_amount ;
+        return $this->can_use_coupon ? $this->total_price - $this->coupon_amount : $this->total_price;
+    }
+
+    // Check if the coupon can be used
+    public function getCanUseCouponAttribute()
+    {
+        if ($this->coupon) {
+            return $this->coupon->canUse($this->total_price);
+        }
+        return false;  // Return false if no coupon exists
     }
 
 
 
 
-    
+
 
 }
