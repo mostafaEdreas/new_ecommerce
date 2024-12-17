@@ -66,5 +66,9 @@ class Menu extends Model
         return   $query->whereStatus(0);
       }
 
+      public function scopeMain($query){
+        return   $query->whereType('main');
+      }
+
 
 }

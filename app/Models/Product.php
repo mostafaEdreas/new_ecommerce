@@ -188,9 +188,10 @@ class Product extends Model
     }
     public function discount(){
         return $this->hasOne(Discount::class)
-        ->where('start_date', '<=', now())
-        ->where('end_date', '>=', now())
-        ->latestOfMany('created_at'); // Get the latest active discount
+        ->where('start_date', '<=', now()->startOfDay())
+        ->where('end_date', '>=', now()->startOfDay())
+        ->orderByDesc('start_date') // Ensure the latest valid discount is prioritized
+        ->latestOfMany();
     }
 
     public function getDiscountTypeAttribute(){
@@ -220,8 +221,5 @@ class Product extends Model
     public function getReviewsCountAttribute(){
         return $this->reviews->count();
     }
-
-
-
 
 }

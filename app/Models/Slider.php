@@ -55,6 +55,13 @@ public function __construct(array $attributes = [])
 
     
 
+    public function scopeActive($query){
+        return  $query->whereStatus(1);
+      }
+
+      public function scopeUnactive($query){
+        return   $query->whereStatus(0);
+      }
 
 
 

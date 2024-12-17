@@ -61,13 +61,17 @@ class AttributeValue extends Model
         return $this->{'value_'.$this->lang}  ;
     }
 
+    public function getDescAttribute(){
+        return $this->{'description_'.$this->lang}  ;
+    }
+
     public function getAttributeNameAttribute(){
         return $this->attribute?->value;
     }
 
     public function getActiveAttribute(){
         $this->status ? __('home.yes') : __( 'home.no') ;
-     }
+    }
 
      public function scopeActive($query){
          $query->whereStatus(1);

@@ -34,23 +34,26 @@ class Helper
         return self::$lang;
     }
 
+    public static function frontFilesPath(string $string){
+        return url('public/assets/front/'.$string);
+    }
     public static function cssFilesPath(string $string){
-        return url('resources/assets/front/css/'.$string);
+        return url('public/assets/front/css/'.$string);
     }
     public static function pluginsFilesPath(string $string){
-        return url('resources/assets/front/plugins/'.$string);
+        return url('public/assets/front/plugins/'.$string);
     }
 
     public static function fontsFilesPath(string $string){
-        return url('resources/assets/front/fonts/'.$string);
+        return url('public/assets/front/fonts/'.$string);
     }
 
     public static function jsFilesPath(string $string){
-        return url('resources/assets/front/js/'.$string);
+        return url('public/assets/front/js/'.$string);
     }
 
     public static function imageFilesPath(string $string){
-        return url('resources/assets/front/images/'.$string);
+        return url('public/assets/front/images/'.$string);
     }
 
     public static function uploadedImagesPath($model,$image){
@@ -66,16 +69,40 @@ class Helper
         return url('uploads/sliders/'.$model.'/source/'.$image);
     }
 
-    public static function print150CharFromTextEditor($text){
-        $textWithoutTags = html_entity_decode(strip_tags($text));
-        $truncatedText = mb_substr($textWithoutTags, 0, 150);
-        return $truncatedText;
+
+
+    public static function removeTags(string $text): string
+    {
+        return html_entity_decode(strip_tags($text));
     }
 
-    public static function removeTags($text,int $cutText = 0){
-        $textWithoutTags = html_entity_decode(strip_tags($text));
-        return $cutText && $cutText > 0? mb_substr($textWithoutTags, 0, 150):$textWithoutTags;
 
+    public static function cutText(string $text, int $length, string $after = ' '): string
+    {
+        if ($length <= 0 || $length >= mb_strlen($text)) {
+            return $text;
+        }
+
+        $specialCharPos = mb_strpos($text, $after, $length);
+
+        if ($specialCharPos !== false) {
+            return mb_substr($text, 0, $specialCharPos + 1);
+        }
+
+        return mb_substr($text, 0, $length);
+    }
+
+
+    public static function removeTagsAndCutText(string $text, int $length , string $after = ' '): string
+    {
+        $cleanText = self::removeTags($text);
+
+        // If $number is specified, cut after the first space or special character
+        if ($length > 0) {
+            return self::cutText($cleanText, $length, $after);
+        }
+
+        return $cleanText;
     }
 
     public static function imageIsExists(string|null $image , string $folder ):bool{

@@ -30,6 +30,9 @@ trait SeoTrait {
         $lang =LaravelLocalization::getCurrentLocale();
         $seo = SeoAssistant::first();
 
+        if(!$seo){
+            $seo =  SeoAssistant::create([]);
+        }
 
         $schema1 = new Thing('LocalBusiness', [
             'name'          => config('site_app_name'),

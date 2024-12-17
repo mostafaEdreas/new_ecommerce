@@ -2,17 +2,18 @@
 
 namespace App\Providers;
 
-
+use App\Models\Menu;
+use App\Traits\Carts\CartTrait;
+use App\Traits\Carts\GuestCartTrait;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Setting;
-use Illuminate\Support\Facades\Cache;
 
 use Illuminate\Support\Facades\View;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use CartTrait , GuestCartTrait ;
     /**
      * Register any application services.
      *
@@ -32,7 +33,14 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function($view){
             $lang = LaravelLocalization::getCurrentLocale();
 
+            // check user if auth and return the right model ;
+            $cart = auth()->check() ? $this->getCart() : $this->getGuestCart();
+            $menus = Menu::main()->active()->get();
+
+            
             View::share('lang', $lang);
+            View::share('cart', $cart);
+            View::share('menus', $menus);
         });
     }
 }

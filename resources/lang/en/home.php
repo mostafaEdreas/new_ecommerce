@@ -16,16 +16,17 @@ return [
     'add_values_to' => 'Add values to' ,
     'doesnt_use' => 'Doesnt use' ,
     'free' => 'Free' ,
+    'discover your interests' => 'Discover Your Interests',
     'one_cost' => 'One cost' ,
     'by_place' => 'By place' ,
     'use_shipping_details' => 'Use shipping details',
     'stocks' => 'Stocks' ,
-    'stock' => 'Stock' ,
     'edit_product_stock' => 'Edit product stock' ,
-
-
-
-
+    'there are no categories' => 'There are no categories',
+    'all rights reserved i home, developed and designed by' => 'All Rights Reserved I Home, Developed and Designed by',
+    'be group' => 'Be Group',
+    'offers' => 'Offers',
+    'all offers' => 'All Offers',
 
     'cannot update' => 'Cannot update' ,
     'discounts' => 'Discounts',

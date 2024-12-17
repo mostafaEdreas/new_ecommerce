@@ -15,13 +15,7 @@ class Coupon extends Model
     private $lang ;
 
     // order is important for this array
-    private $checks = [
-        ['function' => 'isStart', 'fail_message' => __('home.This coupon is not valid yet.'), 'parameter' => []],
-        ['function' => 'isEfficient', 'fail_message' => __('home.This coupon has expired.'), 'parameter' => []],
-        ['function' => 'isUsed', 'fail_message' => __('home.You have already used this coupon.'), 'parameter' => []],
-        ['function' => 'isMaxUsed', 'fail_message' => __('home.This coupon has reached its maximum usage limit.'), 'parameter' => []],
-        ['function' => 'checkMinPrice', 'fail_message' => __('home.The total price does not meet the minimum required.'), 'parameter' => ['total_price']], // Example with $total_price
-    ];
+    private $checks ;
 
 
 
@@ -42,6 +36,13 @@ class Coupon extends Model
     {
         parent::__construct($attributes);
 
+        $this->checks = [
+            ['function' => 'isStart', 'fail_message' => __('home.This coupon is not valid yet.'), 'parameter' => []],
+            ['function' => 'isEfficient', 'fail_message' => __('home.This coupon has expired.'), 'parameter' => []],
+            ['function' => 'isUsed', 'fail_message' => __('home.You have already used this coupon.'), 'parameter' => []],
+            ['function' => 'isMaxUsed', 'fail_message' => __('home.This coupon has reached its maximum usage limit.'), 'parameter' => []],
+            ['function' => 'checkMinPrice', 'fail_message' => __('home.The total price does not meet the minimum required.'), 'parameter' => ['total_price']],
+        ];
         // Set the current locale dynamically
         $this->lang = Helper::getLang();
 

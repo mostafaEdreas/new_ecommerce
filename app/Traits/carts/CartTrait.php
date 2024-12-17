@@ -1,5 +1,5 @@
 <?php
-namespace App\Traits\products;
+namespace App\Traits\Carts;
 
 use App\Models\Cart;
 use App\Models\Coupon;
@@ -18,6 +18,9 @@ trait CartTrait {
 
 
     private function checkCouponCode($coupon_code){
+        if(is_null($coupon_code)){
+            return null ;
+        }
         if($coupon = Coupon::where($coupon_code)->first() ){
             return $coupon->id;
         };

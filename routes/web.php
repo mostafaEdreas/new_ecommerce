@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// //facebook auth///
-// Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
-// Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookProviderCallback');
-
 /////google Auth////
 Route::get('login/google', 'Auth\LoginController@redirectToGoogleProvider');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleProviderCallback');
@@ -24,22 +20,9 @@ Route::get('paymob_txn2_response_callback','PlaceOrderController@weAcceptKioskCa
 Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],'prefix' => LaravelLocalization::setLocale() ],function(){
 
     /////// site map///
-    Route::get('/sitemap.xml','SiteMapController@indexSitemap');
-    Route::get('removeSession/remove',function(){
-        session()->forget('session_id');
-        return  session()->get('session_id')??'ok';
-    });
-    Route::get('/all-products-sitemap.xml','SiteMapController@allProductSitemap');
-    Route::get('/brands-sitemap.xml','SiteMapController@brandsSitemap');
-    Route::get('/categories-sitemap.xml','SiteMapController@categoriesSitemap');
-    Route::get('/pages-sitemap.xml','SiteMapController@pagesSitemap');
-    Route::get('/trendings-sitemap.xml','SiteMapController@blogsSitemap');
-    Route::get('/product-offers-sitemap.xml','SiteMapController@productOffersSitemap');
-    Route::get('/trending-products-sitemap.xml','SiteMapController@trendingProductSitemap');
-    Route::get('/all-product-googl-sitemap.xml','SiteMapController@allProductGooglSitemap');
+    require base_path('routes/sitemap/sitemap.php');
+    require base_path('routes/website/home.php');
 
-    Route::get('/lang/{lang}', 'AdminController@setlang');
-    Route::get('/','WebsiteController@home');
     Route::get('about-us','WebsiteController@aboutUs');
     Route::get('contact-us','WebsiteController@contactUs');
     Route::post('save/contact-us','WebsiteController@saveContactUs');
@@ -150,83 +133,7 @@ Route::group(['middleware'=>['web','auth','localeSessionRedirect', 'localization
 
 Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],'prefix' => LaravelLocalization::setLocale() ],function(){
     Route::group(['middleware'=>['admin','web'],'prefix'=>'admin'],function(){
-        require base_path('routes/admin/about.php');
-        require base_path('routes/admin/aboutStrucs.php');
-        require base_path('routes/admin/sliders.php');
-        require base_path('routes/admin/brands.php');
-        require base_path('routes/admin/categories.php');
-        require base_path('routes/admin/discounts.php');
-        require base_path('routes/admin/products.php');
-        require base_path('routes/admin/menu.php');
-        require base_path('routes/admin/shippingFees.php');
-        require base_path('routes/admin/seo-assistant.php');
-        require base_path('routes/admin/coupon.php');
-
-        Route::get('', 'AdminController@admin');
-        Route::get('/switch-theme', 'AdminController@switchTheme');
-        Route::get('translations', 'AdminController@translations');
-        Route::post('{name}/up/{ids}','AdminController@updatestatus');
-        Route::resource('/settings', 'SettingController');
-
-        Route::resource('teams', 'TeamController');
-        Route::resource('counters', 'CounterController');
-        Route::resource('testimonials', 'TestimonialController');
-        Route::get('free_shipping', 'SettingController@get_free_shipping');
-        Route::post('update_free_shipping', 'SettingController@update_free_shipping');
-
-
-        Route::resource('/configrations', 'ConfigrationController');
-        Route::resource('users', 'UserController');
-        Route::get('user-admins', 'UserController@admins');
-        Route::resource('roles', 'RoleController');
-        Route::resource('permissions', 'PermissionController');
-
-        Route::resource('/countries', 'CountryController');
-        Route::resource('/regions', 'RegionController');
-        Route::resource('/areas', 'AreaController');
-        Route::resource('/colors', 'ColorController');
-        Route::resource('/attributes', 'AttributeController');
-        Route::post('removeAttributeValue', 'AttributeController@removeAttributeValue')->name('removeAttributeValue');
-        Route::post('updateAttributeValue', 'AttributeController@updateAttributeValue')->name('updateAttributeValue');
-
-
-
-
-
-
-
-        Route::resource('pages', 'PageController');
-
-        Route::resource('deliveries', 'DeliveryController');
-        Route::resource('services', 'ServiceController');
-
-        Route::resource('orders', 'OrderController');
-        Route::post('orders/changeStatus', 'OrderController@changeOrderStatus');
-        Route::post('orders/changeOrderPaymentStatus', 'OrderController@changeOrderPaymentStatus')->name('changeOrderPaymentStatus');
-        Route::get('order/{id}/invoice', 'OrderController@orderInvoice');
-        Route::post('order/{id}/cancel', 'OrderController@orderCancel');
-        Route::post('orders/filter', 'OrderController@orderFilter');
-        Route::post('order/delivery/{id}', 'OrderController@OrderDelivey');
-
-
-        Route::resource('menus', 'MenuController');
-        Route::resource('menu-items', 'MenuItemController');
-        Route::post('menuTypeValue', 'MenuItemController@menuTypeValue')->name('menuTypeValue');
-
-        Route::resource('contact-us-messages', 'ContactusController');
-        Route::resource('pages', 'PageController');
-        Route::resource('home-images', 'HomeImageController');
-
-        Route::resource('gallery-images', 'GalleryImageController');
-        Route::post('gallery-images/deleteImege', 'GalleryImageController@deleteImege');
-        Route::post('gallery-images/reorder','GalleryImageController@reorderImeges');
-        Route::get('gallery-image/create-pluck','GalleryImageController@createPluck');
-        Route::post('gallery-images/uploadImages','GalleryImageController@uploadImages');
-        Route::post('gallery-images/removeUploadImages','GalleryImageController@removeUploadImages');
-        Route::post('gallery-images/storePluck','GalleryImageController@storePluck');
-        Route::resource('gallery-videos', 'GalleryVideoController');
-        Route::post('gallery-videos/reorder','GalleryVideoController@reorderVideos');
-
+       
         ////////////////////////////////// reports/////////////////////////////
         Route::get('order-report', 'ReportController@orderReportView');
         Route::post('order-report', 'ReportController@orderReportResult');
@@ -252,7 +159,7 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
 
 Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],'prefix' => LaravelLocalization::setLocale() ],function(){
     Auth::routes();
-    Route::get('{slug}/','WebsiteController@checkUrl')->name('checkUrl');
+    // Route::get('{slug}/','WebsiteController@checkUrl')->name('checkUrl');
 });
 
 

@@ -53,22 +53,42 @@ class ProductStock extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function getProductNameAttribute(){
+    public function getProductNameAttribute(): string{
         return $this->product?->name;
     }
 
-    public function getProductDiscountAmountAttribute(){
-        if(!$this->product?->discount_type){
-            return $this->product?->discount_value;
-        }
-        return $this->product?->discount_value * $this->price / 100;
+
+    public function getProductLinkAttribute(): string{
+        return $this->product?->link;
     }
 
-    public function getProductDiscountPercentageAttribute(){
-        if($this->product?->discount_type){
-            return $this->product?->discount_value;
+    public function getProductMainImageAttribute(): string{
+        return $this->product?->main_image_source;
+    }
+
+    public function getProductDiscountAmountAttribute(): float{
+       
+        if($this->product?->discount){
+            if(!$this->product?->discount_type){
+                return $this->product?->discount_value;
+            }
+            return $this->product?->discount_value * $this->price / 100;
+    
         }
-        return $this->product?->discount_value / $this->price * 100;
+
+        return 0 ;
+    }
+
+    public function getProductDiscountPercentageAttribute(): float{
+        if($this->product?->discount){
+            if($this->product?->discount_type){
+                return $this->product?->discount_value;
+            }
+            return $this->product?->discount_value / $this->price * 100;
+        }
+
+        return 0 ;
+       
     }
 
 

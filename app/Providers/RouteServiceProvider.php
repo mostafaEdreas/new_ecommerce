@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -19,6 +20,40 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
     protected $namespace = 'App\Http\Controllers';
+    protected $adminnamespace = 'App\Http\Controllers\Admin';
+    protected $adminFiles = [
+        'about.php',
+        'aboutStrucs.php',
+        'sliders.php',
+        'brands.php',
+        'categories.php',
+        'discounts.php',
+        'products.php',
+        'menus.php',
+        'shippingFees.php',
+        'seo-assistant.php',
+        'coupon.php',
+        'admin.php',
+        'attributes.php',
+        'setting.php' ,
+        'configrations.php',
+        'deliveries.php',
+        'pages.php' ,
+        'permissions.php',
+        'roles.php',
+        'areas.php' ,
+        'regions.php',
+        'configrations.php' ,
+        'countries.php' ,
+        'orders.php',
+        'contactUs.php',
+    ];
+
+
+    protected $websitenamespace = 'App\Http\Controllers\Website';
+    protected $websiteFiles = [
+        'home.php',
+    ];
     protected $apinamespace = 'App\Http\Controllers\Api';
 
     /**
@@ -38,6 +73,25 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+            // Admin Routes
+            Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'admin'])
+                ->namespace($this->adminnamespace)
+                ->prefix(LaravelLocalization::setLocale().'/admin')
+                ->group(function () {
+                    foreach ($this->adminFiles as $routeFile) {
+                        require base_path('routes/admin/' . $routeFile);
+                    }
+            });
+
+            // website Routes
+            Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'])
+                ->namespace($this->websitenamespace)
+                ->prefix(LaravelLocalization::setLocale())
+                ->group(function () {
+                    foreach ($this->websiteFiles as $routeFile) {
+                        require base_path('routes/website/' . $routeFile);
+                    }
+            });
         });
     }
 }

@@ -48,7 +48,7 @@ class Cart extends Model
     // Total price of items in the cart
     public function getTotalPriceAttribute()
     {
-        return $this->items()->sum('total');
+        return $this->items->sum('total');
     }
 
     // Calculate coupon amount based on the type of discount

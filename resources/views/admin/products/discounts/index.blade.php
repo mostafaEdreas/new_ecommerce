@@ -46,12 +46,12 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="">{{ trans('home.start_date') }}</label>
-                                    <input class="form-control" name="start_date" type="date" value="{{request()->isMethod('post') ? old('start_date'): ''}}"
+                                    <input class="form-control" name="start_date" type="date" value="{{request()->isMethod('post') ? \Carbon\Carbon::parse(old('start_date'))->format('Y-m-d') : ''}}"
                                         placeholder="{{ trans('home.start_date') }}">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="">{{ trans('home.end_date') }}</label>
-                                    <input class="form-control" name="end_date" type="date" value="{{request()->isMethod('post') ? old('end_date') : ''}}"
+                                    <input class="form-control" name="end_date" type="date" value="{{request()->isMethod('post') ? \Carbon\Carbon::parse(old('end_date'))->format('Y-m-d') : ''}}"
                                         placeholder="{{ trans('home.end_date') }}">
                                 </div>
                             </div>
@@ -151,14 +151,14 @@
 
                                     <div class="form-group col-md-6">
                                         <label>{{ trans('home.start_date') }}</label>
-                                        <input type="text" class="form-control"  placeholder="{{ trans('home.start_date') }}" name="start_date"
-                                            value="{{ $discount->start_date }}">
+                                        <input type="date" class="form-control"  placeholder="{{ trans('home.start_date') }}" name="start_date"
+                                            value="{{ \Carbon\Carbon::parse( $discount->start_date)->format('Y-m-d') }}">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label >{{ trans('home.end_date') }}</label>
-                                        <input type="text" class="form-control"
+                                        <input type="date" class="form-control"
                                             placeholder="{{ trans('home.end_date') }}" name="end_date"
-                                            value="{{ $discount->end_date }}">
+                                            value="{{ \Carbon\Carbon::parse($discount->end_date)->format('Y-m-d')  }}">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label class="">{{ trans('home.discount') }}</label>
