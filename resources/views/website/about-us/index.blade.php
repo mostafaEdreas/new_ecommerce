@@ -4,7 +4,8 @@
     @php echo $schema @endphp
 @endsection
 @section('content')
-
+<div class="page-content">
+</div>
     @include('website.partials.Home-Slideshow')
     @include('website.partials.seasonal_products')
     @include('website.partials.BestSelling')

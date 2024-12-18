@@ -148,6 +148,43 @@ var MoonCartCarousel = function () {
 			});
 		}
 	}
+
+    	// Swiper Four ==
+	var handleSwiperTwelve = function () {
+		if (jQuery('.swiper-twelve').length > 0) {
+			var swiper = new Swiper('.swiper-twelve', {
+				slidesPerView: 5,
+				spaceBetween: 30,
+				loop: true,
+				autoplay: {
+					delay: 2500,
+				},
+				navigation: {
+					nextEl: ".twelve-button-next",
+					prevEl: ".twelve-button-prev",
+				},
+				breakpoints: {
+					1200: {
+						slidesPerView: 5,
+					},
+					1024: {
+						slidesPerView: 4,
+					},
+					991: {
+						slidesPerView: 3,
+					},
+					591: {
+						slidesPerView: 2,
+						spaceBetween: 20,
+					},
+					340: {
+						slidesPerView: 2,
+						spaceBetween: 15,
+					},
+				}
+			});
+		}
+	}
 		// Swiper Four ==
 	var handleSwiperEleven = function () {
 		if (jQuery('.swiper-eleven').length > 0) {
@@ -588,6 +625,8 @@ var MoonCartCarousel = function () {
 			BlogSlideshowSwiper();
 			handleProjectCarousel();
 			handleSwiperFour();
+            handleSwiperTwelve();
+
 			handleSwiperFive();
 			handleSwiperEleven();
 			handleSwiperBlogPost();

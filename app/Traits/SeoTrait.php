@@ -67,7 +67,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/'))
                 ->canonical(LaravelLocalization::localizeUrl('/'))
                 ->shortlink(LaravelLocalization::localizeUrl('/'))
-                ->meta('robots',($seo->home_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->home_index)?'index':'noindex');
 
         return [$schema,$metatags];
     }
@@ -88,7 +88,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/about-us'))
                 ->canonical(LaravelLocalization::localizeUrl('/about-us'))
                 ->shortlink(LaravelLocalization::localizeUrl('/about-us'))
-                ->meta('robots',($seo->about_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->about_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -123,7 +123,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/contact-us'))
                 ->canonical(LaravelLocalization::localizeUrl('/contact-us'))
                 ->shortlink(LaravelLocalization::localizeUrl('/contact-us'))
-                ->meta('robots',($seo->contact_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->contact_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -154,7 +154,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
                 ->canonical(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
                 ->shortlink(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
-                ->meta('robots',($seo->dealsProducts_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->dealsProducts_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -317,7 +317,7 @@ trait SeoTrait {
             ->mobile(LaravelLocalization::localizeUrl("page/$link"))
             ->canonical(LaravelLocalization::localizeUrl("page/$link"))
             ->shortlink(LaravelLocalization::localizeUrl("page/$link"))
-            ->meta('robots',($page->meta_robots)?'index':'noindex');
+            ->meta('robots',($page->index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -352,7 +352,7 @@ trait SeoTrait {
             ->mobile(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
             ->canonical(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
             ->shortlink(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
-            ->meta('robots',($category->meta_robots)?'index':'noindex');
+            ->meta('robots',($category->index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -386,7 +386,7 @@ trait SeoTrait {
             ->mobile(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
             ->canonical(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
             ->shortlink(LaravelLocalization::getLocalizedURL($lang, null, [], true) )
-            ->meta('robots',($brand->meta_robots)?'index':'noindex');
+            ->meta('robots',($brand->index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -417,7 +417,7 @@ trait SeoTrait {
             ->mobile(LaravelLocalization::localizeUrl('/brands'))
             ->canonical(LaravelLocalization::localizeUrl('/brands'))
             ->shortlink(LaravelLocalization::localizeUrl('/brands'))
-            ->meta('robots',($seo->brands_meta_robots)?'index':'noindex');
+            ->meta('robots',($seo->brands_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -451,7 +451,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/trendings'))
                 ->canonical(LaravelLocalization::localizeUrl('/trendings'))
                 ->shortlink(LaravelLocalization::localizeUrl('/trendings'))
-                ->meta('robots',($seo->blogs_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->blogs_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -485,7 +485,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/branches'))
                 ->canonical(LaravelLocalization::localizeUrl('/branches'))
                 ->shortlink(LaravelLocalization::localizeUrl('/branches'))
-                ->meta('robots',($seo->branches_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->branches_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -519,7 +519,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/inspection-request'))
                 ->canonical(LaravelLocalization::localizeUrl('/inspection-request'))
                 ->shortlink(LaravelLocalization::localizeUrl('/inspection-request'))
-                ->meta('robots',($seo->featuredProducts_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->featuredProducts_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -554,7 +554,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/categories'))
                 ->canonical(LaravelLocalization::localizeUrl('/categories'))
                 ->shortlink(LaravelLocalization::localizeUrl('/categories'))
-                ->meta('robots',($seo->categories_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->categories_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -587,7 +587,7 @@ trait SeoTrait {
                 ->mobile(LaravelLocalization::localizeUrl('/categories'))
                 ->canonical(LaravelLocalization::localizeUrl('/categories'))
                 ->shortlink(LaravelLocalization::localizeUrl('/categories'))
-                ->meta('robots',($seo->featuredProducts_meta_robots)?'index':'noindex');
+                ->meta('robots',($seo->featuredProducts_index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [
@@ -622,7 +622,7 @@ trait SeoTrait {
             ->mobile(LaravelLocalization::localizeUrl("trending/$link"))
             ->canonical(LaravelLocalization::localizeUrl("trending/$link"))
             ->shortlink(LaravelLocalization::localizeUrl("trending/$link"))
-            ->meta('robots',($blog->meta_robots)?'index':'noindex');
+            ->meta('robots',($blog->index)?'index':'noindex');
 
         $schema = new Schema(
             new Thing('Article', [

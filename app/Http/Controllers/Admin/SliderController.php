@@ -91,5 +91,5 @@ class SliderController extends Controller
             return redirect()->back()->with('success',trans('home.your_item_deleted_successfully'));
         }
     }
-    
+
 }

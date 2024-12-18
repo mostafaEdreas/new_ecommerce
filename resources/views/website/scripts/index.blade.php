@@ -1,0 +1,23 @@
+<script src="{{ Helper::frontFilesPath('js/jquery.min.js') }}"></script><!-- JQUERY MIN JS -->
+<script src="{{ Helper::frontFilesPath('vendor/wow/wow.min.js') }}"></script><!-- WOW JS -->
+<script src="{{ Helper::frontFilesPath('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script><!-- BOOTSTRAP MIN JS -->
+<script src="{{ Helper::frontFilesPath('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}"></script><!-- BOOTSTRAP SELECT MIN JS -->
+<script src="{{ Helper::frontFilesPath('vendor/bootstrap-touchspin/bootstrap-touchspin.js') }}"></script><!-- BOOTSTRAP TOUCHSPIN JS -->
+<script src="{{ Helper::frontFilesPath('vendor/counter/waypoints-min.js') }}"></script><!-- WAYPOINTS JS -->
+<script src="{{ Helper::frontFilesPath('vendor/counter/counterup.min.js') }}"></script><!-- COUNTERUP JS -->
+<script src="{{ Helper::frontFilesPath('vendor/swiper/swiper-bundle.min.js') }}"></script><!-- SWIPER JS -->
+<script src="{{ Helper::frontFilesPath('vendor/imagesloaded/imagesloaded.js') }}"></script><!-- IMAGESLOADED-->
+<script src="{{ Helper::frontFilesPath('vendor/imagesloaded/imagesloaded.js') }}"></script><!-- IMAGESLOADED-->
+<script src="{{ Helper::frontFilesPath('vendor/masonry/masonry-4.2.2.js') }}"></script><!-- MASONRY -->
+<script src="{{ Helper::frontFilesPath('vendor/masonry/isotope.pkgd.min.js') }}"></script><!-- ISOTOPE -->
+<script src="{{ Helper::frontFilesPath('vendor/countdown/jquery.countdown.js') }}"></script><!-- COUNTDOWN FUCTIONS  -->
+<script src="{{ Helper::frontFilesPath('vendor/wnumb/wNumb.js') }}"></script><!-- WNUMB -->
+<script src="{{ Helper::frontFilesPath('vendor/nouislider/nouislider.min.js') }}"></script><!-- NOUSLIDER MIN JS-->
+<script src="{{ Helper::frontFilesPath('js/dz.carousel.js') }}"></script><!-- DZ CAROUSEL JS -->
+<script src="{{ Helper::frontFilesPath('vendor/lightgallery/dist/lightgallery.min.js') }}"></script>
+<script src="{{ Helper::frontFilesPath('vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js') }}"></script>
+<script src="{{ Helper::frontFilesPath('vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js') }}"></script>
+<script src="{{ Helper::frontFilesPath('js/dz.ajax.js') }}"></script><!-- AJAX -->
+<script src="{{ Helper::frontFilesPath('js/custom.js') }}"></script><!-- CUSTOM JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@include('website.scripts.ajaxsetup')

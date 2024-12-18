@@ -7,7 +7,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class Helper
 {
 
-    
+
     public static $lang;
 
     // Static initializer
@@ -71,13 +71,13 @@ class Helper
 
 
 
-    public static function removeTags(string $text): string
+    public static function removeTags(string | null $text): string
     {
         return html_entity_decode(strip_tags($text));
     }
 
 
-    public static function cutText(string $text, int $length, string $after = ' '): string
+    public static function cutText(string | null $text, int $length, string $after = ' '): string
     {
         if ($length <= 0 || $length >= mb_strlen($text)) {
             return $text;
@@ -93,7 +93,7 @@ class Helper
     }
 
 
-    public static function removeTagsAndCutText(string $text, int $length , string $after = ' '): string
+    public static function removeTagsAndCutText(string | null $text, int $length , string $after = ' '): string
     {
         $cleanText = self::removeTags($text);
 

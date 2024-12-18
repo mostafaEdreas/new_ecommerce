@@ -21,11 +21,10 @@ class HomeController extends Controller
         $data['categories'] = Category::active()->get();
         $data['grouped_products'] = Product::active()->take(10)->inRandomOrder()->get();
         $data['offers'] = Product::active()->take(10)->whereHas('discount')->inRandomOrder()->get();
-        $data['about'] = About::first();
         $data['products'] =Product::active()->take(10)->inRandomOrder()->get();
         $data['about_sraucs'] = AboutStruc::active()->get();
         list($data['schema'], $data['metatags']) = $this->homePageSeo();
-        return view('web.home.index',$data);
+        return view('website.home.index',$data);
     }
-   
+
 }

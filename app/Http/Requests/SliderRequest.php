@@ -31,7 +31,7 @@ class SliderRequest extends FormRequest
             'image' => $this->isMethod('post') ?'nullable|image|max:1024|required_without:video_link': 'nullable|image|max:1024' ,
             'order' => 'nullable|integer',
             'type' => 'nullable|string|max:50|in:' . implode(',', Slider::TYPES),
-            'status' => 'nullable|boolean',
+            'status' => 'nullable|in:1',
         ];
     }
 }

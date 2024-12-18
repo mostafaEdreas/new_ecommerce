@@ -21,10 +21,11 @@ class Slider extends Model
         'image',
         'order',
         'type',
+        'status',
     ];
 
 public const TYPES = ['home'];
- 
+
 public function __construct(array $attributes = [])
 {
     parent::__construct($attributes);
@@ -53,7 +54,7 @@ public function __construct(array $attributes = [])
        return $this->video_link ?  Helper::videoImage() :  $this->image_200 ;
     }
 
-    
+
 
     public function scopeActive($query){
         return  $query->whereStatus(1);

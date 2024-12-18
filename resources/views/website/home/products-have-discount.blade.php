@@ -10,16 +10,16 @@
             </a>
         </div>
         <div class="swiper-btn-center-lr">
-            <div class="swiper swiper-four">
+            <div class="swiper swiper-twelve">
                 <div class="swiper-wrapper">
-                   @include('web.home.partials.product-cart', ['array' => $offers])
+                   @include('website.home.partials.product-cart', ['array' => $offers])
                 </div>
             </div>
             <div class="pagination-align">
-                <div class="tranding-button-prev btn-prev">
+                <div class="twelve-button-prev btn-prev">
                     <i class="flaticon flaticon-left-chevron"></i>
                 </div>
-                <div class="tranding-button-next btn-next">
+                <div class="twelve-button-next btn-next">
                     <i class="flaticon flaticon-chevron"></i>
                 </div>
             </div>

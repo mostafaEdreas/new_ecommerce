@@ -23,7 +23,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
     require base_path('routes/sitemap/sitemap.php');
     require base_path('routes/website/home.php');
 
-    Route::get('about-us','WebsiteController@aboutUs');
     Route::get('contact-us','WebsiteController@contactUs');
     Route::post('save/contact-us','WebsiteController@saveContactUs');
     Route::get('deals','WebsiteController@deals');
@@ -133,7 +132,7 @@ Route::group(['middleware'=>['web','auth','localeSessionRedirect', 'localization
 
 Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],'prefix' => LaravelLocalization::setLocale() ],function(){
     Route::group(['middleware'=>['admin','web'],'prefix'=>'admin'],function(){
-       
+
         ////////////////////////////////// reports/////////////////////////////
         Route::get('order-report', 'ReportController@orderReportView');
         Route::post('order-report', 'ReportController@orderReportResult');

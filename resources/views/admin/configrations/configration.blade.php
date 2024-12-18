@@ -142,15 +142,11 @@
                                 </div>
 
 
-                                <div class="form-group col-md-6">
-                                    <label>{{trans('home.place_order_msg')}}</label>
-                                    <textarea class="form-control" name="place_order_msg" type="text" placeholder="{{trans('home.place_order_msg')}}">{{$configrations->place_order_msg}}</textarea>
-                                </div>
 
 
                                 <div class="form-group col-md-6">
                                     <label>{{trans('home.place_order_msg')}}</label>
-                                    <textarea class="form-control" name="place_order_message" type="text" placeholder="{{trans('home.place_order_msg')}}">{{$configrations->place_order_msg}}</textarea>
+                                    <textarea class="form-control" name="place_order_message" type="text" placeholder="{{trans('home.place_order_msg')}}">{{$configrations->place_order_message}}</textarea>
                                 </div>
 
                                 <div class="form-group col-md-12">

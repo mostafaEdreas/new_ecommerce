@@ -13,7 +13,7 @@
             <div class="swiper-btn-center-lr">
                 <div class="swiper swiper-four">
                     <div class="swiper-wrapper">
-                        @include('web.home.partials.product-cart', ['array' => $products])
+                        @include('website.home.partials.product-cart', ['array' => $products])
                     </div>
                 </div>
                 <div class="pagination-align">
