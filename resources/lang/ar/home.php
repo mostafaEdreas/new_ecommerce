@@ -11,6 +11,12 @@ return array(
     'stocks' => 'المخزون' ,
     'stock' => 'المخزون' ,
     'offers' => 'العروض',
+    'add color attribute' => 'اضافة خاصية اللون' ,
+
+    'results' => 'النتائج' ,
+    'prev' => 'السابق' ,
+    'next' => 'التالى' ,
+
     'edit_product_stock' => 'نعديل مخزون منتج' ,
     'there are no categories' => 'لا توجد فئات',
     'discover your interests' => 'اكتشف اهتماماتك',

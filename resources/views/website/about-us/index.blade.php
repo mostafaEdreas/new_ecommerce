@@ -4,13 +4,11 @@
     @php echo $schema @endphp
 @endsection
 @section('content')
-<div class="page-content">
-</div>
-    @include('website.partials.Home-Slideshow')
-    @include('website.partials.seasonal_products')
-    @include('website.partials.BestSelling')
-    @include('website.partials.featured_products')
-
+    <div class="page-content">
+        @include('website.about-us.banner')
+        @include('website.about-us.about')
+        @include('website.about-us.aboutStrucs')
+    </div>
 @endsection
 @section('script')
 @endsection

@@ -26,8 +26,8 @@ class CategoryFactory extends Factory
             'image' => $this->faker->imageUrl(640, 480, 'business'), // Random image URL
             'icon' => $this->faker->optional()->imageUrl(100, 100, 'abstract'), // Optional icon URL
             'status' => $this->faker->randomElement(['active', 'inactive']), // Status
-            'link_ar' => $this->faker->unique()->url, // Unique Arabic link
-            'link_en' => $this->faker->unique()->url, // Unique English link
+            'link_ar' => $this->faker->unique()->word, // Unique Arabic link
+            'link_en' => $this->faker->unique()->word, // Unique English link
             'mete_title_ar' => $this->faker->optional()->sentence, // Optional Arabic meta title
             'mete_title_en' => $this->faker->optional()->sentence, // Optional English meta title
             'mete_description_ar' => $this->faker->optional()->paragraph, // Optional Arabic meta description

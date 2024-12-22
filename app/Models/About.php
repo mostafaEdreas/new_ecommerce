@@ -41,12 +41,12 @@ class About extends Model
         $this->lang = Helper::getLang();
 
     }
-    public function getTilteAttribute(){
+    public function getTitleAttribute(){
       return  $this->{'title_'.$this->lang} ;
     }
 
-    public function getTexteAttribute(){
-        return  $this->{'title_'.$this->lang} ;
+    public function getTextAttribute(){
+        return  $this->{'text_'.$this->lang} ;
     }
 
     public function getImageSourceAttribute($image)

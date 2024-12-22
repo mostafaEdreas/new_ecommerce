@@ -32,8 +32,6 @@ class AttributeController extends Controller
 
     public function create()
     {
-
-
         return view('admin.attributes.addAttribute');
     }
 
@@ -78,7 +76,8 @@ class AttributeController extends Controller
             DB::beginTransaction();
             $data = $request->validated();
             $attribute ->update($data) ;
-            foreach (in_array('value_ar' ,$data) ? $data['value_ar'] : [] as $key => $value) {
+            $attribute ->refresh() ;
+            foreach (array_key_exists('value_ar' ,$data) ? $data['value_ar'] : [] as $key => $value) {
                $attribute->values()->create(['value_ar'=> $value , 'value_en' => $data['value_en'][$key]]) ;
             }
             DB::commit();
@@ -140,5 +139,12 @@ class AttributeController extends Controller
     public function removeAttributeValue(){
         $valId = request()->validate(['value_id' => 'required|in:attibute_values']);
         AttributeValue::find($valId['value_id'])->delete();
+    }
+
+    public function addColor(){
+        if($data['attribute']  = Attribute::create(['name_en' => 'color' , 'name_ar' => 'اللون' , 'status' => '1' ]) ){
+            return redirect()->route( 'attributes.edit' ,$data['attribute']->id)->with( 'success' ,__('home.your home.your_item_added_successfully'));;
+        }
+        return redirect()->back()->withErrors( __('home.an error occurred'));
     }
 }

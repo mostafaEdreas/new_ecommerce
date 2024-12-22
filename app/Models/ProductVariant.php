@@ -25,7 +25,7 @@ class ProductVariant extends Model
 
 
     public function value(){
-        return $this->belongsTo(ProductAttributeValue::class);
+        return $this->belongsTo(ProductAttributeValue::class , 'product_attribute_value_id') ;
     }
 
 

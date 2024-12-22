@@ -15,7 +15,7 @@ class SaveImageTo3Path
     private string $realWidth;
     private bool $to3Path;
 
-    public function __construct(UploadedFile $file, bool $to3Path = false)
+    public function __construct(UploadedFile $file, bool $to3Path = true)
     {
         $this ->to3Path = $to3Path ;
         $this->file = $file;

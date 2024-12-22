@@ -38,7 +38,7 @@ class ProductStock extends Model
     }
 
     public function values(){
-        return $this->hasMany(ProductVariant::class);
+        return $this->hasMany(ProductVariant::class , '');
     }
 
 
@@ -67,13 +67,13 @@ class ProductStock extends Model
     }
 
     public function getProductDiscountAmountAttribute(): float{
-       
+
         if($this->product?->discount){
             if(!$this->product?->discount_type){
                 return $this->product?->discount_value;
             }
             return $this->product?->discount_value * $this->price / 100;
-    
+
         }
 
         return 0 ;
@@ -88,7 +88,7 @@ class ProductStock extends Model
         }
 
         return 0 ;
-       
+
     }
 
 

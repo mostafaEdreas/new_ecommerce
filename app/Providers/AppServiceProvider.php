@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
 
             // check user if auth and return the right model ;
             $cart = auth()->check() ? $this->getCart() : $this->getGuestCart();
-            $menus = Menu::main()->active()->get();
+            $menus = Menu::main()->active()->orderBy('order')->get();
             $public_categories = Category::active()->take(5)->get();
             $about = About::first();
 

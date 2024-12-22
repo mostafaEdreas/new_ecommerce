@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helpers\Helper;
 use App\Models\ProductAttribute;
+use App\Traits\Products\ProductFilterTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Maatwebsite\Excel\Concerns\ToArray;
@@ -11,7 +12,7 @@ use Maatwebsite\Excel\Concerns\ToArray;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory , ProductFilterTrait;
     protected $table = 'products' ;
     private $lang ;
 
@@ -175,7 +176,20 @@ class Product extends Model
         return $this->hasMany(ProductAttribute::class);
     }
     public function stocks(){
-        return $this->hasMany(ProductStock::class);
+        return $this->hasMany(ProductStock::class)->orderBy('stock' ,'desc');
+    }
+
+    public function getStockAttribute(){
+        return $this->stocks[0] ?? null;
+
+    }
+
+    public function getNetPriceAttribute(){
+        return $this->stock?->net_price  ;
+    }
+
+    public function getAvailableAttribute(){
+        return $this->stock?->stock  ;
     }
 
     public function discounts(){
@@ -208,9 +222,7 @@ class Product extends Model
     }
 
     public function scopeHasStock($query){
-        return $query->whereHas('stocks',function($q){
-            $q->where('stock', '>' , 0) ;
-        });
+        return $query->whereHas('stocks');
     }
 
 

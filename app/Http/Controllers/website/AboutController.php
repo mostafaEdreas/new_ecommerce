@@ -18,7 +18,7 @@ class AboutController extends Controller
     public function index()
     {
         $data['sliders'] = Slider::active()->get();
-        $data['about_sraucs'] = AboutStruc::active()->get();
+        $data['about_strucs'] = AboutStruc::active()->get();
         list($data['schema'], $data['metatags']) = $this->aboutUsPageSeo();
         return view('website.about-us.index',$data);
     }

@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use App\Helpers\Helper;
-use App\Helpers\SaveImageTo3Path;
 use App\Models\ProductAttribute;
 use App\Models\AttributeValue;
 use Illuminate\Database\Eloquent\Model;
-use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Attribute extends Model
 {
@@ -22,6 +19,10 @@ class Attribute extends Model
         'name_ar',
         'name_en',
         'status',
+    ];
+    public const STATIC_ATTRIBUTE = [
+        'color',
+        'اللون',
     ];
 
     private $lang ;
@@ -71,6 +72,16 @@ class Attribute extends Model
       public function scopeUnactive($query){
          $query->whereStatus(0);
       }
+
+    public function getIsColorAttribute(){
+       return in_array($this->name_en ,self::STATIC_ATTRIBUTE ) || in_array($this->name_ar ,self::STATIC_ATTRIBUTE ) ;
+    }
+
+
+    public static function hasColor(){
+        return  self::whereIn('name_ar' , self::STATIC_ATTRIBUTE)->orWhereIn('name_en' , self::STATIC_ATTRIBUTE)->exists() ;
+    }
+
 }
 
 

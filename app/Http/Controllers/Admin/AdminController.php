@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Country;
-use App\Models\Lang;
 use App\Models\Region;
 use App\Models\Page;
 use App\Models\Attribute;
@@ -32,20 +31,18 @@ use App\Models\ShippingMethod;
 use App\Models\PaymentMethod;
 use App\Models\Coupon;
 use App\Models\Branche;
-use App\Models\Discount;
-use App\Models\Service;
+
 use App\Models\InstallmentPartner;
 use App\Models\ProductStock;
 use App\Models\Slider;
-use App\Models\Stock;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     /////////// function return admin index view //////////
 
-      
+
    public function admin(){
         //------------------------------
         /////     Orders Report     /////
@@ -67,7 +64,7 @@ class AdminController extends Controller
 
         //--------------------------------//
         /////     Products Report     /////
-       
+
         $products = Product::query();
         $data['reports']['productCount'] = $products->count() ;
         $data['reports']['availableProductNumber'] = $products->active()->count();
@@ -76,7 +73,7 @@ class AdminController extends Controller
 
         //--------------------------------//
         /////     uesrs Report     /////
-      
+
         $data['reports']['usersCount'] = User::count();
         // $currentMonthUsers = User::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->count();
 
@@ -86,7 +83,7 @@ class AdminController extends Controller
         $data['reports']['categoriesNumber'] = Category::count();
 
         /////     brands Report     /////
-        
+
         $data['reports']['brandsNumber'] = Brand::count();
 
         return view('admin.index',$data);

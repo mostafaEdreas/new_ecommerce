@@ -79,8 +79,12 @@ class Category extends Model
         return $this->hasMany(Product::class)->inRandomOrder();
      }
 
+     public function getProductsCountAttribute(){
+        return $this->activeProducts()->count();
+     }
+
      public function activeProducts(){
-	    return $this->hasMany(Product::class)->whereStatus(1)->inRandomOrder();
+	    return $this->hasMany(Product::class)->active(1)->hasStock();
 	}
 
      public function getNameAttribute(){

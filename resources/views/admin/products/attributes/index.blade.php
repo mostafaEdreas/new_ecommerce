@@ -38,7 +38,7 @@
                                             <h5 class="card-title  badge badge-pill badge-info text-white">{{$attribute->attribute_name}}</h5>
                                             <select  class="form-control role select2" name="{{$attribute->id}}[]" multiple>
                                                 @foreach($attribute->all_values as $value)
-                                                    <option @selected(in_array($value->id,$attribute->values->pluck('value_id')->toArray())) value="{{ $value->id }}" >{{ $value->value }}</option>
+                                                    <option    data-color="{{ $value->value }}"  @selected(in_array($value->id,$attribute->values->pluck('value_id')->toArray())) value="{{ $value->id }}" >{{ $value->value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -56,4 +56,20 @@
             </div>
         </div>
     </div>
+    @endsection
+    @section('script')
+        <script>
+            $(document).ready(function() {
+                $('.select2').select2({
+                    templateResult: function(data) {
+                        if (!data.id) return data.text; // No styling for placeholder
+                        var color = $(data.element).data('color');
+                        return $('<span>').css('background-color', color).text(data.text);
+                    },
+                    templateSelection: function(data) {
+                        return data.text; // Selected option text
+                    }
+                });
+            });
+        </script>
     @endsection

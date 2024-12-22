@@ -78,12 +78,12 @@
                                         <div class="row">
                                             <div class="form-group col-md-5">
                                                 <label for="value_en">{{trans('home.value_en')}}</label>
-                                                <input type="text"  class="form-control" placeholder="{{trans('home.value_en')}}" value="{{$value->value_en}}" readonly>
+                                                <input type="{{$attribute->is_color ? 'color' : 'text'}}"  class="form-control" placeholder="{{trans('home.value_en')}}" value="{{$value->value_en}}" readonly>
                                             </div>
 
                                             <div class="form-group col-md-5">
                                                 <label for="value_ar">{{trans('home.value_ar')}}</label>
-                                                <input type="text"  class="form-control" placeholder="{{trans('home.value_ar')}}" value="{{$value->value_ar}}" readonly>
+                                                <input type="{{$attribute->is_color ? 'color' : 'text'}}"  class="form-control" placeholder="{{trans('home.value_ar')}}" value="{{$value->value_ar}}" readonly>
                                             </div>
 
                                             <div class="form-group col-md-2">
@@ -124,12 +124,12 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
                                                         <label for="value_en">{{trans('home.value_en')}}</label>
-                                                        <input type="text"  class="form-control" placeholder="{{trans('home.value_en')}}" name="value_en" value="{{$value->value_en}}">
+                                                        <input type="{{$attribute->is_color ? 'color' : 'text'}}"  class="form-control" placeholder="{{trans('home.value_en')}}" name="value_en" value="{{$value->value_en}}">
                                                     </div>
 
                                                     <div class="form-group col-md-6">
                                                         <label for="value_ar">{{trans('home.value_ar')}}</label>
-                                                        <input type="text"  class="form-control" placeholder="{{trans('home.value_ar')}}" name="value_ar" value="{{$value->value_ar}}">
+                                                        <input type="{{$attribute->is_color ? 'color' : 'text'}}"  class="form-control" placeholder="{{trans('home.value_ar')}}" name="value_ar" value="{{$value->value_ar}}">
                                                     </div>
 
                                                     <input type="hidden" name="value_id" value="{{$value->id}}"/>
@@ -170,8 +170,8 @@
             var maxField = 100; //Input fields increment limitation
             var addButton = $('.add_button'); //Add button selector
             var wrapper = $('.field_wrapper'); //Input field wrapper
-            var fieldHTML ='<div class="row"><div class="form-group col-md-5"><label for="value_en">{{trans('home.value_en')}}</label><input type="text"  class="form-control" placeholder="{{trans('home.value_en')}}" name="value_en[]"></div>';
-            fieldHTML +='<div class="form-group col-md-5"><label for="value_ar">{{trans('home.value_ar')}}</label><input type="text"  class="form-control" placeholder="{{trans('home.value_ar')}}" name="value_ar[]"></div>';
+            var fieldHTML ='<div class="row"><div class="form-group col-md-5"><label for="value_en">{{trans('home.value_en')}}</label><input type="{{$attribute->is_color ? 'color' : 'text'}}"  class="form-control" placeholder="{{trans('home.value_en')}}" name="value_en[]"></div>';
+            fieldHTML +='<div class="form-group col-md-5"><label for="value_ar">{{trans('home.value_ar')}}</label><input type="{{$attribute->is_color ? 'color' : 'text'}}"  class="form-control" placeholder="{{trans('home.value_ar')}}" name="value_ar[]"></div>';
             fieldHTML +='<div class="form-group col-md-2"><a href="javascript:void(0);" style="margin-top: 30px;" class="remove_button btn"><i class="fas fa-trash-alt"></i></a></div></div>';
 
             var x = 1; //Initial field counter is 1

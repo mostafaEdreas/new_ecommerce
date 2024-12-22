@@ -132,6 +132,8 @@
                 $(this).parent().parent('div').remove(); //Remove field html
                 x--; //Decrement field counter
             });
+
+
         });
 
     </script>

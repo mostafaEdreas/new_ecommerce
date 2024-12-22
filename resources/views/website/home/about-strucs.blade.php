@@ -2,7 +2,7 @@
     <section class="content-inner overlay-white-middle">
         <div class="container">
             <div class="row justify-content-center gx-sm-1">
-                @foreach ($about_strucs as $struc )
+                @foreach ($about_strucs as $index => $struc )
                     <div class="col-lg-4 col-md-4 col-sm-4 p-b30 wow fadeInUp" data-wow-delay="0.{{ $index ? $index + 1 :  $index + 2}}s">
                         <div class="icon-bx-wraper style-1 text-center">
                             <div class="icon-bx">

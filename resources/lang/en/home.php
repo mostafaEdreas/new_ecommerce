@@ -443,6 +443,10 @@ return [
     'shipping_free_in' => 'Shipping free when or order greater than' ,
 'discount_type' => 'Discount type' ,
     'main_page' => "Main Page",
+    'add color attribute' => 'Add color attribute' ,
+    'results' => 'Results' ,
+    'prev' => 'Prev' ,
+    'next' => 'Next' ,
 
     'This coupon has reached its maximum usage limit.' => 'This coupon has reached its maximum usage limit.',
     'This coupon is not valid yet.' => 'This coupon is not valid yet.',

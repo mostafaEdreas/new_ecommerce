@@ -1,0 +1,1 @@
+@include('website.banner', ['bannerTitle' => $product->name]);

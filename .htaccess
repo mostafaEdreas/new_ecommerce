@@ -10,7 +10,7 @@
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
     # Handle Front Controller...
-        RewriteCond %{HTTP_HOST} !localhost
+    RewriteCond %{HTTP_HOST} !localhost
     RewriteCond %{HTTP_HOST} !^(.+)\.(.+)\.(.+)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f

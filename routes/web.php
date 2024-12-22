@@ -30,7 +30,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
     Route::get('/categories', 'WebsiteController@getCategories');
     Route::get('sub-categories/{name}/{id}', 'WebsiteController@getSubCategories');
     Route::get('category/{name}/{id}/products', 'WebsiteController@getCategoryProducts');
-    Route::get('/products', 'WebsiteController@getProducts');
     Route::get('searchAutoComplete','WebsiteController@autoCompletesearch');
     Route::get('searchResult','WebsiteController@searchResult');
 
@@ -45,7 +44,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
     Route::post('/getRegions','WebsiteController@getRegions');
     Route::post('/getAreas','WebsiteController@getAreas');
     Route::get('brand/{link}','WebsiteController@getBrandProducts');
-    Route::get('category/{link}','WebsiteController@getCategory');
     Route::get('galleryVideos','WebsiteController@getGalleryVideos');
     Route::get('winners','WebsiteController@getWinners');
     Route::get('maintenance','WebsiteController@getMaintenance');

@@ -54,6 +54,8 @@ class RouteServiceProvider extends ServiceProvider
     protected $websiteFiles = [
         'home.php',
         'about.php' ,
+        'products.php' ,
+        'categories.php' ,
     ];
     protected $apinamespace = 'App\Http\Controllers\Api';
 
