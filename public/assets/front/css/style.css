@@ -19976,7 +19976,7 @@ select {
     height: auto;
     width: 100%;
     object-fit: contain;
-    er; */
+   
     }
 .shop-card .dz-media img {
   height: 330px;
@@ -33765,7 +33765,7 @@ footer .dz-bnr-inr:after {
   background-color: #eaefeb;
 }
 .account-order table tbody {
-  border: 1px solid #eaefeb;);
+  border: 1px solid #eaefeb;
   border-top: 0;
 }
 .account-order table tbody tr:not(:last-child) {

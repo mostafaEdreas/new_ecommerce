@@ -67,3 +67,17 @@
             </footer>
             <!-- Footer End -->
             @include('website.footer.call-modal')
+            <ul id=" " class="social-sec " style="transform: translate(15%, 100%); ">
+                <li class="Icon call ">
+                    <a href="tel:+2{{config('site_mobile')}}" target="_blank ">
+                        <i class="fa fa-phone"></i>
+                    </a>
+                </li>
+                <li class="Icon whatsapp ">
+                    <a href="https://wa.me/+2{{config('site_whatsapp')}}" target="_blank ">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+              
+            </ul>
+            <button class="scroltop" type="button"><i class="fas fa-arrow-up"></i></button>

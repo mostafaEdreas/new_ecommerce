@@ -26,7 +26,7 @@ class CartItems extends Model
         return $this->productStock?->price ?? 0;
     }
 
-    public function getNetProductpriceAttribute(){
+    public function getProductNetPriceAttribute(){
         return $this->productStock?->net_price ?? 0;
     }
 
@@ -42,9 +42,7 @@ class CartItems extends Model
         return $this->productStock?->product_main_image;
     }
 
-    public function getProductNetPriceAttribute(){
-        return $this->productStock?->net_price ?? 0 ;
-    }
+
 
     
 }

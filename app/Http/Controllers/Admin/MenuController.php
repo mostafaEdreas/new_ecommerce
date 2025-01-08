@@ -33,6 +33,7 @@ class MenuController extends Controller
 
     public function store(MenuRequest $request)
     {
+        dd($request->validated() , $request->all()) ;
 
         Menu::create($request->validated());
         return redirect()->back()->with('success',trans('home.your_item_added_successfully'));

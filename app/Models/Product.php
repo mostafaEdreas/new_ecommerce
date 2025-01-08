@@ -184,6 +184,9 @@ class Product extends Model
 
     }
 
+    public function getQuantityAttribute(){
+        return $this->stock?->stock  ;
+    }
     public function getNetPriceAttribute(){
         return $this->stock?->net_price  ;
     }
@@ -223,6 +226,10 @@ class Product extends Model
 
     public function scopeHasStock($query){
         return $query->whereHas('stocks');
+    }
+
+    public function scopeByCategory($query , int $category_id){
+        return $query->where('category_id' ,$category_id);
     }
 
 

@@ -7,7 +7,6 @@ use Melbahja\Seo\Schema;
 use Melbahja\Seo\Schema\Thing;
 use Melbahja\Seo\MetaTags;
 use App\Models\About;
-use App\Models\Faq;
 use App\Models\ProductReview;
 use App\Models\Product;
 use App\Models\Page;
@@ -176,7 +175,6 @@ trait SeoTrait {
         $lang=LaravelLocalization::getCurrentLocale();
         $product=Product::find($id);
         $seo = SeoAssistant::first();
-        $faqs = Faq::where('type','product')->where('product_id',$id)->where('status',1)->get();
         $rateCount=ProductReview::where('product_id',$id)->count();
         $productRate=ProductReview::where('product_id',$id)->avg('rate');
 
@@ -201,7 +199,7 @@ trait SeoTrait {
                     'priceCurrency'=>'EGP',
                     'price'=>$product->price,
                     'itemCondition'=>'NewCondition',
-                    'availability'=>($product->stock > 0)?'InStock':'OutOfStock',
+                    'availability'=>($product->quantity > 0)?'InStock':'OutOfStock',
 
                     'seller' => new Thing('Organization', [
                         'name'=>'Naguib Selim',
@@ -227,7 +225,7 @@ trait SeoTrait {
                     'priceCurrency'=>'EGP',
                     'price'=>$product->price,
                     'itemCondition'=>'NewCondition',
-                    'availability'=>($product->stock > 0)?'InStock':'OutOfStock',
+                    'availability'=>($product->quantity > 0)?'InStock':'OutOfStock',
 
                     'seller' => new Thing('Organization', [
                         'name'=>'Naguib Selim',
@@ -252,33 +250,7 @@ trait SeoTrait {
             'dateModified'=> $this->ISoDateTimeFormate($product->updated_at),
         ]);
 
-        if(count($faqs) > 0){
-            $ques = [];
-            foreach($faqs as $faq){
-                $x = new Thing('Question', [
-                    'name'=>$faq->question,
-                    'acceptedAnswer' => new Thing('Answer', [
-                        'text'=>$faq->answer,
-                    ]),
-                ]);
 
-                array_push($ques,$x);
-            }
-
-            $schema2 = new Thing('FAQPage', [
-                'mainEntity' =>[
-                    $ques
-                ]
-
-            ]);
-
-            $schema = new Schema(
-                $schema1,
-                $schema2,
-                $schema3
-            );
-
-        }
 
         $schema = new Schema(
             $schema1,
@@ -292,7 +264,7 @@ trait SeoTrait {
                 ->description(($lang == 'en')?(($product->meta_desc_en)?$product->meta_desc_en:$product->link_en):(($product->meta_desc_ar)?$product->meta_desc_ar:$product->link_ar))
                 ->meta('author',config('site_app_name'))
                 ->meta('time',date('D M j G:i:s T Y', strtotime($product->created_at)))
-                ->image(($product->firstImage())?url('uploads/products/source/'.$product->firstImage()->image):url('resources/assets/front/images/noimage.png'))
+                ->image(($product->main_image)?url('uploads/products/source/'.$product->main_image):url('resources/assets/front/images/noimage.png'))
                 ->mobile(($lang == 'en')?LaravelLocalization::localizeUrl("product/$product->link_en"):LaravelLocalization::localizeUrl("product/$product->link_ar"))
                 ->canonical(($lang == 'en')?LaravelLocalization::localizeUrl("product/$product->link_en"):LaravelLocalization::localizeUrl("product/$product->link_ar"))
                 ->shortlink(($lang == 'en')?LaravelLocalization::localizeUrl("product/$product->link_en"):LaravelLocalization::localizeUrl("product/$product->link_ar"))
@@ -576,7 +548,7 @@ trait SeoTrait {
         $lang=LaravelLocalization::getCurrentLocale();
         $seo = SeoAssistant::first();
         $metatags = new MetaTags();
-        $about = About::first();
+        $about = About::firstOrCreate([]);
 
         $metatags
                 ->title(($seo->featuredProducts_meta_title || $seo->featuredProducts_meta_title_ar)? (($lang == 'en')?$seo->featuredProducts_meta_title:$seo->featuredProducts_meta_title_ar):config('site_app_name'))

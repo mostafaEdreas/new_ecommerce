@@ -222,8 +222,8 @@ class WebsiteController extends Controller
     {
         $request->validate([
             'name' => 'required|max:150',
-            //   'email'=>'required|email',
-            //   'message'=>'required',
+              'email'=>'required|email',
+              'message'=>'required',
             'phone' => 'required|regex:/(01)[0-9]{9}/',
         ]);
 

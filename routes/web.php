@@ -23,8 +23,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
     require base_path('routes/sitemap/sitemap.php');
     require base_path('routes/website/home.php');
 
-    Route::get('contact-us','WebsiteController@contactUs');
-    Route::post('save/contact-us','WebsiteController@saveContactUs');
     Route::get('deals','WebsiteController@deals');
     Route::get('featured','WebsiteController@featuredProducts');
     Route::get('/categories', 'WebsiteController@getCategories');
@@ -33,8 +31,6 @@ Route::group(['middleware'=>['web','localeSessionRedirect', 'localizationRedirec
     Route::get('searchAutoComplete','WebsiteController@autoCompletesearch');
     Route::get('searchResult','WebsiteController@searchResult');
 
-    Route::get('product/{link}','WebsiteController@getProductDetails');
-    Route::post('product/{link}','WebsiteController@getProductDetails');
     Route::get('page/{link}','WebsiteController@getPage');
     Route::get('trendings','WebsiteController@getBlogs');
     Route::get('trending/{link}','WebsiteController@getBlogPage');

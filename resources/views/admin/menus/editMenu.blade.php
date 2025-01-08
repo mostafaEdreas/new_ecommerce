@@ -41,7 +41,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label class="">{{trans('home.order')}}</label>
-                                    <input class="form-control" name="order" type="number" value="1" min="1" step="1" placeholder="{{trans('home.order')}}" value="{{$menu->order}}">
+                                    <input class="form-control" name="order" type="number"  min="1" step="1" placeholder="{{trans('home.order')}}" value="{{$menu->order}}">
                                 </div>
 
                                 <div class="form-group col-md-4">

@@ -19,11 +19,14 @@
 <link rel="stylesheet" type="text/css" href="{{Helper::frontFilesPath('vendor/lightgallery/dist/css/lg-zoom.css')}}">
 <link rel="stylesheet" type="text/css" href="{{Helper::frontFilesPath('css/style.css')}}">
 
+
 <!-- GOOGLE FONTS-->
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Roboto:wght@100;300;400;500;700;900&amp;display=swap"rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" type="text/css" href="{{Helper::frontFilesPath('css/toastr.css')}}">
+
 
 @yield('style')

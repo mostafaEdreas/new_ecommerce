@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="dz-content">
-                <h5 class="title"><a href="product-thumbnail.html">{{ $product->name }}</a></h5>
+                <h5 class="title"><a href="{{LaravelLocalization::localizeUrl('product/'.$product->link)}}">{{ $product->name }}</a></h5>
 
                 <h6 class="price">
                     {{$product->net_price}}

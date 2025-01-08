@@ -1,1 +1,1 @@
-@include('website.banner', ['bannerTitle' , __('home.products')]  );
+@include('website.banner', ['bannerTitle' => __('home.products')]  );

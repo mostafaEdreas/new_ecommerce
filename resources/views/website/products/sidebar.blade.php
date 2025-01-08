@@ -31,7 +31,7 @@
                 <div class="widget">
                     <h6 class="widget-title">@lang('home.color')</h6>
                     <div class="d-flex align-items-center flex-wrap color-filter ps-2">
-                        @foreach ($color->values as $value )
+                        @foreach ($color?->values ?? [] as $value )
                         <a href="{{ url()->current() . (request()->query('color') ? '?color=' . $value->id . '&' . http_build_query(request()->except('color')) : '?' . http_build_query(array_merge(request()->all(), ['color' => $value->id]))) }}">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="color" id="radioNoLabel1" value="{{ $value->value}}" aria-label="...">
